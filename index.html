@@ -3,967 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Marketplace Tracker</title>
+    <title>Test Tracker</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 16px;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
             padding: 20px;
-            margin-bottom: 20px;
+            background: #f5f5f5;
         }
-
-        .title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #64748b;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .mobile-notice {
-            background: #f0f9ff;
-            border: 1px solid #0ea5e9;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-
-        .mobile-notice h3 {
-            color: #0369a1;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .mobile-notice p {
-            color: #0c4a6e;
-            font-size: 13px;
-            margin-bottom: 4px;
-        }
-
-        .capture-methods {
-            display: grid;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .method-card {
-            background: white;
-            border-radius: 8px;
-            padding: 16px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .method-card h4 {
-            color: #1e293b;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .method-card p {
-            color: #64748b;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .method-card.recommended {
-            border-left: 4px solid #059669;
-        }
-
-        .method-card.advanced {
-            border-left: 4px solid #7c3aed;
-        }
-
-        .method-card.simple {
-            border-left: 4px solid #2563eb;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .stat-card.total { background: #dbeafe; }
-        .stat-card.pending { background: #fef3c7; }
-        .stat-card.complete { background: #dcfce7; }
-        .stat-card.mobile { background: #f3e8ff; }
-
-        .stat-label {
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-
-        .stat-card.total .stat-label { color: #1e40af; }
-        .stat-card.pending .stat-label { color: #d97706; }
-        .stat-card.complete .stat-label { color: #166534; }
-        .stat-card.mobile .stat-label { color: #7c3aed; }
-
-        .stat-value {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .stat-card.total .stat-value { color: #1e3a8a; }
-        .stat-card.pending .stat-value { color: #b45309; }
-        .stat-card.complete .stat-value { color: #14532d; }
-        .stat-card.mobile .stat-value { color: #6b21a8; }
-
-        .quick-capture {
-            background: white;
-            border-radius: 8px;
-            padding: 16px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .quick-capture h3 {
-            margin-bottom: 12px;
-            color: #1e293b;
-        }
-
-        .capture-tabs {
-            display: flex;
-            border-bottom: 1px solid #e5e7eb;
-            margin-bottom: 16px;
-        }
-
-        .tab {
-            padding: 8px 16px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        .tab.active {
-            color: #2563eb;
-            border-bottom-color: #2563eb;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .input {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 16px; /* Prevents zoom on iOS */
-        }
-
-        .input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
+        
         .btn {
-            padding: 12px 16px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
+            padding: 15px 25px;
             background: #2563eb;
             color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
         }
-
-        .btn-primary:hover {
-            background: #1d4ed8;
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
         }
-
-        .btn-secondary {
-            background: #f1f5f9;
-            color: #475569;
+        
+        .modal.show {
+            display: flex;
         }
-
-        .textarea {
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .close-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        
+        .input {
             width: 100%;
             padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             font-size: 16px;
-            resize: vertical;
-            font-family: inherit;
-        }
-
-        .manual-form {
-            display: grid;
-            gap: 12px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-label {
-            font-size: 12px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 4px;
-        }
-
-        .listings-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        .listing-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 16px;
-        }
-
-        .listing-card.mobile-added {
-            border-left: 4px solid #7c3aed;
-        }
-
-        .listing-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-
-        .listing-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .status-badge {
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        .status-badge.pending {
-            background: #fef3c7;
-            color: #d97706;
-        }
-
-        .status-badge.complete {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .status-badge.mobile {
-            background: #f3e8ff;
-            color: #7c3aed;
-        }
-
-        .listing-actions {
-            display: flex;
-            gap: 4px;
-        }
-
-        .btn-icon {
-            padding: 6px;
-            background: none;
-            border: none;
-            color: #9ca3af;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .btn-icon:hover {
-            color: #2563eb;
-            background: #f1f5f9;
-        }
-
-        .listing-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1e293b;
-        }
-
-        .listing-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #059669;
-            margin-bottom: 8px;
-        }
-
-        .listing-details {
-            font-size: 14px;
-            color: #64748b;
-            margin-bottom: 12px;
-        }
-
-        .listing-details div {
-            margin-bottom: 2px;
-        }
-
-        .listing-date {
-            font-size: 12px;
-            color: #9ca3af;
-        }
-
-        .shortcut-install {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 16px;
-            margin-top: 20px;
-        }
-
-        .shortcut-install h3 {
-            margin-bottom: 12px;
-            color: #1e293b;
-        }
-
-        .shortcut-steps {
-            font-size: 14px;
-            color: #64748b;
-        }
-
-        .shortcut-steps ol {
-            margin: 8px 0 0 20px;
-        }
-
-        .shortcut-steps li {
-            margin-bottom: 4px;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 48px 20px;
-            color: #64748b;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 640px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .input-group {
-                flex-direction: column;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="title">📱 Mobile Marketplace Tracker</h1>
-            <p class="subtitle">Optimized for iPhone, iPad, and mobile browsing</p>
+    <h1>📱 Test Tracker</h1>
+    
+    <button class="btn" onclick="openModal()">Open Modal Test</button>
+    
+    <div id="test-modal" class="modal">
+        <div class="modal-content">
+            <h3>Test Modal</h3>
+            <p>Can you close this modal?</p>
             
-            <div class="mobile-notice">
-                <h3>📲 Mobile Capture Methods</h3>
-                <p><strong>✅ iPhone Safari:</strong> Use Share Sheet or copy/paste URLs</p>
-                <p><strong>✅ Chrome Mobile:</strong> Copy URLs from address bar</p>
-                <p><strong>❌ Facebook App:</strong> Switch to mobile browser for best results</p>
-            </div>
+            <input type="text" class="input" placeholder="Test input">
             
-            <div class="stats-grid">
-                <div class="stat-card total">
-                    <div class="stat-label">Total</div>
-                    <div class="stat-value" id="stat-total">0</div>
-                </div>
-                <div class="stat-card pending">
-                    <div class="stat-label">Pending</div>
-                    <div class="stat-value" id="stat-pending">0</div>
-                </div>
-                <div class="stat-card complete">
-                    <div class="stat-label">Complete</div>
-                    <div class="stat-value" id="stat-complete">0</div>
-                </div>
-                <div class="stat-card mobile">
-                    <div class="stat-label">Mobile</div>
-                    <div class="stat-value" id="stat-mobile">0</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="capture-methods">
-            <div class="method-card recommended">
-                <h4>🎯 Recommended: Share Sheet (iOS)</h4>
-                <p>On Facebook Marketplace listing → Share → Copy Link → Paste here</p>
-                <div class="input-group">
-                    <input type="url" id="share-url" class="input" placeholder="Paste Facebook URL here...">
-                    <button onclick="quickAdd('share')" class="btn btn-primary">Add</button>
-                </div>
-            </div>
-
-            <div class="method-card simple">
-                <h4>📝 Simple: Manual Entry</h4>
-                <p>For when you want to quickly jot down details you see</p>
-                <button onclick="showManualForm()" class="btn btn-secondary">Manual Entry</button>
-            </div>
-
-            <div class="method-card advanced">
-                <h4>⚡ Advanced: iOS Shortcut</h4>
-                <p>One-tap capture from anywhere in iOS (requires setup)</p>
-                <button onclick="showShortcutInstructions()" class="btn btn-secondary">Setup Guide</button>
-            </div>
-        </div>
-
-        <div class="quick-capture">
-            <h3>Quick Capture</h3>
-            
-            <div class="capture-tabs">
-                <button class="tab active" onclick="switchTab('url')">URL</button>
-                <button class="tab" onclick="switchTab('manual')">Manual</button>
-                <button class="tab" onclick="switchTab('voice')">Voice Note</button>
-            </div>
-
-            <div id="url-tab" class="tab-content active">
-                <div class="input-group">
-                    <input type="url" id="quick-url" class="input" placeholder="Paste any marketplace URL...">
-                    <button onclick="quickAdd('url')" class="btn btn-primary">Add</button>
-                </div>
-                <p style="font-size: 12px; color: #64748b; margin-top: 8px;">
-                    Supports Facebook, eBay, Craigslist, dealer sites, etc.
-                </p>
-            </div>
-
-            <div id="manual-tab" class="tab-content">
-                <div class="manual-form">
-                    <div class="form-group">
-                        <label class="form-label">Title</label>
-                        <input type="text" id="manual-title" class="input" placeholder="2023 Honda CBR600RR">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Price</label>
-                            <input type="number" id="manual-price" class="input" placeholder="8500">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Source</label>
-                            <select id="manual-source" class="input">
-                                <option value="Facebook Marketplace">Facebook Marketplace</option>
-                                <option value="Craigslist">Craigslist</option>
-                                <option value="eBay">eBay</option>
-                                <option value="Dealer">Dealer</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Seller</label>
-                            <input type="text" id="manual-seller" class="input" placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Location</label>
-                            <input type="text" id="manual-location" class="input" placeholder="San Francisco, CA">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Notes</label>
-                        <textarea id="manual-notes" class="textarea" rows="3" placeholder="Any additional details..."></textarea>
-                    </div>
-                    <button onclick="addManualListing()" class="btn btn-primary">Add Listing</button>
-                </div>
-            </div>
-
-            <div id="voice-tab" class="tab-content">
-                <button id="voice-btn" onclick="startVoiceCapture()" class="btn btn-primary" style="width: 100%; margin-bottom: 12px;">
-                    🎤 Start Voice Note
-                </button>
-                <textarea id="voice-transcript" class="textarea" rows="4" placeholder="Voice transcript will appear here..." readonly></textarea>
-                <button onclick="saveVoiceNote()" class="btn btn-secondary" style="width: 100%; margin-top: 8px;">
-                    Save Voice Note as Listing
-                </button>
-            </div>
-        </div>
-
-        <!-- Manual Form Modal -->
-        <div id="manual-modal" class="hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px;" onclick="hideManualForm()">
-            <div style="background: white; border-radius: 12px; padding: 20px; width: 100%; max-width: 400px; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                    <h3>Quick Manual Entry</h3>
-                    <button onclick="hideManualForm()" style="background: none; border: none; font-size: 24px; color: #666; cursor: pointer; padding: 8px; min-width: 40px; min-height: 40px;">×</button>
-                </div>
-                <div class="manual-form">
-                    <div class="form-group">
-                        <label class="form-label">What did you see?</label>
-                        <input type="text" id="modal-title" class="input" placeholder="2023 Honda CBR600RR">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Price (if visible)</label>
-                        <input type="number" id="modal-price" class="input" placeholder="8500">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Where did you see it?</label>
-                        <select id="modal-source" class="input">
-                            <option value="Facebook Marketplace">Facebook Marketplace</option>
-                            <option value="Instagram">Instagram</option>
-                            <option value="Craigslist">Craigslist</option>
-                            <option value="In Person">In Person</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Quick notes</label>
-                        <textarea id="modal-notes" class="textarea" rows="3" placeholder="Any details you remember..."></textarea>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 12px; margin-top: 16px;">
-                    <button onclick="hideManualForm()" class="btn btn-secondary" style="flex: 1;">Cancel</button>
-                    <button onclick="saveManualForm()" class="btn btn-primary" style="flex: 1;">Save</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- iOS Shortcut Instructions -->
-        <div id="shortcut-instructions" class="shortcut-install hidden">
-            <h3>📱 iOS Shortcut Setup</h3>
-            <div class="shortcut-steps">
-                <p><strong>Create a custom iOS Shortcut for one-tap capture:</strong></p>
-                <ol>
-                    <li>Open iOS Shortcuts app</li>
-                    <li>Tap "+" to create new shortcut</li>
-                    <li>Add "Get My Shortcuts" → "Get Current App"</li>
-                    <li>Add "Get URLs from Input"</li>
-                    <li>Add "Open URLs" → Set to this tracker URL with clipboard data</li>
-                    <li>Save as "Capture Listing"</li>
-                    <li>Add to Home Screen for easy access</li>
-                </ol>
-                <p style="margin-top: 12px;"><strong>Usage:</strong> While viewing any listing, tap your shortcut to instantly capture!</p>
-            </div>
-            <button onclick="hideShortcutInstructions()" class="btn btn-secondary">Close</button>
-        </div>
-
-        <!-- Listings -->
-        <div id="listings-container">
-            <div class="listings-grid" id="listings-grid"></div>
-            <div class="empty-state hidden" id="empty-state">
-                <p>No listings yet. Use one of the capture methods above to get started!</p>
+            <div>
+                <button class="close-btn" onclick="closeModal()">Close Modal</button>
+                <button class="close-btn" onclick="testAlert()">Test Alert</button>
             </div>
         </div>
     </div>
 
     <script>
-        let listings = [];
-        let voiceRecognition = null;
-
-        // Load data
-        function loadData() {
-            const saved = localStorage.getItem('mobile-marketplace-listings');
-            if (saved) {
-                listings = JSON.parse(saved);
+        function openModal() {
+            console.log('Opening modal...');
+            document.getElementById('test-modal').classList.add('show');
+        }
+        
+        function closeModal() {
+            console.log('Closing modal...');
+            document.getElementById('test-modal').classList.remove('show');
+        }
+        
+        function testAlert() {
+            alert('JavaScript is working!');
+        }
+        
+        // Test click outside to close
+        document.getElementById('test-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                console.log('Clicked outside modal');
+                closeModal();
             }
-        }
-
-        // Save data
-        function saveData() {
-            localStorage.setItem('mobile-marketplace-listings', JSON.stringify(listings));
-        }
-
-        // Switch tabs
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
-            document.getElementById(`${tabName}-tab`).classList.add('active');
-        }
-
-        // Quick add from URL
-        function quickAdd(source) {
-            const urlInput = source === 'share' ? document.getElementById('share-url') : document.getElementById('quick-url');
-            const url = urlInput.value.trim();
-            
-            if (!url) return;
-            
-            const listing = {
-                id: Date.now(),
-                url: url,
-                title: 'Pending Details',
-                price: null,
-                seller: '',
-                location: '',
-                source: url.includes('facebook.com') ? 'Facebook Marketplace' : 'Dealer/Shop',
-                status: 'pending',
-                addedDate: new Date().toISOString(),
-                mobileAdded: true,
-                notes: ''
-            };
-            
-            listings.unshift(listing);
-            urlInput.value = '';
-            
-            saveData();
-            updateDisplay();
-        }
-
-        // Show manual form
-        function showManualForm() {
-            document.getElementById('manual-modal').classList.remove('hidden');
-        }
-
-        // Hide manual form
-        function hideManualForm() {
-            document.getElementById('manual-modal').classList.add('hidden');
-        }
-
-        // Save manual form
-        function saveManualForm() {
-            const title = document.getElementById('modal-title').value.trim();
-            const price = document.getElementById('modal-price').value;
-            const source = document.getElementById('modal-source').value;
-            const notes = document.getElementById('modal-notes').value.trim();
-            
-            if (!title) {
-                alert('Please enter a title');
-                return;
-            }
-            
-            const listing = {
-                id: Date.now(),
-                url: '',
-                title: title,
-                price: price ? parseInt(price) : null,
-                seller: '',
-                location: '',
-                source: source,
-                status: 'manual',
-                addedDate: new Date().toISOString(),
-                mobileAdded: true,
-                notes: notes
-            };
-            
-            listings.unshift(listing);
-            
-            // Clear form
-            document.getElementById('modal-title').value = '';
-            document.getElementById('modal-price').value = '';
-            document.getElementById('modal-notes').value = '';
-            
-            hideManualForm();
-            saveData();
-            updateDisplay();
-        }
-
-        // Add manual listing from tab
-        function addManualListing() {
-            const title = document.getElementById('manual-title').value.trim();
-            const price = document.getElementById('manual-price').value;
-            const source = document.getElementById('manual-source').value;
-            const seller = document.getElementById('manual-seller').value.trim();
-            const location = document.getElementById('manual-location').value.trim();
-            const notes = document.getElementById('manual-notes').value.trim();
-            
-            if (!title) {
-                alert('Please enter a title');
-                return;
-            }
-            
-            const listing = {
-                id: Date.now(),
-                url: '',
-                title: title,
-                price: price ? parseInt(price) : null,
-                seller: seller,
-                location: location,
-                source: source,
-                status: 'complete',
-                addedDate: new Date().toISOString(),
-                mobileAdded: true,
-                notes: notes
-            };
-            
-            listings.unshift(listing);
-            
-            // Clear form
-            document.getElementById('manual-title').value = '';
-            document.getElementById('manual-price').value = '';
-            document.getElementById('manual-seller').value = '';
-            document.getElementById('manual-location').value = '';
-            document.getElementById('manual-notes').value = '';
-            
-            saveData();
-            updateDisplay();
-        }
-
-        // Voice capture
-        function startVoiceCapture() {
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                alert('Voice recognition not supported in this browser');
-                return;
-            }
-            
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            voiceRecognition = new SpeechRecognition();
-            
-            voiceRecognition.continuous = true;
-            voiceRecognition.interimResults = true;
-            voiceRecognition.lang = 'en-US';
-            
-            const btn = document.getElementById('voice-btn');
-            const transcript = document.getElementById('voice-transcript');
-            
-            voiceRecognition.onstart = () => {
-                btn.textContent = '🔴 Recording... (tap to stop)';
-                btn.onclick = stopVoiceCapture;
-            };
-            
-            voiceRecognition.onresult = (event) => {
-                let finalTranscript = '';
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    if (event.results[i].isFinal) {
-                        finalTranscript += event.results[i][0].transcript + ' ';
-                    }
-                }
-                transcript.value = finalTranscript;
-            };
-            
-            voiceRecognition.onerror = () => {
-                stopVoiceCapture();
-                alert('Voice recognition error');
-            };
-            
-            voiceRecognition.start();
-        }
-
-        function stopVoiceCapture() {
-            if (voiceRecognition) {
-                voiceRecognition.stop();
-            }
-            
-            const btn = document.getElementById('voice-btn');
-            btn.textContent = '🎤 Start Voice Note';
-            btn.onclick = startVoiceCapture;
-        }
-
-        function saveVoiceNote() {
-            const transcript = document.getElementById('voice-transcript').value.trim();
-            
-            if (!transcript) {
-                alert('No voice note to save');
-                return;
-            }
-            
-            const listing = {
-                id: Date.now(),
-                url: '',
-                title: 'Voice Note: ' + transcript.substring(0, 50) + (transcript.length > 50 ? '...' : ''),
-                price: null,
-                seller: '',
-                location: '',
-                source: 'Voice Note',
-                status: 'voice',
-                addedDate: new Date().toISOString(),
-                mobileAdded: true,
-                notes: transcript
-            };
-            
-            listings.unshift(listing);
-            document.getElementById('voice-transcript').value = '';
-            
-            saveData();
-            updateDisplay();
-        }
-
-        // Show shortcut instructions
-        function showShortcutInstructions() {
-            document.getElementById('shortcut-instructions').classList.remove('hidden');
-        }
-
-        function hideShortcutInstructions() {
-            document.getElementById('shortcut-instructions').classList.add('hidden');
-        }
-
-        // Update statistics
-        function updateStats() {
-            const stats = {
-                total: listings.length,
-                pending: listings.filter(l => l.status === 'pending').length,
-                complete: listings.filter(l => l.status === 'complete').length,
-                mobile: listings.filter(l => l.mobileAdded).length
-            };
-
-            document.getElementById('stat-total').textContent = stats.total;
-            document.getElementById('stat-pending').textContent = stats.pending;
-            document.getElementById('stat-complete').textContent = stats.complete;
-            document.getElementById('stat-mobile').textContent = stats.mobile;
-        }
-
-        // Render listings
-        function renderListings() {
-            const container = document.getElementById('listings-grid');
-            const emptyState = document.getElementById('empty-state');
-
-            if (listings.length === 0) {
-                container.style.display = 'none';
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            container.style.display = 'grid';
-            emptyState.classList.add('hidden');
-
-            container.innerHTML = listings.map(listing => `
-                <div class="listing-card ${listing.mobileAdded ? 'mobile-added' : ''}">
-                    <div class="listing-header">
-                        <div class="listing-status">
-                            <span class="status-badge ${listing.status}">
-                                ${listing.status === 'pending' ? 'Pending' : 
-                                  listing.status === 'complete' ? 'Complete' : 
-                                  listing.status === 'manual' ? 'Manual' : 
-                                  listing.status === 'voice' ? 'Voice' : 'Other'}
-                            </span>
-                            <span style="font-size: 11px; color: #64748b;">${listing.source}</span>
-                            ${listing.mobileAdded ? '<span style="font-size: 11px; color: #7c3aed;">📱</span>' : ''}
-                        </div>
-                        <div class="listing-actions">
-                            ${listing.url ? `<button class="btn-icon" onclick="window.open('${listing.url}', '_blank')">🔗</button>` : ''}
-                            <button class="btn-icon" onclick="editListing(${listing.id})">✏️</button>
-                            <button class="btn-icon" onclick="deleteListing(${listing.id})">🗑️</button>
-                        </div>
-                    </div>
-                    
-                    <h3 class="listing-title">${listing.title}</h3>
-                    
-                    ${listing.price ? `<div class="listing-price">$${listing.price.toLocaleString()}</div>` : ''}
-                    
-                    <div class="listing-details">
-                        ${listing.seller ? `<div><strong>Seller:</strong> ${listing.seller}</div>` : ''}
-                        ${listing.location ? `<div><strong>Location:</strong> ${listing.location}</div>` : ''}
-                        ${listing.notes ? `<div><strong>Notes:</strong> ${listing.notes.substring(0, 100)}${listing.notes.length > 100 ? '...' : ''}</div>` : ''}
-                    </div>
-                    
-                    <div class="listing-date">
-                        Added: ${new Date(listing.addedDate).toLocaleDateString()}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Update display
-        function updateDisplay() {
-            updateStats();
-            renderListings();
-        }
-
-        // Edit listing (simplified for mobile)
-        function editListing(id) {
-            const listing = listings.find(l => l.id === id);
-            if (!listing) return;
-            
-            const newTitle = prompt('Edit title:', listing.title);
-            if (newTitle !== null) {
-                listing.title = newTitle;
-                const newPrice = prompt('Edit price (leave blank for no price):', listing.price || '');
-                if (newPrice !== null) {
-                    listing.price = newPrice ? parseInt(newPrice) : null;
-                }
-                listing.status = 'complete';
-                saveData();
-                updateDisplay();
-            }
-        }
-
-        // Delete listing
-        function deleteListing(id) {
-            if (confirm('Delete this listing?')) {
-                listings = listings.filter(l => l.id !== id);
-                saveData();
-                updateDisplay();
-            }
-        }
-
-        // Initialize
-        function init() {
-            loadData();
-            updateDisplay();
-
-            // Handle URL parameters for iOS Shortcuts integration
-            const urlParams = new URLSearchParams(window.location.search);
-            const sharedUrl = urlParams.get('url');
-            if (sharedUrl) {
-                document.getElementById('quick-url').value = sharedUrl;
-                quickAdd('url');
-                // Clear URL params
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        }
-
-        // Start app
-        init();
-
-        // Handle keyboard events
-        document.getElementById('share-url').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') quickAdd('share');
         });
-
-        document.getElementById('quick-url').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') quickAdd('url');
-        });
+        
+        console.log('Script loaded successfully');
     </script>
 </body>
 </html>
