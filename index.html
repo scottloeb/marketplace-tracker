@@ -62,7 +62,7 @@
         .stat-card.total { background: #dbeafe; }
         .stat-card.pending { background: #fef3c7; }
         .stat-card.complete { background: #dcfce7; }
-        .stat-card.mobile { background: #f3e8ff; }
+        .stat-card.duplicates { background: #fef2f2; }
 
         .stat-label {
             font-size: 12px;
@@ -73,7 +73,7 @@
         .stat-card.total .stat-label { color: #1e40af; }
         .stat-card.pending .stat-label { color: #d97706; }
         .stat-card.complete .stat-label { color: #166534; }
-        .stat-card.mobile .stat-label { color: #7c3aed; }
+        .stat-card.duplicates .stat-label { color: #dc2626; }
 
         .stat-value {
             font-size: 20px;
@@ -83,7 +83,7 @@
         .stat-card.total .stat-value { color: #1e3a8a; }
         .stat-card.pending .stat-value { color: #b45309; }
         .stat-card.complete .stat-value { color: #14532d; }
-        .stat-card.mobile .stat-value { color: #6b21a8; }
+        .stat-card.duplicates .stat-value { color: #b91c1c; }
 
         .capture-methods {
             display: grid;
@@ -156,6 +156,16 @@
             color: #475569;
         }
 
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
         .textarea {
             width: 100%;
             padding: 12px;
@@ -191,6 +201,16 @@
             border-left: 4px solid #7c3aed;
         }
 
+        .listing-card.duplicate {
+            border-left-color: #dc2626;
+            background: #fef2f2;
+        }
+
+        .listing-card.cross-listing {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+
         .listing-header {
             display: flex;
             justify-content: space-between;
@@ -212,6 +232,16 @@
             font-weight: 500;
             background: #f3e8ff;
             color: #7c3aed;
+        }
+
+        .status-badge.duplicate {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .status-badge.cross-listing {
+            background: #fffbeb;
+            color: #f59e0b;
         }
 
         .listing-actions {
@@ -248,6 +278,20 @@
             margin-bottom: 8px;
         }
 
+        .price-change {
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .price-change.up {
+            color: #dc2626;
+        }
+
+        .price-change.down {
+            color: #059669;
+        }
+
         .listing-details {
             font-size: 14px;
             color: #64748b;
@@ -263,13 +307,44 @@
             color: #9ca3af;
         }
 
+        .duplicate-info {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .duplicate-info h4 {
+            color: #dc2626;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .duplicate-info p {
+            font-size: 12px;
+            color: #b91c1c;
+            margin-bottom: 8px;
+        }
+
+        .duplicate-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .duplicate-actions .btn {
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+
         .empty-state {
             text-align: center;
             padding: 48px 20px;
             color: #64748b;
         }
 
-        /* Simple Modal Styles - Same as the test that worked */
+        /* Modal styles */
         .modal {
             position: fixed;
             top: 0;
@@ -327,8 +402,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">📱 Mobile Marketplace Tracker</h1>
-            <p class="subtitle">Quick capture, organized tracking</p>
+            <h1 class="title">📱 Smart Marketplace Tracker</h1>
+            <p class="subtitle">Auto-detects duplicates and cross-listings</p>
             
             <div class="stats-grid">
                 <div class="stat-card total">
@@ -336,27 +411,27 @@
                     <div class="stat-value" id="stat-total">0</div>
                 </div>
                 <div class="stat-card pending">
-                    <div class="stat-label">Pending</div>
-                    <div class="stat-value" id="stat-pending">0</div>
+                    <div class="stat-label">Unique</div>
+                    <div class="stat-value" id="stat-unique">0</div>
                 </div>
                 <div class="stat-card complete">
                     <div class="stat-label">Complete</div>
                     <div class="stat-value" id="stat-complete">0</div>
                 </div>
-                <div class="stat-card mobile">
-                    <div class="stat-label">Mobile</div>
-                    <div class="stat-value" id="stat-mobile">0</div>
+                <div class="stat-card duplicates">
+                    <div class="stat-label">Duplicates</div>
+                    <div class="stat-value" id="stat-duplicates">0</div>
                 </div>
             </div>
         </div>
 
         <div class="capture-methods">
             <div class="method-card">
-                <h4>🎯 Quick URL Capture</h4>
-                <p>Paste Facebook Marketplace, eBay, Craigslist, or dealer URLs</p>
+                <h4>🎯 Smart URL Capture</h4>
+                <p>Auto-detects duplicates, price changes, and cross-listings</p>
                 <div class="input-group">
                     <input type="url" id="quick-url" class="input" placeholder="Paste any marketplace URL here...">
-                    <button onclick="quickAdd()" class="btn btn-primary">Add</button>
+                    <button onclick="smartAdd()" class="btn btn-primary">Smart Add</button>
                 </div>
             </div>
 
@@ -376,7 +451,7 @@
         </div>
     </div>
 
-    <!-- Simple Modal - Using the exact pattern that worked in our test -->
+    <!-- Manual Entry Modal -->
     <div id="manual-modal" class="modal">
         <div class="modal-content">
             <h3>Quick Manual Entry</h3>
@@ -419,7 +494,7 @@
 
         // Load data
         function loadData() {
-            const saved = localStorage.getItem('mobile-marketplace-listings');
+            const saved = localStorage.getItem('smart-marketplace-listings');
             if (saved) {
                 listings = JSON.parse(saved);
             }
@@ -427,17 +502,132 @@
 
         // Save data
         function saveData() {
-            localStorage.setItem('mobile-marketplace-listings', JSON.stringify(listings));
+            localStorage.setItem('smart-marketplace-listings', JSON.stringify(listings));
         }
 
-        // Quick add from URL
-        function quickAdd() {
+        // Normalize URL for comparison (remove tracking parameters, etc.)
+        function normalizeUrl(url) {
+            try {
+                const urlObj = new URL(url);
+                
+                // Remove common tracking parameters
+                const paramsToRemove = ['fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'ref', 'source'];
+                paramsToRemove.forEach(param => urlObj.searchParams.delete(param));
+                
+                // Normalize Facebook marketplace URLs
+                if (urlObj.hostname.includes('facebook.com')) {
+                    // Extract the item ID from Facebook URLs
+                    const pathMatch = urlObj.pathname.match(/\/marketplace\/item\/(\d+)/);
+                    if (pathMatch) {
+                        return `facebook_marketplace_${pathMatch[1]}`;
+                    }
+                }
+                
+                // For other sites, use hostname + pathname
+                return urlObj.hostname + urlObj.pathname;
+            } catch (e) {
+                return url;
+            }
+        }
+
+        // Extract key details for similarity matching
+        function extractListingFingerprint(title, price, description) {
+            // Normalize text for comparison
+            const normalizeText = (text) => {
+                return text.toLowerCase()
+                    .replace(/[^\w\s]/g, '') // Remove punctuation
+                    .replace(/\s+/g, ' ')    // Normalize whitespace
+                    .trim();
+            };
+
+            // Extract key terms (year, make, model, etc.)
+            const titleNorm = normalizeText(title);
+            const descNorm = normalizeText(description);
+            
+            // Look for vehicle patterns
+            const yearMatch = titleNorm.match(/\b(19|20)\d{2}\b/);
+            const year = yearMatch ? yearMatch[0] : null;
+            
+            // Common vehicle makes
+            const makes = ['honda', 'yamaha', 'kawasaki', 'suzuki', 'ducati', 'bmw', 'ktm', 'harley', 'indian', 'triumph', 'ford', 'chevy', 'toyota', 'nissan'];
+            const make = makes.find(m => titleNorm.includes(m));
+            
+            return {
+                year,
+                make,
+                titleNorm,
+                price: price ? parseInt(price) : null,
+                fingerprint: `${year || ''}_${make || ''}_${titleNorm.replace(/\s+/g, '_').substring(0, 30)}`
+            };
+        }
+
+        // Check for duplicates and similar listings
+        function findDuplicatesAndSimilar(newListing) {
+            const results = {
+                exactDuplicate: null,
+                crossListings: [],
+                similarListings: [],
+                priceUpdates: []
+            };
+
+            const newUrl = normalizeUrl(newListing.url || '');
+            const newFingerprint = extractListingFingerprint(newListing.title, newListing.price, newListing.description || '');
+
+            listings.forEach(existing => {
+                const existingUrl = normalizeUrl(existing.url || '');
+                const existingFingerprint = extractListingFingerprint(existing.title, existing.price, existing.description || '');
+
+                // Exact URL match (exact duplicate)
+                if (newUrl && existingUrl && newUrl === existingUrl) {
+                    results.exactDuplicate = existing;
+                    return;
+                }
+
+                // Similar content but different URL (cross-listing)
+                if (newFingerprint.fingerprint === existingFingerprint.fingerprint && newUrl !== existingUrl) {
+                    if (newListing.price && existing.price && newListing.price !== existing.price) {
+                        results.priceUpdates.push(existing);
+                    } else {
+                        results.crossListings.push(existing);
+                    }
+                    return;
+                }
+
+                // Similar content (potential duplicate with slight variations)
+                if (newFingerprint.year && existingFingerprint.year && 
+                    newFingerprint.year === existingFingerprint.year &&
+                    newFingerprint.make && existingFingerprint.make &&
+                    newFingerprint.make === existingFingerprint.make) {
+                    
+                    const titleSimilarity = calculateSimilarity(newFingerprint.titleNorm, existingFingerprint.titleNorm);
+                    if (titleSimilarity > 0.7) {
+                        results.similarListings.push({ listing: existing, similarity: titleSimilarity });
+                    }
+                }
+            });
+
+            return results;
+        }
+
+        // Calculate text similarity (simple Jaccard similarity)
+        function calculateSimilarity(text1, text2) {
+            const words1 = new Set(text1.split(' '));
+            const words2 = new Set(text2.split(' '));
+            
+            const intersection = new Set([...words1].filter(x => words2.has(x)));
+            const union = new Set([...words1, ...words2]);
+            
+            return intersection.size / union.size;
+        }
+
+        // Smart add with duplicate detection
+        function smartAdd() {
             const urlInput = document.getElementById('quick-url');
             const url = urlInput.value.trim();
             
             if (!url) return;
             
-            const listing = {
+            const newListing = {
                 id: Date.now(),
                 url: url,
                 title: 'Pending Details',
@@ -448,24 +638,84 @@
                 status: 'pending',
                 addedDate: new Date().toISOString(),
                 mobileAdded: true,
-                notes: ''
+                notes: '',
+                duplicateInfo: null
             };
-            
-            listings.unshift(listing);
-            urlInput.value = '';
-            
-            saveData();
-            updateDisplay();
+
+            // Check for duplicates
+            const duplicateCheck = findDuplicatesAndSimilar(newListing);
+
+            if (duplicateCheck.exactDuplicate) {
+                handleExactDuplicate(duplicateCheck.exactDuplicate, newListing);
+            } else if (duplicateCheck.crossListings.length > 0 || duplicateCheck.priceUpdates.length > 0 || duplicateCheck.similarListings.length > 0) {
+                handleSimilarListings(duplicateCheck, newListing);
+            } else {
+                // No duplicates found, add normally
+                listings.unshift(newListing);
+                urlInput.value = '';
+                saveData();
+                updateDisplay();
+            }
         }
 
-        // Simple modal functions - Same as the test that worked
+        // Handle exact duplicate
+        function handleExactDuplicate(existing, newListing) {
+            if (confirm(`This URL was already added on ${new Date(existing.addedDate).toLocaleDateString()}. Add anyway as a potential update?`)) {
+                newListing.duplicateInfo = {
+                    type: 'exact_duplicate',
+                    originalId: existing.id,
+                    reason: 'Same URL previously added'
+                };
+                listings.unshift(newListing);
+                document.getElementById('quick-url').value = '';
+                saveData();
+                updateDisplay();
+            }
+        }
+
+        // Handle similar listings (cross-listings, price updates, etc.)
+        function handleSimilarListings(duplicateCheck, newListing) {
+            let message = 'Potential duplicate detected:\n\n';
+            
+            if (duplicateCheck.crossListings.length > 0) {
+                message += `• Found ${duplicateCheck.crossListings.length} cross-listing(s)\n`;
+            }
+            
+            if (duplicateCheck.priceUpdates.length > 0) {
+                message += `• Found ${duplicateCheck.priceUpdates.length} potential price update(s)\n`;
+            }
+            
+            if (duplicateCheck.similarListings.length > 0) {
+                message += `• Found ${duplicateCheck.similarListings.length} similar listing(s)\n`;
+            }
+            
+            message += '\nChoose an action:';
+            
+            const choice = confirm(message + '\n\nOK = Add as cross-listing\nCancel = Skip adding');
+            
+            if (choice) {
+                newListing.duplicateInfo = {
+                    type: 'cross_listing',
+                    relatedListings: [
+                        ...duplicateCheck.crossListings.map(l => l.id),
+                        ...duplicateCheck.priceUpdates.map(l => l.id),
+                        ...duplicateCheck.similarListings.map(s => s.listing.id)
+                    ],
+                    reason: 'Cross-listing or price update detected'
+                };
+                listings.unshift(newListing);
+                document.getElementById('quick-url').value = '';
+                saveData();
+                updateDisplay();
+            }
+        }
+
+        // Modal functions
         function openModal() {
-            console.log('Opening modal...');
             document.getElementById('manual-modal').classList.add('show');
         }
         
         function closeModal() {
-            console.log('Closing modal...');
             document.getElementById('manual-modal').classList.remove('show');
         }
 
@@ -481,7 +731,7 @@
                 return;
             }
             
-            const listing = {
+            const newListing = {
                 id: Date.now(),
                 url: '',
                 title: title,
@@ -492,10 +742,24 @@
                 status: 'manual',
                 addedDate: new Date().toISOString(),
                 mobileAdded: true,
-                notes: notes
+                notes: notes,
+                duplicateInfo: null
             };
+
+            // Check for duplicates even with manual entry
+            const duplicateCheck = findDuplicatesAndSimilar(newListing);
             
-            listings.unshift(listing);
+            if (duplicateCheck.crossListings.length > 0 || duplicateCheck.similarListings.length > 0) {
+                if (confirm('Similar listing found. Add anyway?')) {
+                    newListing.duplicateInfo = {
+                        type: 'similar_manual',
+                        relatedListings: [...duplicateCheck.crossListings.map(l => l.id), ...duplicateCheck.similarListings.map(s => s.listing.id)],
+                        reason: 'Similar manual entry detected'
+                    };
+                }
+            }
+            
+            listings.unshift(newListing);
             
             // Clear form
             document.getElementById('modal-title').value = '';
@@ -507,19 +771,56 @@
             updateDisplay();
         }
 
+        // Merge duplicates
+        function mergeDuplicates(mainId, duplicateId) {
+            const main = listings.find(l => l.id === mainId);
+            const duplicate = listings.find(l => l.id === duplicateId);
+            
+            if (!main || !duplicate) return;
+            
+            // Merge data (prefer non-empty values)
+            main.title = main.title !== 'Pending Details' ? main.title : duplicate.title;
+            main.price = main.price || duplicate.price;
+            main.seller = main.seller || duplicate.seller;
+            main.location = main.location || duplicate.location;
+            main.notes = main.notes ? (main.notes + '\n' + duplicate.notes) : duplicate.notes;
+            
+            // Add to notes that this was merged
+            main.notes += `\n[Merged from ${duplicate.source} on ${new Date(duplicate.addedDate).toLocaleDateString()}]`;
+            
+            // Remove duplicate
+            listings = listings.filter(l => l.id !== duplicateId);
+            
+            saveData();
+            updateDisplay();
+        }
+
+        // Mark as different
+        function markAsDifferent(listingId) {
+            const listing = listings.find(l => l.id === listingId);
+            if (listing) {
+                listing.duplicateInfo = {
+                    ...listing.duplicateInfo,
+                    markedDifferent: true
+                };
+                saveData();
+                updateDisplay();
+            }
+        }
+
         // Update statistics
         function updateStats() {
             const stats = {
                 total: listings.length,
-                pending: listings.filter(l => l.status === 'pending').length,
-                complete: listings.filter(l => l.status === 'complete').length,
-                mobile: listings.filter(l => l.mobileAdded).length
+                unique: listings.filter(l => !l.duplicateInfo || l.duplicateInfo.markedDifferent).length,
+                complete: listings.filter(l => l.status === 'complete' || l.status === 'manual').length,
+                duplicates: listings.filter(l => l.duplicateInfo && !l.duplicateInfo.markedDifferent).length
             };
 
             document.getElementById('stat-total').textContent = stats.total;
-            document.getElementById('stat-pending').textContent = stats.pending;
+            document.getElementById('stat-unique').textContent = stats.unique;
             document.getElementById('stat-complete').textContent = stats.complete;
-            document.getElementById('stat-mobile').textContent = stats.mobile;
+            document.getElementById('stat-duplicates').textContent = stats.duplicates;
         }
 
         // Render listings
@@ -536,11 +837,28 @@
             container.style.display = 'grid';
             emptyState.classList.add('hidden');
 
-            container.innerHTML = listings.map(listing => `
-                <div class="listing-card">
+            container.innerHTML = listings.map(listing => {
+                const isDuplicate = listing.duplicateInfo && !listing.duplicateInfo.markedDifferent;
+                const duplicateClass = isDuplicate ? 
+                    (listing.duplicateInfo.type === 'cross_listing' ? 'cross-listing' : 'duplicate') : '';
+
+                return `
+                <div class="listing-card ${duplicateClass}">
+                    ${isDuplicate ? `
+                        <div class="duplicate-info">
+                            <h4>⚠️ ${listing.duplicateInfo.type === 'cross_listing' ? 'Cross-listing' : 'Duplicate'} Detected</h4>
+                            <p>${listing.duplicateInfo.reason}</p>
+                            <div class="duplicate-actions">
+                                ${listing.duplicateInfo.relatedListings ? 
+                                    `<button class="btn btn-secondary" onclick="mergeDuplicates(${listing.duplicateInfo.relatedListings[0]}, ${listing.id})">Merge</button>` : ''}
+                                <button class="btn btn-warning" onclick="markAsDifferent(${listing.id})">Mark Different</button>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
                     <div class="listing-header">
                         <div class="listing-status">
-                            <span class="status-badge">
+                            <span class="status-badge ${duplicateClass}">
                                 ${listing.status === 'pending' ? 'Pending' : 
                                   listing.status === 'complete' ? 'Complete' : 
                                   listing.status === 'manual' ? 'Manual' : 'Other'}
@@ -569,7 +887,8 @@
                         Added: ${new Date(listing.addedDate).toLocaleDateString()}
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         // Update display
@@ -605,10 +924,9 @@
             }
         }
 
-        // Click outside to close modal - Same as the test that worked
+        // Click outside to close modal
         document.getElementById('manual-modal').addEventListener('click', function(e) {
             if (e.target === this) {
-                console.log('Clicked outside modal');
                 closeModal();
             }
         });
@@ -624,10 +942,10 @@
 
         // Handle keyboard events
         document.getElementById('quick-url').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') quickAdd();
+            if (e.key === 'Enter') smartAdd();
         });
 
-        console.log('Marketplace tracker loaded successfully');
+        console.log('Smart marketplace tracker loaded successfully');
     </script>
 </body>
 </html>
