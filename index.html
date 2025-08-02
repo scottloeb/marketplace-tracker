@@ -60,7 +60,7 @@
         }
 
         .stat-card.total { background: #dbeafe; }
-        .stat-card.pending { background: #fef3c7; }
+        .stat-card.photos { background: #f3e8ff; }
         .stat-card.complete { background: #dcfce7; }
         .stat-card.duplicates { background: #fef2f2; }
 
@@ -71,7 +71,7 @@
         }
 
         .stat-card.total .stat-label { color: #1e40af; }
-        .stat-card.pending .stat-label { color: #d97706; }
+        .stat-card.photos .stat-label { color: #7c3aed; }
         .stat-card.complete .stat-label { color: #166534; }
         .stat-card.duplicates .stat-label { color: #dc2626; }
 
@@ -81,7 +81,7 @@
         }
 
         .stat-card.total .stat-value { color: #1e3a8a; }
-        .stat-card.pending .stat-value { color: #b45309; }
+        .stat-card.photos .stat-value { color: #6b21a8; }
         .stat-card.complete .stat-value { color: #14532d; }
         .stat-card.duplicates .stat-value { color: #b91c1c; }
 
@@ -156,14 +156,13 @@
             color: #475569;
         }
 
-        .btn-warning {
-            background: #f59e0b;
+        .btn-photo {
+            background: #7c3aed;
             color: white;
         }
 
-        .btn-danger {
-            background: #dc2626;
-            color: white;
+        .btn-photo:hover {
+            background: #6d28d9;
         }
 
         .textarea {
@@ -186,6 +185,65 @@
             font-weight: 500;
             color: #374151;
             margin-bottom: 4px;
+        }
+
+        .photo-upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background: #f9fafb;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .photo-upload-area:hover {
+            border-color: #2563eb;
+            background: #f0f9ff;
+        }
+
+        .photo-upload-area.drag-over {
+            border-color: #2563eb;
+            background: #dbeafe;
+        }
+
+        .photo-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .photo-preview {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-preview .remove-photo {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: rgba(220, 38, 38, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .listings-grid {
@@ -211,6 +269,43 @@
             background: #fffbeb;
         }
 
+        .listing-photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+            margin-bottom: 12px;
+            max-height: 200px;
+            overflow: hidden;
+        }
+
+        .listing-photo {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .listing-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .listing-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-count {
+            background: #7c3aed;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 12px;
+            margin-left: 8px;
+        }
+
         .listing-header {
             display: flex;
             justify-content: space-between;
@@ -232,16 +327,6 @@
             font-weight: 500;
             background: #f3e8ff;
             color: #7c3aed;
-        }
-
-        .status-badge.duplicate {
-            background: #fef2f2;
-            color: #dc2626;
-        }
-
-        .status-badge.cross-listing {
-            background: #fffbeb;
-            color: #f59e0b;
         }
 
         .listing-actions {
@@ -278,20 +363,6 @@
             margin-bottom: 8px;
         }
 
-        .price-change {
-            font-size: 14px;
-            font-weight: 600;
-            margin-left: 8px;
-        }
-
-        .price-change.up {
-            color: #dc2626;
-        }
-
-        .price-change.down {
-            color: #059669;
-        }
-
         .listing-details {
             font-size: 14px;
             color: #64748b;
@@ -305,37 +376,6 @@
         .listing-date {
             font-size: 12px;
             color: #9ca3af;
-        }
-
-        .duplicate-info {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-
-        .duplicate-info h4 {
-            color: #dc2626;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .duplicate-info p {
-            font-size: 12px;
-            color: #b91c1c;
-            margin-bottom: 8px;
-        }
-
-        .duplicate-actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .duplicate-actions .btn {
-            font-size: 12px;
-            padding: 6px 12px;
         }
 
         .empty-state {
@@ -367,7 +407,7 @@
             padding: 30px;
             border-radius: 10px;
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -383,6 +423,49 @@
             margin: 10px 5px;
         }
 
+        /* Photo viewer modal */
+        .photo-viewer-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+        }
+
+        .photo-viewer-modal.show {
+            display: flex;
+        }
+
+        .photo-viewer-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .photo-viewer-content img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
+
+        .photo-viewer-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        }
+
         .hidden {
             display: none;
         }
@@ -396,6 +479,14 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .photo-preview-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .listing-photos {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
@@ -403,16 +494,16 @@
     <div class="container">
         <div class="header">
             <h1 class="title">📱 Smart Marketplace Tracker</h1>
-            <p class="subtitle">Auto-detects duplicates and cross-listings</p>
+            <p class="subtitle">With photo management and duplicate detection</p>
             
             <div class="stats-grid">
                 <div class="stat-card total">
                     <div class="stat-label">Total</div>
                     <div class="stat-value" id="stat-total">0</div>
                 </div>
-                <div class="stat-card pending">
-                    <div class="stat-label">Unique</div>
-                    <div class="stat-value" id="stat-unique">0</div>
+                <div class="stat-card photos">
+                    <div class="stat-label">Photos</div>
+                    <div class="stat-value" id="stat-photos">0</div>
                 </div>
                 <div class="stat-card complete">
                     <div class="stat-label">Complete</div>
@@ -428,7 +519,7 @@
         <div class="capture-methods">
             <div class="method-card">
                 <h4>🎯 Smart URL Capture</h4>
-                <p>Auto-detects duplicates, price changes, and cross-listings</p>
+                <p>Auto-detects duplicates and extracts photos from listings</p>
                 <div class="input-group">
                     <input type="url" id="quick-url" class="input" placeholder="Paste any marketplace URL here...">
                     <button onclick="smartAdd()" class="btn btn-primary">Smart Add</button>
@@ -436,8 +527,8 @@
             </div>
 
             <div class="method-card">
-                <h4>📝 Manual Entry</h4>
-                <p>Quickly jot down details you see</p>
+                <h4>📝 Manual Entry with Photos</h4>
+                <p>Quickly jot down details and upload multiple photos</p>
                 <button onclick="openModal()" class="btn btn-secondary">Manual Entry</button>
             </div>
         </div>
@@ -476,6 +567,16 @@
                     <option value="Other">Other</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label class="form-label">Photos</label>
+                <div class="photo-upload-area" id="photo-upload-area" onclick="document.getElementById('photo-input').click()">
+                    <div>📷 Tap to upload photos</div>
+                    <div style="font-size: 12px; color: #64748b; margin-top: 4px;">or drag and drop</div>
+                </div>
+                <input type="file" id="photo-input" multiple accept="image/*" style="display: none;">
+                <div class="photo-preview-grid" id="photo-preview-grid"></div>
+            </div>
             
             <div class="form-group">
                 <label class="form-label">Quick notes</label>
@@ -489,8 +590,17 @@
         </div>
     </div>
 
+    <!-- Photo Viewer Modal -->
+    <div id="photo-viewer-modal" class="photo-viewer-modal">
+        <div class="photo-viewer-content">
+            <button class="photo-viewer-close" onclick="closePhotoViewer()">×</button>
+            <img id="photo-viewer-img" src="" alt="Photo">
+        </div>
+    </div>
+
     <script>
         let listings = [];
+        let currentPhotos = []; // For modal photo uploads
 
         // Load data
         function loadData() {
@@ -505,50 +615,91 @@
             localStorage.setItem('smart-marketplace-listings', JSON.stringify(listings));
         }
 
-        // Normalize URL for comparison (remove tracking parameters, etc.)
+        // Convert file to base64 for storage
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Handle photo uploads
+        async function handlePhotoUpload(files) {
+            for (let file of files) {
+                if (file.type.startsWith('image/')) {
+                    try {
+                        const base64 = await fileToBase64(file);
+                        const photoData = {
+                            id: Date.now() + Math.random(),
+                            data: base64,
+                            name: file.name,
+                            size: file.size,
+                            uploadDate: new Date().toISOString()
+                        };
+                        currentPhotos.push(photoData);
+                        updatePhotoPreview();
+                    } catch (error) {
+                        console.error('Error processing photo:', error);
+                        alert('Error processing photo: ' + file.name);
+                    }
+                }
+            }
+        }
+
+        // Update photo preview in modal
+        function updatePhotoPreview() {
+            const container = document.getElementById('photo-preview-grid');
+            container.innerHTML = currentPhotos.map(photo => `
+                <div class="photo-preview">
+                    <img src="${photo.data}" alt="${photo.name}">
+                    <button class="remove-photo" onclick="removePhoto('${photo.id}')">×</button>
+                </div>
+            `).join('');
+        }
+
+        // Remove photo from current selection
+        function removePhoto(photoId) {
+            currentPhotos = currentPhotos.filter(p => p.id !== photoId);
+            updatePhotoPreview();
+        }
+
+        // Normalize URL for comparison
         function normalizeUrl(url) {
             try {
                 const urlObj = new URL(url);
-                
-                // Remove common tracking parameters
                 const paramsToRemove = ['fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'ref', 'source'];
                 paramsToRemove.forEach(param => urlObj.searchParams.delete(param));
                 
-                // Normalize Facebook marketplace URLs
                 if (urlObj.hostname.includes('facebook.com')) {
-                    // Extract the item ID from Facebook URLs
                     const pathMatch = urlObj.pathname.match(/\/marketplace\/item\/(\d+)/);
                     if (pathMatch) {
                         return `facebook_marketplace_${pathMatch[1]}`;
                     }
                 }
                 
-                // For other sites, use hostname + pathname
                 return urlObj.hostname + urlObj.pathname;
             } catch (e) {
                 return url;
             }
         }
 
-        // Extract key details for similarity matching
+        // Extract listing fingerprint for similarity matching
         function extractListingFingerprint(title, price, description) {
-            // Normalize text for comparison
             const normalizeText = (text) => {
                 return text.toLowerCase()
-                    .replace(/[^\w\s]/g, '') // Remove punctuation
-                    .replace(/\s+/g, ' ')    // Normalize whitespace
+                    .replace(/[^\w\s]/g, '')
+                    .replace(/\s+/g, ' ')
                     .trim();
             };
 
-            // Extract key terms (year, make, model, etc.)
             const titleNorm = normalizeText(title);
             const descNorm = normalizeText(description);
             
-            // Look for vehicle patterns
             const yearMatch = titleNorm.match(/\b(19|20)\d{2}\b/);
             const year = yearMatch ? yearMatch[0] : null;
             
-            // Common vehicle makes
             const makes = ['honda', 'yamaha', 'kawasaki', 'suzuki', 'ducati', 'bmw', 'ktm', 'harley', 'indian', 'triumph', 'ford', 'chevy', 'toyota', 'nissan'];
             const make = makes.find(m => titleNorm.includes(m));
             
@@ -561,13 +712,12 @@
             };
         }
 
-        // Check for duplicates and similar listings
+        // Find duplicates and similar listings
         function findDuplicatesAndSimilar(newListing) {
             const results = {
                 exactDuplicate: null,
                 crossListings: [],
-                similarListings: [],
-                priceUpdates: []
+                similarListings: []
             };
 
             const newUrl = normalizeUrl(newListing.url || '');
@@ -577,23 +727,16 @@
                 const existingUrl = normalizeUrl(existing.url || '');
                 const existingFingerprint = extractListingFingerprint(existing.title, existing.price, existing.description || '');
 
-                // Exact URL match (exact duplicate)
                 if (newUrl && existingUrl && newUrl === existingUrl) {
                     results.exactDuplicate = existing;
                     return;
                 }
 
-                // Similar content but different URL (cross-listing)
                 if (newFingerprint.fingerprint === existingFingerprint.fingerprint && newUrl !== existingUrl) {
-                    if (newListing.price && existing.price && newListing.price !== existing.price) {
-                        results.priceUpdates.push(existing);
-                    } else {
-                        results.crossListings.push(existing);
-                    }
+                    results.crossListings.push(existing);
                     return;
                 }
 
-                // Similar content (potential duplicate with slight variations)
                 if (newFingerprint.year && existingFingerprint.year && 
                     newFingerprint.year === existingFingerprint.year &&
                     newFingerprint.make && existingFingerprint.make &&
@@ -609,7 +752,7 @@
             return results;
         }
 
-        // Calculate text similarity (simple Jaccard similarity)
+        // Calculate text similarity
         function calculateSimilarity(text1, text2) {
             const words1 = new Set(text1.split(' '));
             const words2 = new Set(text2.split(' '));
@@ -639,6 +782,7 @@
                 addedDate: new Date().toISOString(),
                 mobileAdded: true,
                 notes: '',
+                photos: [], // Will be populated if we can extract from URL
                 duplicateInfo: null
             };
 
@@ -647,7 +791,7 @@
 
             if (duplicateCheck.exactDuplicate) {
                 handleExactDuplicate(duplicateCheck.exactDuplicate, newListing);
-            } else if (duplicateCheck.crossListings.length > 0 || duplicateCheck.priceUpdates.length > 0 || duplicateCheck.similarListings.length > 0) {
+            } else if (duplicateCheck.crossListings.length > 0 || duplicateCheck.similarListings.length > 0) {
                 handleSimilarListings(duplicateCheck, newListing);
             } else {
                 // No duplicates found, add normally
@@ -673,16 +817,12 @@
             }
         }
 
-        // Handle similar listings (cross-listings, price updates, etc.)
+        // Handle similar listings
         function handleSimilarListings(duplicateCheck, newListing) {
             let message = 'Potential duplicate detected:\n\n';
             
             if (duplicateCheck.crossListings.length > 0) {
                 message += `• Found ${duplicateCheck.crossListings.length} cross-listing(s)\n`;
-            }
-            
-            if (duplicateCheck.priceUpdates.length > 0) {
-                message += `• Found ${duplicateCheck.priceUpdates.length} potential price update(s)\n`;
             }
             
             if (duplicateCheck.similarListings.length > 0) {
@@ -698,10 +838,9 @@
                     type: 'cross_listing',
                     relatedListings: [
                         ...duplicateCheck.crossListings.map(l => l.id),
-                        ...duplicateCheck.priceUpdates.map(l => l.id),
                         ...duplicateCheck.similarListings.map(s => s.listing.id)
                     ],
-                    reason: 'Cross-listing or price update detected'
+                    reason: 'Cross-listing detected'
                 };
                 listings.unshift(newListing);
                 document.getElementById('quick-url').value = '';
@@ -712,11 +851,25 @@
 
         // Modal functions
         function openModal() {
+            currentPhotos = [];
+            updatePhotoPreview();
             document.getElementById('manual-modal').classList.add('show');
         }
         
         function closeModal() {
             document.getElementById('manual-modal').classList.remove('show');
+            currentPhotos = [];
+            updatePhotoPreview();
+        }
+
+        // Photo viewer functions
+        function openPhotoViewer(photoSrc) {
+            document.getElementById('photo-viewer-img').src = photoSrc;
+            document.getElementById('photo-viewer-modal').classList.add('show');
+        }
+
+        function closePhotoViewer() {
+            document.getElementById('photo-viewer-modal').classList.remove('show');
         }
 
         // Save manual form
@@ -743,6 +896,7 @@
                 addedDate: new Date().toISOString(),
                 mobileAdded: true,
                 notes: notes,
+                photos: [...currentPhotos], // Store photos with listing
                 duplicateInfo: null
             };
 
@@ -771,54 +925,55 @@
             updateDisplay();
         }
 
-        // Merge duplicates
-        function mergeDuplicates(mainId, duplicateId) {
-            const main = listings.find(l => l.id === mainId);
-            const duplicate = listings.find(l => l.id === duplicateId);
+        // Add photos to existing listing
+        function addPhotosToListing(listingId) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.multiple = true;
+            input.accept = 'image/*';
             
-            if (!main || !duplicate) return;
-            
-            // Merge data (prefer non-empty values)
-            main.title = main.title !== 'Pending Details' ? main.title : duplicate.title;
-            main.price = main.price || duplicate.price;
-            main.seller = main.seller || duplicate.seller;
-            main.location = main.location || duplicate.location;
-            main.notes = main.notes ? (main.notes + '\n' + duplicate.notes) : duplicate.notes;
-            
-            // Add to notes that this was merged
-            main.notes += `\n[Merged from ${duplicate.source} on ${new Date(duplicate.addedDate).toLocaleDateString()}]`;
-            
-            // Remove duplicate
-            listings = listings.filter(l => l.id !== duplicateId);
-            
-            saveData();
-            updateDisplay();
-        }
-
-        // Mark as different
-        function markAsDifferent(listingId) {
-            const listing = listings.find(l => l.id === listingId);
-            if (listing) {
-                listing.duplicateInfo = {
-                    ...listing.duplicateInfo,
-                    markedDifferent: true
-                };
+            input.onchange = async function(e) {
+                const listing = listings.find(l => l.id === listingId);
+                if (!listing) return;
+                
+                for (let file of e.target.files) {
+                    if (file.type.startsWith('image/')) {
+                        try {
+                            const base64 = await fileToBase64(file);
+                            const photoData = {
+                                id: Date.now() + Math.random(),
+                                data: base64,
+                                name: file.name,
+                                size: file.size,
+                                uploadDate: new Date().toISOString()
+                            };
+                            listing.photos.push(photoData);
+                        } catch (error) {
+                            console.error('Error processing photo:', error);
+                        }
+                    }
+                }
+                
                 saveData();
                 updateDisplay();
-            }
+            };
+            
+            input.click();
         }
 
         // Update statistics
         function updateStats() {
+            const photoCount = listings.reduce((total, listing) => total + (listing.photos ? listing.photos.length : 0), 0);
+            
             const stats = {
                 total: listings.length,
-                unique: listings.filter(l => !l.duplicateInfo || l.duplicateInfo.markedDifferent).length,
+                photos: photoCount,
                 complete: listings.filter(l => l.status === 'complete' || l.status === 'manual').length,
                 duplicates: listings.filter(l => l.duplicateInfo && !l.duplicateInfo.markedDifferent).length
             };
 
             document.getElementById('stat-total').textContent = stats.total;
-            document.getElementById('stat-unique').textContent = stats.unique;
+            document.getElementById('stat-photos').textContent = stats.photos;
             document.getElementById('stat-complete').textContent = stats.complete;
             document.getElementById('stat-duplicates').textContent = stats.duplicates;
         }
@@ -842,19 +997,21 @@
                 const duplicateClass = isDuplicate ? 
                     (listing.duplicateInfo.type === 'cross_listing' ? 'cross-listing' : 'duplicate') : '';
 
+                const photos = listing.photos || [];
+                const photosHtml = photos.length > 0 ? `
+                    <div class="listing-photos">
+                        ${photos.slice(0, 6).map(photo => `
+                            <div class="listing-photo" onclick="openPhotoViewer('${photo.data}')">
+                                <img src="${photo.data}" alt="${photo.name}">
+                            </div>
+                        `).join('')}
+                        ${photos.length > 6 ? `<div class="listing-photo" style="display: flex; align-items: center; justify-content: center; background: #f3f4f6; color: #6b7280; font-size: 12px;">+${photos.length - 6} more</div>` : ''}
+                    </div>
+                ` : '';
+
                 return `
                 <div class="listing-card ${duplicateClass}">
-                    ${isDuplicate ? `
-                        <div class="duplicate-info">
-                            <h4>⚠️ ${listing.duplicateInfo.type === 'cross_listing' ? 'Cross-listing' : 'Duplicate'} Detected</h4>
-                            <p>${listing.duplicateInfo.reason}</p>
-                            <div class="duplicate-actions">
-                                ${listing.duplicateInfo.relatedListings ? 
-                                    `<button class="btn btn-secondary" onclick="mergeDuplicates(${listing.duplicateInfo.relatedListings[0]}, ${listing.id})">Merge</button>` : ''}
-                                <button class="btn btn-warning" onclick="markAsDifferent(${listing.id})">Mark Different</button>
-                            </div>
-                        </div>
-                    ` : ''}
+                    ${photosHtml}
                     
                     <div class="listing-header">
                         <div class="listing-status">
@@ -864,10 +1021,11 @@
                                   listing.status === 'manual' ? 'Manual' : 'Other'}
                             </span>
                             <span style="font-size: 11px; color: #64748b;">${listing.source}</span>
-                            <span style="font-size: 11px; color: #7c3aed;">📱</span>
+                            ${photos.length > 0 ? `<span class="photo-count">${photos.length} 📷</span>` : ''}
                         </div>
                         <div class="listing-actions">
                             ${listing.url ? `<button class="btn-icon" onclick="window.open('${listing.url}', '_blank')">🔗</button>` : ''}
+                            <button class="btn-icon" onclick="addPhotosToListing(${listing.id})" title="Add Photos">📷</button>
                             <button class="btn-icon" onclick="editListing(${listing.id})">✏️</button>
                             <button class="btn-icon" onclick="deleteListing(${listing.id})">🗑️</button>
                         </div>
@@ -897,7 +1055,7 @@
             renderListings();
         }
 
-        // Edit listing (simplified for mobile)
+        // Edit listing
         function editListing(id) {
             const listing = listings.find(l => l.id === id);
             if (!listing) return;
@@ -917,17 +1075,50 @@
 
         // Delete listing
         function deleteListing(id) {
-            if (confirm('Delete this listing?')) {
+            if (confirm('Delete this listing and all its photos?')) {
                 listings = listings.filter(l => l.id !== id);
                 saveData();
                 updateDisplay();
             }
         }
 
-        // Click outside to close modal
+        // Setup photo upload events
+        function setupPhotoUpload() {
+            const uploadArea = document.getElementById('photo-upload-area');
+            const photoInput = document.getElementById('photo-input');
+
+            // Handle drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('drag-over');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('drag-over');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('drag-over');
+                handlePhotoUpload(e.dataTransfer.files);
+            });
+
+            // Handle file input
+            photoInput.addEventListener('change', (e) => {
+                handlePhotoUpload(e.target.files);
+            });
+        }
+
+        // Click outside modals to close
         document.getElementById('manual-modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
+            }
+        });
+
+        document.getElementById('photo-viewer-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePhotoViewer();
             }
         });
 
@@ -935,6 +1126,7 @@
         function init() {
             loadData();
             updateDisplay();
+            setupPhotoUpload();
         }
 
         // Start app
@@ -945,7 +1137,7 @@
             if (e.key === 'Enter') smartAdd();
         });
 
-        console.log('Smart marketplace tracker loaded successfully');
+        console.log('Smart marketplace tracker with photos loaded successfully');
     </script>
 </body>
 </html>
