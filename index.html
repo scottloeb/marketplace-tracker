@@ -547,44 +547,44 @@
     </div>
 
     <!-- Manual Form Modal -->
-    <div id="manual-modal" class="hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px;" onclick="hideManualForm()">
-        <div style="background: white; border-radius: 12px; padding: 20px; width: 100%; max-width: 400px; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                <h3>Quick Manual Entry</h3>
-                <button onclick="hideManualForm()" style="background: none; border: none; font-size: 24px; color: #666; cursor: pointer;">×</button>
+    <!-- Manual Form Modal -->
+        <div id="manual-modal" class="hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px;" onclick="hideManualForm()">
+            <div style="background: white; border-radius: 12px; padding: 20px; width: 100%; max-width: 400px; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3>Quick Manual Entry</h3>
+                    <button onclick="hideManualForm()" style="background: none; border: none; font-size: 24px; color: #666; cursor: pointer; padding: 8px; min-width: 40px; min-height: 40px;">×</button>
+                </div>
+                <div class="manual-form">
+                    <div class="form-group">
+                        <label class="form-label">What did you see?</label>
+                        <input type="text" id="modal-title" class="input" placeholder="2023 Honda CBR600RR">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Price (if visible)</label>
+                        <input type="number" id="modal-price" class="input" placeholder="8500">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Where did you see it?</label>
+                        <select id="modal-source" class="input">
+                            <option value="Facebook Marketplace">Facebook Marketplace</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Craigslist">Craigslist</option>
+                            <option value="In Person">In Person</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Quick notes</label>
+                        <textarea id="modal-notes" class="textarea" rows="3" placeholder="Any details you remember..."></textarea>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 16px;">
+                    <button onclick="hideManualForm()" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+                    <button onclick="saveManualForm()" class="btn btn-primary" style="flex: 1;">Save</button>
+                </div>
             </div>
-            <div class="manual-form">
-                <div class="form-group">
-                    <label class="form-label">What did you see?</label>
-                    <input type="text" id="modal-title" class="input" placeholder="2023 Honda CBR600RR">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Price (if visible)</label>
-                    <input type="number" id="modal-price" class="input" placeholder="8500">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Where did you see it?</label>
-                    <select id="modal-source" class="input">
-                        <option value="Facebook Marketplace">Facebook Marketplace</option>
-                        <option value="Instagram">Instagram</option>
-                        <option value="Craigslist">Craigslist</option>
-                        <option value="In Person">In Person</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Quick notes</label>
-                    <textarea id="modal-notes" class="textarea" rows="3" placeholder="Any details you remember..."></textarea>
-                </div>
-            </div>
-            <div style="display: flex; gap: 12px; margin-top: 16px;">
-    <button onclick="hideManualForm()" class="btn btn-secondary" style="flex: 1;">Cancel</button>
-    <button onclick="saveManualForm()" class="btn btn-primary" style="flex: 1;">Save</button>
-</div>
         </div>
-    </div>
-
-    <!-- iOS Shortcut Instructions -->
+        <!-- iOS Shortcut Instructions -->
     <div id="shortcut-instructions" class="shortcut-install hidden">
         <h3>📱 iOS Shortcut Setup</h3>
         <div class="shortcut-steps">
