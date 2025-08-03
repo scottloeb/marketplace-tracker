@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Marketplace Tracker</title>
+    <title>Marketplace Intelligence Hub</title>
     <style>
         * {
             margin: 0;
@@ -11,1133 +12,1123 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
-        }
+```
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #f8fafc;
+        color: #1e293b;
+        line-height: 1.6;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 16px;
-            min-height: 100vh;
-        }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px;
+        min-height: 100vh;
+    }
 
-        .header {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
+    .header {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
 
-        .title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 8px;
-        }
+    .title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 8px;
+    }
 
-        .subtitle {
-            color: #64748b;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
+    .subtitle {
+        color: #64748b;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
 
+    .integration-status {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .integration-status h3 {
+        margin-bottom: 8px;
+    }
+
+    .pipeline-status {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .pipeline-step {
+        background: rgba(255,255,255,0.1);
+        padding: 12px;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    .pipeline-step .status {
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+
+    .pipeline-step .label {
+        font-size: 12px;
+        opacity: 0.9;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .stat-card {
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .stat-card.total { background: #dbeafe; }
+    .stat-card.analyzed { background: #f3e8ff; }
+    .stat-card.insights { background: #dcfce7; }
+    .stat-card.synced { background: #fef3c7; }
+
+    .stat-label {
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    .stat-card.total .stat-label { color: #1e40af; }
+    .stat-card.analyzed .stat-label { color: #7c3aed; }
+    .stat-card.insights .stat-label { color: #166534; }
+    .stat-card.synced .stat-label { color: #d97706; }
+
+    .stat-value {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .stat-card.total .stat-value { color: #1e3a8a; }
+    .stat-card.analyzed .stat-value { color: #6b21a8; }
+    .stat-card.insights .stat-value { color: #14532d; }
+    .stat-card.synced .stat-value { color: #b45309; }
+
+    .action-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .action-card {
+        background: white;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #059669;
+    }
+
+    .action-card h4 {
+        color: #1e293b;
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    .action-card p {
+        color: #64748b;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .btn {
+        padding: 12px 16px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 14px;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    .btn-primary {
+        background: #2563eb;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #1d4ed8;
+    }
+
+    .btn-success {
+        background: #059669;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background: #047857;
+    }
+
+    .btn-warning {
+        background: #f59e0b;
+        color: white;
+    }
+
+    .btn-claude {
+        background: #7c3aed;
+        color: white;
+    }
+
+    .btn-claude:hover {
+        background: #6d28d9;
+    }
+
+    .btn:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+    }
+
+    .analysis-panel {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .analysis-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .analysis-content {
+        background: #f8fafc;
+        border-radius: 6px;
+        padding: 16px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .insight-card {
+        background: white;
+        border-radius: 6px;
+        padding: 12px;
+        margin-bottom: 12px;
+        border-left: 3px solid #7c3aed;
+    }
+
+    .insight-card h5 {
+        color: #7c3aed;
+        margin-bottom: 4px;
+        font-size: 14px;
+    }
+
+    .insight-card p {
+        color: #64748b;
+        font-size: 13px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 8px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #7c3aed, #a855f7);
+        transition: width 0.3s ease;
+        width: 0%;
+    }
+
+    .logs-panel {
+        background: #1e293b;
+        color: #e2e8f0;
+        border-radius: 8px;
+        padding: 16px;
+        font-family: monospace;
+        font-size: 12px;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .log-entry {
+        margin-bottom: 4px;
+        opacity: 0.8;
+    }
+
+    .log-entry.error {
+        color: #fca5a5;
+    }
+
+    .log-entry.success {
+        color: #86efac;
+    }
+
+    .log-entry.info {
+        color: #7dd3fc;
+    }
+
+    .listings-grid {
+        display: grid;
+        gap: 16px;
+    }
+
+    .listing-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        border-left: 4px solid #7c3aed;
+    }
+
+    .listing-card.analyzed {
+        border-left-color: #059669;
+        background: #f0fdf4;
+    }
+
+    .listing-card.synced {
+        border-left-color: #f59e0b;
+        background: #fffbeb;
+    }
+
+    .listing-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+    }
+
+    .listing-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+    }
+
+    .status-badge {
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 500;
+        background: #f3e8ff;
+        color: #7c3aed;
+    }
+
+    .status-badge.analyzed {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .status-badge.synced {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+    .claude-insights {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 12px;
+        margin-top: 12px;
+        font-size: 13px;
+    }
+
+    .claude-insights h6 {
+        color: #7c3aed;
+        margin-bottom: 6px;
+    }
+
+    .price-analysis {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+    }
+
+    .price-indicator {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .price-indicator.good { background: #dcfce7; color: #166534; }
+    .price-indicator.fair { background: #fef3c7; color: #d97706; }
+    .price-indicator.high { background: #fee2e2; color: #dc2626; }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    
+    .modal.show {
+        display: flex;
+    }
+    
+    .modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 640px) {
+        .action-buttons {
+            grid-template-columns: 1fr;
+        }
+        
         .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(2, 1fr);
         }
 
-        .stat-card {
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
+        .pipeline-status {
+            grid-template-columns: 1fr;
         }
+    }
+</style>
+```
 
-        .stat-card.total { background: #dbeafe; }
-        .stat-card.photos { background: #f3e8ff; }
-        .stat-card.complete { background: #dcfce7; }
-        .stat-card.duplicates { background: #fef2f2; }
-
-        .stat-label {
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-
-        .stat-card.total .stat-label { color: #1e40af; }
-        .stat-card.photos .stat-label { color: #7c3aed; }
-        .stat-card.complete .stat-label { color: #166534; }
-        .stat-card.duplicates .stat-label { color: #dc2626; }
-
-        .stat-value {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .stat-card.total .stat-value { color: #1e3a8a; }
-        .stat-card.photos .stat-value { color: #6b21a8; }
-        .stat-card.complete .stat-value { color: #14532d; }
-        .stat-card.duplicates .stat-value { color: #b91c1c; }
-
-        .capture-methods {
-            display: grid;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .method-card {
-            background: white;
-            border-radius: 8px;
-            padding: 16px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #059669;
-        }
-
-        .method-card h4 {
-            color: #1e293b;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .method-card p {
-            color: #64748b;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .input {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        .input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .btn {
-            padding: 12px 16px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-secondary {
-            background: #f1f5f9;
-            color: #475569;
-        }
-
-        .btn-photo {
-            background: #7c3aed;
-            color: white;
-        }
-
-        .btn-photo:hover {
-            background: #6d28d9;
-        }
-
-        .textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 16px;
-            resize: vertical;
-            font-family: inherit;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 12px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 4px;
-        }
-
-        .photo-upload-area {
-            border: 2px dashed #d1d5db;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            background: #f9fafb;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .photo-upload-area:hover {
-            border-color: #2563eb;
-            background: #f0f9ff;
-        }
-
-        .photo-upload-area.drag-over {
-            border-color: #2563eb;
-            background: #dbeafe;
-        }
-
-        .photo-preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .photo-preview {
-            position: relative;
-            aspect-ratio: 1;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid #e5e7eb;
-        }
-
-        .photo-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .photo-preview .remove-photo {
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            background: rgba(220, 38, 38, 0.8);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .listings-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        .listing-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 16px;
-            border-left: 4px solid #7c3aed;
-        }
-
-        .listing-card.duplicate {
-            border-left-color: #dc2626;
-            background: #fef2f2;
-        }
-
-        .listing-card.cross-listing {
-            border-left-color: #f59e0b;
-            background: #fffbeb;
-        }
-
-        .listing-photos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 8px;
-            margin-bottom: 12px;
-            max-height: 200px;
-            overflow: hidden;
-        }
-
-        .listing-photo {
-            aspect-ratio: 1;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid #e5e7eb;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .listing-photo:hover {
-            transform: scale(1.05);
-        }
-
-        .listing-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .photo-count {
-            background: #7c3aed;
-            color: white;
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 12px;
-            margin-left: 8px;
-        }
-
-        .listing-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-
-        .listing-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .status-badge {
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 500;
-            background: #f3e8ff;
-            color: #7c3aed;
-        }
-
-        .listing-actions {
-            display: flex;
-            gap: 4px;
-        }
-
-        .btn-icon {
-            padding: 6px;
-            background: none;
-            border: none;
-            color: #9ca3af;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .btn-icon:hover {
-            color: #2563eb;
-            background: #f1f5f9;
-        }
-
-        .listing-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1e293b;
-        }
-
-        .listing-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #059669;
-            margin-bottom: 8px;
-        }
-
-        .listing-details {
-            font-size: 14px;
-            color: #64748b;
-            margin-bottom: 12px;
-        }
-
-        .listing-details div {
-            margin-bottom: 2px;
-        }
-
-        .listing-date {
-            font-size: 12px;
-            color: #9ca3af;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 48px 20px;
-            color: #64748b;
-        }
-
-        /* Modal styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .modal.show {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .close-btn {
-            background: #dc2626;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px 5px;
-        }
-
-        /* Photo viewer modal */
-        .photo-viewer-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1100;
-        }
-
-        .photo-viewer-modal.show {
-            display: flex;
-        }
-
-        .photo-viewer-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            position: relative;
-        }
-
-        .photo-viewer-content img {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 8px;
-        }
-
-        .photo-viewer-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 640px) {
-            .input-group {
-                flex-direction: column;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .photo-preview-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .listing-photos {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">📱 Smart Marketplace Tracker</h1>
-            <p class="subtitle">With photo management and duplicate detection</p>
-            
-            <div class="stats-grid">
-                <div class="stat-card total">
-                    <div class="stat-label">Total</div>
-                    <div class="stat-value" id="stat-total">0</div>
+            <h1 class="title">🧠 Marketplace Intelligence Hub</h1>
+            <p class="subtitle">Real-time mobile capture → Claude analysis → Graph database integration</p>
+
+```
+        <div class="integration-status">
+            <h3>🔄 Live Integration Pipeline</h3>
+            <div class="pipeline-status">
+                <div class="pipeline-step">
+                    <div class="status" id="mobile-status">📱</div>
+                    <div class="label">Mobile Capture</div>
                 </div>
-                <div class="stat-card photos">
-                    <div class="stat-label">Photos</div>
-                    <div class="stat-value" id="stat-photos">0</div>
+                <div class="pipeline-step">
+                    <div class="status" id="claude-status">🤖</div>
+                    <div class="label">Claude Analysis</div>
                 </div>
-                <div class="stat-card complete">
-                    <div class="stat-label">Complete</div>
-                    <div class="stat-value" id="stat-complete">0</div>
+                <div class="pipeline-step">
+                    <div class="status" id="graph-status">🕸️</div>
+                    <div class="label">Graph Database</div>
                 </div>
-                <div class="stat-card duplicates">
-                    <div class="stat-label">Duplicates</div>
-                    <div class="stat-value" id="stat-duplicates">0</div>
+                <div class="pipeline-step">
+                    <div class="status" id="nodepad-status">📊</div>
+                    <div class="label">NodePad Viz</div>
                 </div>
             </div>
         </div>
-
-        <div class="capture-methods">
-            <div class="method-card">
-                <h4>🎯 Smart URL Capture</h4>
-                <p>Auto-detects duplicates and extracts photos from listings</p>
-                <div class="input-group">
-                    <input type="url" id="quick-url" class="input" placeholder="Paste any marketplace URL here...">
-                    <button onclick="smartAdd()" class="btn btn-primary">Smart Add</button>
-                </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card total">
+                <div class="stat-label">Total Listings</div>
+                <div class="stat-value" id="stat-total">0</div>
             </div>
-
-            <div class="method-card">
-                <h4>📝 Manual Entry with Photos</h4>
-                <p>Quickly jot down details and upload multiple photos</p>
-                <button onclick="openModal()" class="btn btn-secondary">Manual Entry</button>
+            <div class="stat-card analyzed">
+                <div class="stat-label">Analyzed</div>
+                <div class="stat-value" id="stat-analyzed">0</div>
             </div>
-        </div>
-
-        <!-- Listings -->
-        <div id="listings-container">
-            <div class="listings-grid" id="listings-grid"></div>
-            <div class="empty-state hidden" id="empty-state">
-                <p>No listings yet. Add some URLs or use manual entry to get started!</p>
+            <div class="stat-card insights">
+                <div class="stat-label">Insights</div>
+                <div class="stat-value" id="stat-insights">0</div>
+            </div>
+            <div class="stat-card synced">
+                <div class="stat-label">Graph Synced</div>
+                <div class="stat-value" id="stat-synced">0</div>
             </div>
         </div>
     </div>
 
-    <!-- Manual Entry Modal -->
-    <div id="manual-modal" class="modal">
-        <div class="modal-content">
-            <h3>Quick Manual Entry</h3>
-            
-            <div class="form-group">
-                <label class="form-label">What did you see?</label>
-                <input type="text" id="modal-title" class="input" placeholder="2023 Honda CBR600RR">
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Price (if visible)</label>
-                <input type="number" id="modal-price" class="input" placeholder="8500">
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Where did you see it?</label>
-                <select id="modal-source" class="input">
-                    <option value="Facebook Marketplace">Facebook Marketplace</option>
-                    <option value="Instagram">Instagram</option>
-                    <option value="Craigslist">Craigslist</option>
-                    <option value="In Person">In Person</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
+    <div class="action-buttons">
+        <div class="action-card">
+            <h4>🤖 Analyze with Claude</h4>
+            <p>Send all unanalyzed listings to Claude for market intelligence</p>
+            <button id="analyze-button" class="btn btn-claude" onclick="analyzeWithClaude()">
+                Analyze Listings
+            </button>
+        </div>
 
-            <div class="form-group">
-                <label class="form-label">Photos</label>
-                <div class="photo-upload-area" id="photo-upload-area" onclick="document.getElementById('photo-input').click()">
-                    <div>📷 Tap to upload photos</div>
-                    <div style="font-size: 12px; color: #64748b; margin-top: 4px;">or drag and drop</div>
-                </div>
-                <input type="file" id="photo-input" multiple accept="image/*" style="display: none;">
-                <div class="photo-preview-grid" id="photo-preview-grid"></div>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Quick notes</label>
-                <textarea id="modal-notes" class="textarea" rows="3" placeholder="Any details you remember..."></textarea>
-            </div>
-            
-            <div>
-                <button class="close-btn" onclick="closeModal()">Cancel</button>
-                <button class="btn btn-primary" onclick="saveManualForm()" style="margin: 10px 5px;">Save Listing</button>
-            </div>
+        <div class="action-card">
+            <h4>🕸️ Sync to Graph DB</h4>
+            <p>Update graph database with analyzed insights and relationships</p>
+            <button id="sync-button" class="btn btn-warning" onclick="syncToGraphDB()" disabled>
+                Sync to Graph
+            </button>
+        </div>
+
+        <div class="action-card">
+            <h4>📊 Open NodePad</h4>
+            <p>Visualize marketplace data and insights in interactive graph</p>
+            <button id="nodepad-button" class="btn btn-success" onclick="openNodePad()">
+                Launch NodePad
+            </button>
+        </div>
+
+        <div class="action-card">
+            <h4>📱 Mobile Tracker</h4>
+            <p>Return to mobile interface for adding new listings</p>
+            <button class="btn btn-primary" onclick="showMobileTracker()">
+                Mobile Interface
+            </button>
         </div>
     </div>
 
-    <!-- Photo Viewer Modal -->
-    <div id="photo-viewer-modal" class="photo-viewer-modal">
-        <div class="photo-viewer-content">
-            <button class="photo-viewer-close" onclick="closePhotoViewer()">×</button>
-            <img id="photo-viewer-img" src="" alt="Photo">
+    <!-- Analysis Panel -->
+    <div class="analysis-panel hidden" id="analysis-panel">
+        <div class="analysis-header">
+            <h3>🤖 Claude Analysis in Progress</h3>
+            <button class="btn btn-secondary" onclick="hideAnalysisPanel()">Hide</button>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="analysis-progress"></div>
+        </div>
+        <div class="analysis-content" id="analysis-content">
+            <p>Initializing Claude analysis...</p>
         </div>
     </div>
 
-    <script>
-        let listings = [];
-        let currentPhotos = []; // For modal photo uploads
+    <!-- Real-time Insights -->
+    <div class="analysis-panel" id="insights-panel">
+        <h3>💡 Latest Market Insights</h3>
+        <div id="insights-content">
+            <p style="color: #64748b; text-align: center; padding: 20px;">
+                Run Claude analysis to generate market insights
+            </p>
+        </div>
+    </div>
 
-        // Load data
-        function loadData() {
-            const saved = localStorage.getItem('smart-marketplace-listings');
-            if (saved) {
-                listings = JSON.parse(saved);
-            }
+    <!-- Listings with Analysis -->
+    <div id="listings-container">
+        <div class="listings-grid" id="listings-grid"></div>
+        <div class="empty-state hidden" id="empty-state">
+            <p>No listings found. Add some using the mobile interface!</p>
+        </div>
+    </div>
+
+    <!-- Logs Panel -->
+    <div class="logs-panel" id="logs-panel">
+        <div class="log-entry info">[INFO] Marketplace Intelligence Hub initialized</div>
+        <div class="log-entry info">[INFO] Checking for existing listings...</div>
+    </div>
+</div>
+
+<!-- Mobile Tracker Modal -->
+<div id="mobile-modal" class="modal">
+    <div class="modal-content">
+        <h3>📱 Quick Add Listing</h3>
+        
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 12px; font-weight: 500; color: #374151; margin-bottom: 4px;">Marketplace URL</label>
+            <input type="url" id="quick-url" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 16px;" placeholder="Paste URL here...">
+        </div>
+        
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 12px; font-weight: 500; color: #374151; margin-bottom: 4px;">Quick Title</label>
+            <input type="text" id="quick-title" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 16px;" placeholder="2023 Honda CBR600RR">
+        </div>
+        
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 12px; font-weight: 500; color: #374151; margin-bottom: 4px;">Price</label>
+            <input type="number" id="quick-price" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 16px;" placeholder="8500">
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-top: 20px;">
+            <button class="btn btn-secondary" onclick="hideMobileModal()" style="flex: 1;">Cancel</button>
+            <button class="btn btn-primary" onclick="addQuickListing()" style="flex: 1;">Add Listing</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let listings = [];
+    let analysisResults = [];
+    let marketInsights = [];
+
+    // Load data
+    function loadData() {
+        const saved = localStorage.getItem('smart-marketplace-listings');
+        if (saved) {
+            listings = JSON.parse(saved);
         }
 
-        // Save data
-        function saveData() {
-            localStorage.setItem('smart-marketplace-listings', JSON.stringify(listings));
+        const savedAnalysis = localStorage.getItem('marketplace-analysis');
+        if (savedAnalysis) {
+            analysisResults = JSON.parse(savedAnalysis);
         }
 
-        // Convert file to base64 for storage
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
-            });
+        const savedInsights = localStorage.getItem('market-insights');
+        if (savedInsights) {
+            marketInsights = JSON.parse(savedInsights);
+        }
+    }
+
+    // Save data
+    function saveData() {
+        localStorage.setItem('smart-marketplace-listings', JSON.stringify(listings));
+        localStorage.setItem('marketplace-analysis', JSON.stringify(analysisResults));
+        localStorage.setItem('market-insights', JSON.stringify(marketInsights));
+    }
+
+    // Add log entry
+    function addLog(type, message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const logPanel = document.getElementById('logs-panel');
+        const entry = document.createElement('div');
+        entry.className = `log-entry ${type}`;
+        entry.textContent = `[${timestamp}] [${type.toUpperCase()}] ${message}`;
+        logPanel.appendChild(entry);
+        logPanel.scrollTop = logPanel.scrollHeight;
+
+        // Keep only last 50 entries
+        const entries = logPanel.querySelectorAll('.log-entry');
+        if (entries.length > 50) {
+            entries[0].remove();
+        }
+    }
+
+    // Update pipeline status
+    function updatePipelineStatus(step, status) {
+        const statusMap = {
+            'ready': '✅',
+            'processing': '🔄',
+            'error': '❌',
+            'idle': '⏸️'
+        };
+
+        document.getElementById(`${step}-status`).textContent = statusMap[status] || '❓';
+    }
+
+    // Analyze listings with Claude
+    async function analyzeWithClaude() {
+        const unanalyzedListings = listings.filter(l => !analysisResults.find(a => a.listingId === l.id));
+        
+        if (unanalyzedListings.length === 0) {
+            addLog('info', 'No new listings to analyze');
+            return;
         }
 
-        // Handle photo uploads
-        async function handlePhotoUpload(files) {
-            for (let file of files) {
-                if (file.type.startsWith('image/')) {
-                    try {
-                        const base64 = await fileToBase64(file);
-                        const photoData = {
-                            id: Date.now() + Math.random(),
-                            data: base64,
-                            name: file.name,
-                            size: file.size,
-                            uploadDate: new Date().toISOString()
-                        };
-                        currentPhotos.push(photoData);
-                        updatePhotoPreview();
-                    } catch (error) {
-                        console.error('Error processing photo:', error);
-                        alert('Error processing photo: ' + file.name);
-                    }
-                }
-            }
-        }
+        document.getElementById('analyze-button').disabled = true;
+        document.getElementById('analysis-panel').classList.remove('hidden');
+        updatePipelineStatus('claude', 'processing');
+        
+        addLog('info', `Starting analysis of ${unanalyzedListings.length} listings`);
 
-        // Update photo preview in modal
-        function updatePhotoPreview() {
-            const container = document.getElementById('photo-preview-grid');
-            container.innerHTML = currentPhotos.map(photo => `
-                <div class="photo-preview">
-                    <img src="${photo.data}" alt="${photo.name}">
-                    <button class="remove-photo" onclick="removePhoto('${photo.id}')">×</button>
-                </div>
-            `).join('');
-        }
-
-        // Remove photo from current selection
-        function removePhoto(photoId) {
-            currentPhotos = currentPhotos.filter(p => p.id !== photoId);
-            updatePhotoPreview();
-        }
-
-        // Normalize URL for comparison
-        function normalizeUrl(url) {
-            try {
-                const urlObj = new URL(url);
-                const paramsToRemove = ['fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'ref', 'source'];
-                paramsToRemove.forEach(param => urlObj.searchParams.delete(param));
+        try {
+            let processedCount = 0;
+            
+            for (const listing of unanalyzedListings) {
+                // Update progress
+                const progress = (processedCount / unanalyzedListings.length) * 100;
+                document.getElementById('analysis-progress').style.width = `${progress}%`;
                 
-                if (urlObj.hostname.includes('facebook.com')) {
-                    const pathMatch = urlObj.pathname.match(/\/marketplace\/item\/(\d+)/);
-                    if (pathMatch) {
-                        return `facebook_marketplace_${pathMatch[1]}`;
+                // Create analysis prompt
+                const analysisPrompt = `Analyze this marketplace listing for investment potential:
+```
+
+Title: ${listing.title}
+Price: ${listing.price ? ‘$’ + listing.price.toLocaleString() : ‘Not specified’}
+Source: ${listing.source}
+URL: ${listing.url}
+Notes: ${listing.notes || ‘None’}
+Added: ${new Date(listing.addedDate).toLocaleDateString()}
+
+Please provide a comprehensive analysis in JSON format:
+{
+“vehicleDetails”: {
+“make”: “extracted make”,
+“model”: “extracted model”,
+“year”: “extracted year”,
+“type”: “motorcycle/car/other”,
+“condition”: “estimated condition”
+},
+“marketAnalysis”: {
+“priceAssessment”: “good_deal|fair_price|overpriced”,
+“marketValue”: estimated_market_value_number,
+“confidenceLevel”: “high|medium|low”,
+“reasoning”: “brief explanation”
+},
+“investmentRecommendation”: {
+“recommendation”: “buy|consider|pass”,
+“riskLevel”: “low|medium|high”,
+“potentialReturn”: “percentage or description”,
+“timeframe”: “quick_flip|hold|long_term”
+},
+“keyInsights”: [
+“insight 1”,
+“insight 2”,
+“insight 3”
+],
+“redFlags”: [
+“any concerns or red flags”
+]
+}
+
+Respond ONLY with valid JSON. Do not include any other text.`;
+
+```
+                try {
+                    // Call Claude API
+                    const response = await fetch("https://api.anthropic.com/v1/messages", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            model: "claude-sonnet-4-20250514",
+                            max_tokens: 1500,
+                            messages: [
+                                { role: "user", content: analysisPrompt }
+                            ]
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed: ${response.status}`);
                     }
-                }
-                
-                return urlObj.hostname + urlObj.pathname;
-            } catch (e) {
-                return url;
-            }
-        }
 
-        // Extract listing fingerprint for similarity matching
-        function extractListingFingerprint(title, price, description) {
-            const normalizeText = (text) => {
-                return text.toLowerCase()
-                    .replace(/[^\w\s]/g, '')
-                    .replace(/\s+/g, ' ')
-                    .trim();
-            };
-
-            const titleNorm = normalizeText(title);
-            const descNorm = normalizeText(description);
-            
-            const yearMatch = titleNorm.match(/\b(19|20)\d{2}\b/);
-            const year = yearMatch ? yearMatch[0] : null;
-            
-            const makes = ['honda', 'yamaha', 'kawasaki', 'suzuki', 'ducati', 'bmw', 'ktm', 'harley', 'indian', 'triumph', 'ford', 'chevy', 'toyota', 'nissan'];
-            const make = makes.find(m => titleNorm.includes(m));
-            
-            return {
-                year,
-                make,
-                titleNorm,
-                price: price ? parseInt(price) : null,
-                fingerprint: `${year || ''}_${make || ''}_${titleNorm.replace(/\s+/g, '_').substring(0, 30)}`
-            };
-        }
-
-        // Find duplicates and similar listings
-        function findDuplicatesAndSimilar(newListing) {
-            const results = {
-                exactDuplicate: null,
-                crossListings: [],
-                similarListings: []
-            };
-
-            const newUrl = normalizeUrl(newListing.url || '');
-            const newFingerprint = extractListingFingerprint(newListing.title, newListing.price, newListing.description || '');
-
-            listings.forEach(existing => {
-                const existingUrl = normalizeUrl(existing.url || '');
-                const existingFingerprint = extractListingFingerprint(existing.title, existing.price, existing.description || '');
-
-                if (newUrl && existingUrl && newUrl === existingUrl) {
-                    results.exactDuplicate = existing;
-                    return;
-                }
-
-                if (newFingerprint.fingerprint === existingFingerprint.fingerprint && newUrl !== existingUrl) {
-                    results.crossListings.push(existing);
-                    return;
-                }
-
-                if (newFingerprint.year && existingFingerprint.year && 
-                    newFingerprint.year === existingFingerprint.year &&
-                    newFingerprint.make && existingFingerprint.make &&
-                    newFingerprint.make === existingFingerprint.make) {
+                    const data = await response.json();
+                    let responseText = data.content[0].text;
                     
-                    const titleSimilarity = calculateSimilarity(newFingerprint.titleNorm, existingFingerprint.titleNorm);
-                    if (titleSimilarity > 0.7) {
-                        results.similarListings.push({ listing: existing, similarity: titleSimilarity });
-                    }
+                    // Clean up response (remove any markdown formatting)
+                    responseText = responseText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+                    
+                    const analysis = JSON.parse(responseText);
+                    
+                    // Store analysis result
+                    analysisResults.push({
+                        listingId: listing.id,
+                        analysis: analysis,
+                        analyzedDate: new Date().toISOString()
+                    });
+
+                    addLog('success', `Analyzed: ${listing.title}`);
+                    
+                    // Update analysis display
+                    document.getElementById('analysis-content').innerHTML += `
+                        <div class="insight-card">
+                            <h5>${listing.title}</h5>
+                            <p><strong>Recommendation:</strong> ${analysis.investmentRecommendation.recommendation.toUpperCase()}</p>
+                            <p><strong>Price Assessment:</strong> ${analysis.marketAnalysis.priceAssessment.replace('_', ' ')}</p>
+                            <p><strong>Key Insight:</strong> ${analysis.keyInsights[0] || 'N/A'}</p>
+                        </div>
+                    `;
+
+                } catch (error) {
+                    addLog('error', `Failed to analyze ${listing.title}: ${error.message}`);
                 }
+
+                processedCount++;
+            }
+
+            // Complete analysis
+            document.getElementById('analysis-progress').style.width = '100%';
+            updatePipelineStatus('claude', 'ready');
+            document.getElementById('sync-button').disabled = false;
+            
+            // Generate market insights
+            generateMarketInsights();
+            
+            addLog('success', `Analysis complete: ${processedCount} listings processed`);
+
+        } catch (error) {
+            addLog('error', `Analysis failed: ${error.message}`);
+            updatePipelineStatus('claude', 'error');
+        }
+
+        document.getElementById('analyze-button').disabled = false;
+        saveData();
+        updateDisplay();
+    }
+
+    // Generate market insights from analysis results
+    function generateMarketInsights() {
+        if (analysisResults.length === 0) return;
+
+        const insights = [];
+        
+        // Price distribution analysis
+        const priceAssessments = analysisResults.map(r => r.analysis.marketAnalysis.priceAssessment);
+        const goodDeals = priceAssessments.filter(p => p === 'good_deal').length;
+        const totalAnalyzed = priceAssessments.length;
+        
+        if (goodDeals > 0) {
+            insights.push({
+                type: 'deal_opportunity',
+                title: `${goodDeals} Good Deals Found`,
+                description: `${Math.round((goodDeals/totalAnalyzed)*100)}% of analyzed listings are good deals`,
+                priority: 'high'
             });
-
-            return results;
         }
 
-        // Calculate text similarity
-        function calculateSimilarity(text1, text2) {
-            const words1 = new Set(text1.split(' '));
-            const words2 = new Set(text2.split(' '));
-            
-            const intersection = new Set([...words1].filter(x => words2.has(x)));
-            const union = new Set([...words1, ...words2]);
-            
-            return intersection.size / union.size;
+        // Investment recommendations
+        const buyRecommendations = analysisResults.filter(r => 
+            r.analysis.investmentRecommendation.recommendation === 'buy'
+        ).length;
+        
+        if (buyRecommendations > 0) {
+            insights.push({
+                type: 'investment',
+                title: `${buyRecommendations} Buy Recommendations`,
+                description: 'Strong investment opportunities identified',
+                priority: 'high'
+            });
         }
 
-        // Smart add with duplicate detection
-        function smartAdd() {
-            const urlInput = document.getElementById('quick-url');
-            const url = urlInput.value.trim();
+        // Vehicle type distribution
+        const vehicleTypes = {};
+        analysisResults.forEach(r => {
+            const type = r.analysis.vehicleDetails.type;
+            vehicleTypes[type] = (vehicleTypes[type] || 0) + 1;
+        });
+
+        const topType = Object.entries(vehicleTypes).sort((a,b) => b[1] - a[1])[0];
+        if (topType) {
+            insights.push({
+                type: 'market_trend',
+                title: `${topType[0]} Market Active`,
+                description: `${topType[1]} ${topType[0]} listings analyzed`,
+                priority: 'medium'
+            });
+        }
+
+        marketInsights = insights;
+        updateInsightsDisplay();
+    }
+
+    // Update insights display
+    function updateInsightsDisplay() {
+        const container = document.getElementById('insights-content');
+        
+        if (marketInsights.length === 0) {
+            container.innerHTML = '<p style="color: #64748b; text-align: center; padding: 20px;">Run Claude analysis to generate market insights</p>';
+            return;
+        }
+
+        container.innerHTML = marketInsights.map(insight => `
+            <div class="insight-card">
+                <h5>${insight.title}</h5>
+                <p>${insight.description}</p>
+            </div>
+        `).join('');
+    }
+
+    // Sync to Graph Database
+    async function syncToGraphDB() {
+        if (analysisResults.length === 0) {
+            addLog('error', 'No analysis results to sync');
+            return;
+        }
+
+        document.getElementById('sync-button').disabled = true;
+        updatePipelineStatus('graph', 'processing');
+        
+        addLog('info', 'Starting graph database sync...');
+
+        try {
+            // Simulate graph database operations
+            // In reality, this would call your Ocean Explorer API or Neo4j directly
             
-            if (!url) return;
-            
-            const newListing = {
-                id: Date.now(),
-                url: url,
-                title: 'Pending Details',
-                price: null,
-                seller: '',
-                location: '',
-                source: url.includes('facebook.com') ? 'Facebook Marketplace' : 'Dealer/Shop',
-                status: 'pending',
-                addedDate: new Date().toISOString(),
-                mobileAdded: true,
-                notes: '',
-                photos: [], // Will be populated if we can extract from URL
-                duplicateInfo: null
+            const graphData = {
+                nodes: [],
+                edges: []
             };
 
-            // Check for duplicates
-            const duplicateCheck = findDuplicatesAndSimilar(newListing);
+            // Create vehicle nodes
+            analysisResults.forEach(result => {
+                const listing = listings.find(l => l.id === result.listingId);
+                const analysis = result.analysis;
 
-            if (duplicateCheck.exactDuplicate) {
-                handleExactDuplicate(duplicateCheck.exactDuplicate, newListing);
-            } else if (duplicateCheck.crossListings.length > 0 || duplicateCheck.similarListings.length > 0) {
-                handleSimilarListings(duplicateCheck, newListing);
-            } else {
-                // No duplicates found, add normally
-                listings.unshift(newListing);
-                urlInput.value = '';
-                saveData();
-                updateDisplay();
-            }
+                // Vehicle node
+                graphData.nodes.push({
+                    id: `vehicle_${result.listingId}`,
+                    type: 'Vehicle',
+                    properties: {
+                        make: analysis.vehicleDetails.make,
+                        model: analysis.vehicleDetails.model,
+                        year: analysis.vehicleDetails.year,
+                        condition: analysis.vehicleDetails.condition,
+                        price: listing.price,
+                        marketValue: analysis.marketAnalysis.marketValue,
+                        priceAssessment: analysis.marketAnalysis.priceAssessment,
+                        recommendation: analysis.investmentRecommendation.recommendation,
+                        source: listing.source,
+                        url: listing.url,
+                        analyzedDate: result.analyzedDate
+                    }
+                });
+
+                // Market analysis node
+                graphData.nodes.push({
+                    id: `analysis_${result.listingId}`,
+                    type: 'MarketAnalysis',
+                    properties: {
+                        confidenceLevel: analysis.marketAnalysis.confidenceLevel,
+                        riskLevel: analysis.investmentRecommendation.riskLevel,
+                        potentialReturn: analysis.investmentRecommendation.potentialReturn,
+                        timeframe: analysis.investmentRecommendation.timeframe,
+                        keyInsights: analysis.keyInsights.join('; '),
+                        redFlags: analysis.redFlags.join('; ')
+                    }
+                });
+
+                // Relationship between vehicle and analysis
+                graphData.edges.push({
+                    from: `vehicle_${result.listingId}`,
+                    to: `analysis_${result.listingId}`,
+                    type: 'HAS_ANALYSIS',
+                    properties: {
+                        createdDate: result.analyzedDate
+                    }
+                });
+            });
+
+            // Here you would actually send this data to your graph database
+            // For now, we'll simulate the API call
+            addLog('info', `Preparing to sync ${graphData.nodes.length} nodes and ${graphData.edges.length} relationships`);
+            
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Store sync status
+            analysisResults.forEach(result => {
+                result.syncedToGraph = true;
+                result.syncDate = new Date().toISOString();
+            });
+
+            updatePipelineStatus('graph', 'ready');
+            updatePipelineStatus('nodepad', 'ready');
+            
+            addLog('success', 'Graph database sync complete');
+            
+            // You would call this with real graph DB endpoint:
+            // await syncToOceanExplorer(graphData);
+
+        } catch (error) {
+            addLog('error', `Graph sync failed: ${error.message}`);
+            updatePipelineStatus('graph', 'error');
         }
 
-        // Handle exact duplicate
-        function handleExactDuplicate(existing, newListing) {
-            if (confirm(`This URL was already added on ${new Date(existing.addedDate).toLocaleDateString()}. Add anyway as a potential update?`)) {
-                newListing.duplicateInfo = {
-                    type: 'exact_duplicate',
-                    originalId: existing.id,
-                    reason: 'Same URL previously added'
-                };
-                listings.unshift(newListing);
-                document.getElementById('quick-url').value = '';
-                saveData();
-                updateDisplay();
-            }
+        document.getElementById('sync-button').disabled = false;
+        saveData();
+        updateDisplay();
+    }
+
+    // Open NodePad visualization
+    function openNodePad() {
+        // This would open your actual NodePad interface
+        // For now, we'll simulate it
+        addLog('info', 'Opening NodePad visualization...');
+        updatePipelineStatus('nodepad', 'processing');
+        
+        // In reality, this would be:
+        // window.open('/nodepad', '_blank');
+        // or integrate NodePad directly into this interface
+        
+        setTimeout(() => {
+            updatePipelineStatus('nodepad', 'ready');
+            addLog('success', 'NodePad visualization ready');
+            alert('NodePad would open here with your marketplace graph data!');
+        }, 1000);
+    }
+
+    // Mobile interface functions
+    function showMobileTracker() {
+        document.getElementById('mobile-modal').classList.add('show');
+    }
+
+    function hideMobileModal() {
+        document.getElementById('mobile-modal').classList.remove('show');
+    }
+
+    function addQuickListing() {
+        const url = document.getElementById('quick-url').value.trim();
+        const title = document.getElementById('quick-title').value.trim();
+        const price = document.getElementById('quick-price').value;
+
+        if (!title) {
+            alert('Please enter a title');
+            return;
         }
 
-        // Handle similar listings
-        function handleSimilarListings(duplicateCheck, newListing) {
-            let message = 'Potential duplicate detected:\n\n';
-            
-            if (duplicateCheck.crossListings.length > 0) {
-                message += `• Found ${duplicateCheck.crossListings.length} cross-listing(s)\n`;
-            }
-            
-            if (duplicateCheck.similarListings.length > 0) {
-                message += `• Found ${duplicateCheck.similarListings.length} similar listing(s)\n`;
-            }
-            
-            message += '\nChoose an action:';
-            
-            const choice = confirm(message + '\n\nOK = Add as cross-listing\nCancel = Skip adding');
-            
-            if (choice) {
-                newListing.duplicateInfo = {
-                    type: 'cross_listing',
-                    relatedListings: [
-                        ...duplicateCheck.crossListings.map(l => l.id),
-                        ...duplicateCheck.similarListings.map(s => s.listing.id)
-                    ],
-                    reason: 'Cross-listing detected'
-                };
-                listings.unshift(newListing);
-                document.getElementById('quick-url').value = '';
-                saveData();
-                updateDisplay();
-            }
+        const newListing = {
+            id: Date.now(),
+            url: url,
+            title: title,
+            price: price ? parseInt(price) : null,
+            seller: '',
+            location: '',
+            source: url.includes('facebook.com') ? 'Facebook Marketplace' : 'Dealer/Shop',
+            status: 'pending',
+            addedDate: new Date().toISOString(),
+            mobileAdded: true,
+            notes: '',
+            photos: []
+        };
+
+        listings.unshift(newListing);
+        
+        // Clear form
+        document.getElementById('quick-url').value = '';
+        document.getElementById('quick-title').value = '';
+        document.getElementById('quick-price').value = '';
+        
+        hideMobileModal();
+        saveData();
+        updateDisplay();
+        
+        addLog('success', `Added new listing: ${title}`);
+    }
+
+    function hideAnalysisPanel() {
+        document.getElementById('analysis-panel').classList.add('hidden');
+    }
+
+    // Update statistics
+    function updateStats() {
+        const analyzedCount = analysisResults.length;
+        const syncedCount = analysisResults.filter(r => r.syncedToGraph).length;
+        
+        document.getElementById('stat-total').textContent = listings.length;
+        document.getElementById('stat-analyzed').textContent = analyzedCount;
+        document.getElementById('stat-insights').textContent = marketInsights.length;
+        document.getElementById('stat-synced').textContent = syncedCount;
+    }
+
+    // Render listings with analysis
+    function renderListings() {
+        const container = document.getElementById('listings-grid');
+        const emptyState = document.getElementById('empty-state');
+
+        if (listings.length === 0) {
+            container.style.display = 'none';
+            emptyState.classList.remove('hidden');
+            return;
         }
 
-        // Modal functions
-        function openModal() {
-            currentPhotos = [];
-            updatePhotoPreview();
-            document.getElementById('manual-modal').classList.add('show');
+        container.style.display = 'grid';
+        emptyState.classList.add('hidden');
+
+        container.innerHTML = listings.map(listing => {
+            const analysis = analysisResults.find(a => a.listingId === listing.id);
+            const isAnalyzed = !!analysis;
+            const isSynced = analysis?.syncedToGraph;
+
+            let statusClass = '';
+            let statusText = 'Pending';
+            
+            if (isSynced) {
+                statusClass = 'synced';
+                statusText = 'Synced';
+            } else if (isAnalyzed) {
+                statusClass = 'analyzed';
+                statusText = 'Analyzed';
+            }
+
+            return `
+            <div class="listing-card ${statusClass}">
+                <div class="listing-header">
+                    <div class="listing-status">
+                        <span class="status-badge ${statusClass}">${statusText}</span>
+                        <span style="font-size: 11px; color: #64748b;">${listing.source}</span>
+                    </div>
+                </div>
+                
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #1e293b;">
+                    ${listing.title}
+                </h3>
+                
+                ${listing.price ? `<div style="font-size: 18px; font-weight: 700; color: #059669; margin-bottom: 8px;">$${listing.price.toLocaleString()}</div>` : ''}
+                
+                ${isAnalyzed ? `
+                    <div class="claude-insights">
+                        <h6>🤖 Claude Analysis</h6>
+                        <div class="price-analysis">
+                            <div class="price-indicator ${analysis.analysis.marketAnalysis.priceAssessment === 'good_deal' ? 'good' : analysis.analysis.marketAnalysis.priceAssessment === 'fair_price' ? 'fair' : 'high'}">
+                                ${analysis.analysis.marketAnalysis.priceAssessment.replace('_', ' ').toUpperCase()}
+                            </div>
+                            <div class="price-indicator ${analysis.analysis.investmentRecommendation.recommendation === 'buy' ? 'good' : analysis.analysis.investmentRecommendation.recommendation === 'consider' ? 'fair' : 'high'}">
+                                ${analysis.analysis.investmentRecommendation.recommendation.toUpperCase()}
+                            </div>
+                        </div>
+                        <p style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                            ${analysis.analysis.keyInsights[0] || 'No key insights available'}
+                        </p>
+                    </div>
+                ` : ''}
+                
+                <div style="font-size: 12px; color: #9ca3af; margin-top: 12px;">
+                    Added: ${new Date(listing.addedDate).toLocaleDateString()}
+                    ${isAnalyzed ? `<br>Analyzed: ${new Date(analysis.analyzedDate).toLocaleDateString()}` : ''}
+                </div>
+            </div>
+        `;
+        }).join('');
+    }
+
+    // Update display
+    function updateDisplay() {
+        updateStats();
+        renderListings();
+        updateInsightsDisplay();
+    }
+
+    // Close modals on background click
+    document.getElementById('mobile-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            hideMobileModal();
+        }
+    });
+
+    // Initialize
+    function init() {
+        loadData();
+        updateDisplay();
+        updatePipelineStatus('mobile', 'ready');
+        
+        // Check if we have analysis results to enable sync
+        if (analysisResults.length > 0) {
+            document.getElementById('sync-button').disabled = false;
+            updatePipelineStatus('claude', 'ready');
         }
         
-        function closeModal() {
-            document.getElementById('manual-modal').classList.remove('show');
-            currentPhotos = [];
-            updatePhotoPreview();
-        }
+        addLog('success', `Loaded ${listings.length} listings, ${analysisResults.length} analyzed`);
+    }
 
-        // Photo viewer functions
-        function openPhotoViewer(photoSrc) {
-            document.getElementById('photo-viewer-img').src = photoSrc;
-            document.getElementById('photo-viewer-modal').classList.add('show');
-        }
+    // Start the application
+    init();
+</script>
+```
 
-        function closePhotoViewer() {
-            document.getElementById('photo-viewer-modal').classList.remove('show');
-        }
-
-        // Save manual form
-        function saveManualForm() {
-            const title = document.getElementById('modal-title').value.trim();
-            const price = document.getElementById('modal-price').value;
-            const source = document.getElementById('modal-source').value;
-            const notes = document.getElementById('modal-notes').value.trim();
-            
-            if (!title) {
-                alert('Please enter a title');
-                return;
-            }
-            
-            const newListing = {
-                id: Date.now(),
-                url: '',
-                title: title,
-                price: price ? parseInt(price) : null,
-                seller: '',
-                location: '',
-                source: source,
-                status: 'manual',
-                addedDate: new Date().toISOString(),
-                mobileAdded: true,
-                notes: notes,
-                photos: [...currentPhotos], // Store photos with listing
-                duplicateInfo: null
-            };
-
-            // Check for duplicates even with manual entry
-            const duplicateCheck = findDuplicatesAndSimilar(newListing);
-            
-            if (duplicateCheck.crossListings.length > 0 || duplicateCheck.similarListings.length > 0) {
-                if (confirm('Similar listing found. Add anyway?')) {
-                    newListing.duplicateInfo = {
-                        type: 'similar_manual',
-                        relatedListings: [...duplicateCheck.crossListings.map(l => l.id), ...duplicateCheck.similarListings.map(s => s.listing.id)],
-                        reason: 'Similar manual entry detected'
-                    };
-                }
-            }
-            
-            listings.unshift(newListing);
-            
-            // Clear form
-            document.getElementById('modal-title').value = '';
-            document.getElementById('modal-price').value = '';
-            document.getElementById('modal-notes').value = '';
-            
-            closeModal();
-            saveData();
-            updateDisplay();
-        }
-
-        // Add photos to existing listing
-        function addPhotosToListing(listingId) {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.multiple = true;
-            input.accept = 'image/*';
-            
-            input.onchange = async function(e) {
-                const listing = listings.find(l => l.id === listingId);
-                if (!listing) return;
-                
-                for (let file of e.target.files) {
-                    if (file.type.startsWith('image/')) {
-                        try {
-                            const base64 = await fileToBase64(file);
-                            const photoData = {
-                                id: Date.now() + Math.random(),
-                                data: base64,
-                                name: file.name,
-                                size: file.size,
-                                uploadDate: new Date().toISOString()
-                            };
-                            listing.photos.push(photoData);
-                        } catch (error) {
-                            console.error('Error processing photo:', error);
-                        }
-                    }
-                }
-                
-                saveData();
-                updateDisplay();
-            };
-            
-            input.click();
-        }
-
-        // Update statistics
-        function updateStats() {
-            const photoCount = listings.reduce((total, listing) => total + (listing.photos ? listing.photos.length : 0), 0);
-            
-            const stats = {
-                total: listings.length,
-                photos: photoCount,
-                complete: listings.filter(l => l.status === 'complete' || l.status === 'manual').length,
-                duplicates: listings.filter(l => l.duplicateInfo && !l.duplicateInfo.markedDifferent).length
-            };
-
-            document.getElementById('stat-total').textContent = stats.total;
-            document.getElementById('stat-photos').textContent = stats.photos;
-            document.getElementById('stat-complete').textContent = stats.complete;
-            document.getElementById('stat-duplicates').textContent = stats.duplicates;
-        }
-
-        // Render listings
-        function renderListings() {
-            const container = document.getElementById('listings-grid');
-            const emptyState = document.getElementById('empty-state');
-
-            if (listings.length === 0) {
-                container.style.display = 'none';
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            container.style.display = 'grid';
-            emptyState.classList.add('hidden');
-
-            container.innerHTML = listings.map(listing => {
-                const isDuplicate = listing.duplicateInfo && !listing.duplicateInfo.markedDifferent;
-                const duplicateClass = isDuplicate ? 
-                    (listing.duplicateInfo.type === 'cross_listing' ? 'cross-listing' : 'duplicate') : '';
-
-                const photos = listing.photos || [];
-                const photosHtml = photos.length > 0 ? `
-                    <div class="listing-photos">
-                        ${photos.slice(0, 6).map(photo => `
-                            <div class="listing-photo" onclick="openPhotoViewer('${photo.data}')">
-                                <img src="${photo.data}" alt="${photo.name}">
-                            </div>
-                        `).join('')}
-                        ${photos.length > 6 ? `<div class="listing-photo" style="display: flex; align-items: center; justify-content: center; background: #f3f4f6; color: #6b7280; font-size: 12px;">+${photos.length - 6} more</div>` : ''}
-                    </div>
-                ` : '';
-
-                return `
-                <div class="listing-card ${duplicateClass}">
-                    ${photosHtml}
-                    
-                    <div class="listing-header">
-                        <div class="listing-status">
-                            <span class="status-badge ${duplicateClass}">
-                                ${listing.status === 'pending' ? 'Pending' : 
-                                  listing.status === 'complete' ? 'Complete' : 
-                                  listing.status === 'manual' ? 'Manual' : 'Other'}
-                            </span>
-                            <span style="font-size: 11px; color: #64748b;">${listing.source}</span>
-                            ${photos.length > 0 ? `<span class="photo-count">${photos.length} 📷</span>` : ''}
-                        </div>
-                        <div class="listing-actions">
-                            ${listing.url ? `<button class="btn-icon" onclick="window.open('${listing.url}', '_blank')">🔗</button>` : ''}
-                            <button class="btn-icon" onclick="addPhotosToListing(${listing.id})" title="Add Photos">📷</button>
-                            <button class="btn-icon" onclick="editListing(${listing.id})">✏️</button>
-                            <button class="btn-icon" onclick="deleteListing(${listing.id})">🗑️</button>
-                        </div>
-                    </div>
-                    
-                    <h3 class="listing-title">${listing.title}</h3>
-                    
-                    ${listing.price ? `<div class="listing-price">$${listing.price.toLocaleString()}</div>` : ''}
-                    
-                    <div class="listing-details">
-                        ${listing.seller ? `<div><strong>Seller:</strong> ${listing.seller}</div>` : ''}
-                        ${listing.location ? `<div><strong>Location:</strong> ${listing.location}</div>` : ''}
-                        ${listing.notes ? `<div><strong>Notes:</strong> ${listing.notes.substring(0, 100)}${listing.notes.length > 100 ? '...' : ''}</div>` : ''}
-                    </div>
-                    
-                    <div class="listing-date">
-                        Added: ${new Date(listing.addedDate).toLocaleDateString()}
-                    </div>
-                </div>
-            `;
-            }).join('');
-        }
-
-        // Update display
-        function updateDisplay() {
-            updateStats();
-            renderListings();
-        }
-
-        // Edit listing
-        function editListing(id) {
-            const listing = listings.find(l => l.id === id);
-            if (!listing) return;
-            
-            const newTitle = prompt('Edit title:', listing.title);
-            if (newTitle !== null) {
-                listing.title = newTitle;
-                const newPrice = prompt('Edit price (leave blank for no price):', listing.price || '');
-                if (newPrice !== null) {
-                    listing.price = newPrice ? parseInt(newPrice) : null;
-                }
-                listing.status = 'complete';
-                saveData();
-                updateDisplay();
-            }
-        }
-
-        // Delete listing
-        function deleteListing(id) {
-            if (confirm('Delete this listing and all its photos?')) {
-                listings = listings.filter(l => l.id !== id);
-                saveData();
-                updateDisplay();
-            }
-        }
-
-        // Setup photo upload events
-        function setupPhotoUpload() {
-            const uploadArea = document.getElementById('photo-upload-area');
-            const photoInput = document.getElementById('photo-input');
-
-            // Handle drag and drop
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.classList.add('drag-over');
-            });
-
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.classList.remove('drag-over');
-            });
-
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.classList.remove('drag-over');
-                handlePhotoUpload(e.dataTransfer.files);
-            });
-
-            // Handle file input
-            photoInput.addEventListener('change', (e) => {
-                handlePhotoUpload(e.target.files);
-            });
-        }
-
-        // Click outside modals to close
-        document.getElementById('manual-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        document.getElementById('photo-viewer-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePhotoViewer();
-            }
-        });
-
-        // Initialize
-        function init() {
-            loadData();
-            updateDisplay();
-            setupPhotoUpload();
-        }
-
-        // Start app
-        init();
-
-        // Handle keyboard events
-        document.getElementById('quick-url').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') smartAdd();
-        });
-
-        console.log('Smart marketplace tracker with photos loaded successfully');
-    </script>
 </body>
 </html>
