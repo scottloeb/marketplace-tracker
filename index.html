@@ -691,6 +691,9 @@ Please provide a comprehensive analysis in JSON format:
 Respond ONLY with valid JSON. Do not include any other text.`;
 
                     try {
+                        addLog('info', `Sending API request for: ${listing.title}`);
+                        console.log('Making Claude API call for:', listing.title);
+                        
                         // Call Claude API
                         const response = await fetch("https://api.anthropic.com/v1/messages", {
                             method: "POST",
@@ -706,11 +709,17 @@ Respond ONLY with valid JSON. Do not include any other text.`;
                             })
                         });
 
+                        console.log('API Response status:', response.status);
+                        addLog('info', `API response status: ${response.status}`);
+
                         if (!response.ok) {
-                            throw new Error(`API request failed: ${response.status}`);
+                            const errorText = await response.text();
+                            console.error('API Error:', errorText);
+                            throw new Error(`API request failed: ${response.status} - ${errorText}`);
                         }
 
                         const data = await response.json();
+                        console.log('API Response data:', data);
                         let responseText = data.content[0].text;
                         
                         // Clean up response (remove any markdown formatting)
