@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace Intelligence Hub</title>
+    <title>Smart Marketplace Tracker - Enhanced</title>
     <style>
         * {
             margin: 0;
@@ -13,1122 +13,487 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 16px;
-            min-height: 100vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
         .header {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #64748b;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .integration-status {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .integration-status h3 {
-            margin-bottom: 8px;
-        }
-
-        .pipeline-status {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        .pipeline-step {
-            background: rgba(255,255,255,0.1);
-            padding: 12px;
-            border-radius: 6px;
-            text-align: center;
-        }
-
-        .pipeline-step .status {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-
-        .pipeline-step .label {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .stat-card.total { background: #dbeafe; }
-        .stat-card.analyzed { background: #f3e8ff; }
-        .stat-card.insights { background: #dcfce7; }
-        .stat-card.synced { background: #fef3c7; }
-
-        .stat-label {
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-
-        .stat-card.total .stat-label { color: #1e40af; }
-        .stat-card.analyzed .stat-label { color: #7c3aed; }
-        .stat-card.insights .stat-label { color: #166534; }
-        .stat-card.synced .stat-label { color: #d97706; }
-
-        .stat-value {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .stat-card.total .stat-value { color: #1e3a8a; }
-        .stat-card.analyzed .stat-value { color: #6b21a8; }
-        .stat-card.insights .stat-value { color: #14532d; }
-        .stat-card.synced .stat-value { color: #b45309; }
-
-        .action-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .action-card {
-            background: white;
-            border-radius: 8px;
-            padding: 16px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #059669;
-        }
-
-        .action-card h4 {
-            color: #1e293b;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .action-card p {
-            color: #64748b;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .btn {
-            padding: 12px 16px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
-            white-space: nowrap;
-            width: 100%;
-        }
-
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-success {
-            background: #059669;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #047857;
-        }
-
-        .btn-warning {
-            background: #f59e0b;
-            color: white;
-        }
-
-        .btn-claude {
-            background: #7c3aed;
-            color: white;
-        }
-
-        .btn-claude:hover {
-            background: #6d28d9;
-        }
-
-        .btn:disabled {
-            background: #9ca3af;
-            cursor: not-allowed;
-        }
-
-        .analysis-panel {
-            background: white;
-            border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .analysis-header {
+        .sync-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .sync-buttons {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
-        .analysis-content {
-            background: #f8fafc;
-            border-radius: 6px;
-            padding: 16px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .insight-card {
-            background: white;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 12px;
-            border-left: 3px solid #7c3aed;
-        }
-
-        .insight-card h5 {
-            color: #7c3aed;
-            margin-bottom: 4px;
-            font-size: 14px;
-        }
-
-        .insight-card p {
-            color: #64748b;
-            font-size: 13px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 8px 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #7c3aed, #a855f7);
-            transition: width 0.3s ease;
-            width: 0%;
-        }
-
-        .logs-panel {
-            background: #1e293b;
-            color: #e2e8f0;
-            border-radius: 8px;
-            padding: 16px;
-            font-family: monospace;
-            font-size: 12px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .log-entry {
-            margin-bottom: 4px;
-            opacity: 0.8;
-        }
-
-        .log-entry.error {
-            color: #fca5a5;
-        }
-
-        .log-entry.success {
-            color: #86efac;
-        }
-
-        .log-entry.info {
-            color: #7dd3fc;
-        }
-
-        .listings-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        .listing-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 16px;
-            border-left: 4px solid #7c3aed;
-        }
-
-        .listing-card.analyzed {
-            border-left-color: #059669;
-            background: #f0fdf4;
-        }
-
-        .listing-card.synced {
-            border-left-color: #f59e0b;
-            background: #fffbeb;
-        }
-
-        .listing-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-
-        .listing-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .sync-btn {
             flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .status-badge {
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 500;
-            background: #f3e8ff;
-            color: #7c3aed;
+        .sync-btn.upload {
+            background: #28a745;
+            color: white;
         }
 
-        .status-badge.analyzed {
-            background: #dcfce7;
-            color: #166534;
+        .sync-btn.download {
+            background: #007bff;
+            color: white;
         }
 
-        .status-badge.synced {
-            background: #fef3c7;
-            color: #d97706;
+        .sync-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        .claude-insights {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
+        .sync-code-section {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .sync-code-input {
+            width: 100%;
             padding: 12px;
-            margin-top: 12px;
-            font-size: 13px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            font-family: monospace;
         }
 
-        .claude-insights h6 {
-            color: #7c3aed;
-            margin-bottom: 6px;
-        }
-
-        .price-analysis {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
-        }
-
-        .price-indicator {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
+        .sync-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
             font-weight: 600;
         }
 
-        .price-indicator.good { background: #dcfce7; color: #166534; }
-        .price-indicator.fair { background: #fef3c7; color: #d97706; }
-        .price-indicator.high { background: #fee2e2; color: #dc2626; }
+        .content {
+            padding: 20px;
+        }
+
+        .add-listing-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .add-listing-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .listings-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .listing-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .listing-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .listing-price {
+            color: #28a745;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .listing-meta {
+            color: #6c757d;
+            font-size: 14px;
+        }
 
         .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
             z-index: 1000;
         }
-        
-        .modal.show {
-            display: flex;
-        }
-        
+
         .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: white;
-            padding: 30px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 12px;
             width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
+            max-width: 400px;
         }
 
-        .hidden {
-            display: none;
+        .form-group {
+            margin-bottom: 15px;
         }
 
-        /* Mobile optimizations */
-        @media (max-width: 640px) {
-            .action-buttons {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
 
-            .pipeline-status {
-                grid-template-columns: 1fr;
-            }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">🧠 Marketplace Intelligence Hub</h1>
-            <p class="subtitle">Real-time mobile capture → Claude analysis → Graph database integration</p>
-            
-            <div class="integration-status">
-                <h3>🔄 Live Integration Pipeline</h3>
-                <div class="pipeline-status">
-                    <div class="pipeline-step">
-                        <div class="status" id="mobile-status">📱</div>
-                        <div class="label">Mobile Capture</div>
-                    </div>
-                    <div class="pipeline-step">
-                        <div class="status" id="claude-status">🤖</div>
-                        <div class="label">Claude Analysis</div>
-                    </div>
-                    <div class="pipeline-step">
-                        <div class="status" id="graph-status">🕸️</div>
-                        <div class="label">Graph Database</div>
-                    </div>
-                    <div class="pipeline-step">
-                        <div class="status" id="nodepad-status">📊</div>
-                        <div class="label">NodePad Viz</div>
-                    </div>
-                </div>
+            <h1>🏍️ Smart Marketplace Tracker</h1>
+            <p>Find, Track, Analyze, Win</p>
+        </div>
+
+        <!-- Sync Section -->
+        <div class="sync-section">
+            <div class="sync-buttons">
+                <button class="sync-btn upload" onclick="uploadData()">📤 Upload to Cloud</button>
+                <button class="sync-btn download" onclick="showDownloadSection()">📥 Download from Cloud</button>
             </div>
             
-            <div class="stats-grid">
-                <div class="stat-card total">
-                    <div class="stat-label">Total Listings</div>
-                    <div class="stat-value" id="stat-total">0</div>
+            <div id="downloadSection" class="sync-code-section">
+                <input type="text" id="syncCodeInput" class="sync-code-input" placeholder="Enter sync code (e.g., ABC123)" maxlength="6">
+                <button class="sync-btn download" onclick="downloadData()" style="margin-top: 10px; width: 100%;">Download Data</button>
+            </div>
+            
+            <div id="syncStatus" class="sync-status" style="display: none;"></div>
+        </div>
+
+        <div class="content">
+            <button class="add-listing-btn" onclick="showModal()">
+                ➕ Add New Listing
+            </button>
+
+            <div class="listings-section">
+                <h3>
+                    Your Listings
+                    <span id="listingCount" style="background: #667eea; color: white; padding: 4px 8px; border-radius: 12px; font-size: 14px;">0</span>
+                </h3>
+                <div id="listingsContainer">
+                    <p style="text-align: center; color: #6c757d; font-style: italic;">No listings yet. Add your first listing!</p>
                 </div>
-                <div class="stat-card analyzed">
-                    <div class="stat-label">Analyzed</div>
-                    <div class="stat-value" id="stat-analyzed">0</div>
-                </div>
-                <div class="stat-card insights">
-                    <div class="stat-label">Insights</div>
-                    <div class="stat-value" id="stat-insights">0</div>
-                </div>
-                <div class="stat-card synced">
-                    <div class="stat-label">Graph Synced</div>
-                    <div class="stat-value" id="stat-synced">0</div>
-                </div>
             </div>
-        </div>
-
-        <div class="action-buttons">
-            <div class="action-card">
-                <h4>🤖 Analyze with Claude</h4>
-                <p>Send all unanalyzed listings to Claude for market intelligence</p>
-                <button id="analyze-button" class="btn btn-claude" onclick="analyzeWithClaude()">
-                    Analyze Listings
-                </button>
-            </div>
-
-            <div class="action-card">
-                <h4>🕸️ Sync to Graph DB</h4>
-                <p>Update graph database with analyzed insights and relationships</p>
-                <button id="sync-button" class="btn btn-warning" onclick="syncToGraphDB()" disabled>
-                    Sync to Graph
-                </button>
-            </div>
-
-            <div class="action-card">
-                <h4>📊 Open NodePad</h4>
-                <p>Visualize marketplace data and insights in interactive graph</p>
-                <button id="nodepad-button" class="btn btn-success" onclick="openNodePad()">
-                    Launch NodePad
-                </button>
-            </div>
-
-            <div class="action-card">
-                <h4>📱 Mobile Tracker</h4>
-                <p>Return to mobile interface for adding new listings</p>
-                <button class="btn btn-primary" onclick="showMobileTracker()">
-                    Mobile Interface
-                </button>
-            </div>
-        </div>
-
-        <!-- Analysis Panel -->
-        <div class="analysis-panel hidden" id="analysis-panel">
-            <div class="analysis-header">
-                <h3>🤖 Claude Analysis in Progress</h3>
-                <button class="btn btn-secondary" onclick="hideAnalysisPanel()">Hide</button>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="analysis-progress"></div>
-            </div>
-            <div class="analysis-content" id="analysis-content">
-                <p>Initializing Claude analysis...</p>
-            </div>
-        </div>
-
-        <!-- Real-time Insights -->
-        <div class="analysis-panel" id="insights-panel">
-            <h3>💡 Latest Market Insights</h3>
-            <div id="insights-content">
-                <p style="color: #64748b; text-align: center; padding: 20px;">
-                    Run Claude analysis to generate market insights
-                </p>
-            </div>
-        </div>
-
-        <!-- Listings with Analysis -->
-        <div id="listings-container">
-            <div class="listings-grid" id="listings-grid"></div>
-            <div class="empty-state hidden" id="empty-state">
-                <p>No listings found. Add some using the mobile interface!</p>
-            </div>
-        </div>
-
-        <!-- Logs Panel -->
-        <div class="logs-panel" id="logs-panel">
-            <div class="log-entry info">[INFO] Marketplace Intelligence Hub initialized</div>
-            <div class="log-entry info">[INFO] Checking for existing listings...</div>
         </div>
     </div>
 
-    <!-- Mobile Tracker Modal -->
-    <div id="mobile-modal" class="modal">
+    <!-- Modal for adding listings -->
+    <div id="modal" class="modal">
         <div class="modal-content">
-            <h3>📱 Quick Add Listing</h3>
+            <h3>➕ Add New Listing</h3>
             
-            <div style="margin-bottom: 12px;">
-                <label style="display: block; font-size: 12px; font-weight: 500; color: #374151; margin-bottom: 4px;">Marketplace URL</label>
-                <input type="url" id="quick-url" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 16px;" placeholder="Paste URL here...">
+            <div class="form-group">
+                <label for="listingUrl">Marketplace URL</label>
+                <input type="url" id="listingUrl" placeholder="https://facebook.com/marketplace/...">
             </div>
             
-            <div style="margin-bottom: 12px;">
-                <label style="display: block; font-size: 12px; font-weight: 500; color: #374151; margin-bottom: 4px;">Quick Title</label>
-                <input type="text" id="quick-title" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 16px;" placeholder="2023 Honda CBR600RR">
+            <div class="form-group">
+                <label for="listingTitle">Title</label>
+                <input type="text" id="listingTitle" placeholder="2023 Honda CBR600RR">
             </div>
             
-            <div style="margin-bottom: 12px;">
-                <label style="display: block; font-size: 12px; font-weight: 500; color: #374151; margin-bottom: 4px;">Price</label>
-                <input type="number" id="quick-price" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 16px;" placeholder="8500">
+            <div class="form-group">
+                <label for="listingPrice">Price</label>
+                <input type="number" id="listingPrice" placeholder="8500">
             </div>
             
-            <div style="display: flex; gap: 12px; margin-top: 20px;">
-                <button class="btn btn-secondary" onclick="hideMobileModal()" style="flex: 1;">Cancel</button>
-                <button class="btn btn-primary" onclick="addQuickListing()" style="flex: 1;">Add Listing</button>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="hideModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="addListing()">Add Listing</button>
             </div>
         </div>
     </div>
 
     <script>
         let listings = [];
-        let analysisResults = [];
-        let marketInsights = [];
 
-        // Load data
+        // Load existing data
         function loadData() {
             const saved = localStorage.getItem('smart-marketplace-listings');
             if (saved) {
                 listings = JSON.parse(saved);
-            }
-
-            const savedAnalysis = localStorage.getItem('marketplace-analysis');
-            if (savedAnalysis) {
-                analysisResults = JSON.parse(savedAnalysis);
-            }
-
-            const savedInsights = localStorage.getItem('market-insights');
-            if (savedInsights) {
-                marketInsights = JSON.parse(savedInsights);
+                displayListings();
             }
         }
 
-        // Save data
+        // Save data to localStorage
         function saveData() {
             localStorage.setItem('smart-marketplace-listings', JSON.stringify(listings));
-            localStorage.setItem('marketplace-analysis', JSON.stringify(analysisResults));
-            localStorage.setItem('market-insights', JSON.stringify(marketInsights));
+            displayListings();
         }
 
-        // Add log entry
-        function addLog(type, message) {
-            const timestamp = new Date().toLocaleTimeString();
-            const logPanel = document.getElementById('logs-panel');
-            const entry = document.createElement('div');
-            entry.className = `log-entry ${type}`;
-            entry.textContent = `[${timestamp}] [${type.toUpperCase()}] ${message}`;
-            logPanel.appendChild(entry);
-            logPanel.scrollTop = logPanel.scrollHeight;
-
-            // Keep only last 50 entries
-            const entries = logPanel.querySelectorAll('.log-entry');
-            if (entries.length > 50) {
-                entries[0].remove();
-            }
-        }
-
-        // Update pipeline status
-        function updatePipelineStatus(step, status) {
-            const statusMap = {
-                'ready': '✅',
-                'processing': '🔄',
-                'error': '❌',
-                'idle': '⏸️'
-            };
-
-            document.getElementById(`${step}-status`).textContent = statusMap[status] || '❓';
-        }
-
-        // Analyze listings with Claude
-        async function analyzeWithClaude() {
-            const unanalyzedListings = listings.filter(l => !analysisResults.find(a => a.listingId === l.id));
+        // Display listings
+        function displayListings() {
+            const container = document.getElementById('listingsContainer');
+            const count = document.getElementById('listingCount');
             
-            if (unanalyzedListings.length === 0) {
-                addLog('info', 'No new listings to analyze');
+            count.textContent = listings.length;
+            
+            if (listings.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #6c757d; font-style: italic;">No listings yet. Add your first listing!</p>';
                 return;
             }
-
-            document.getElementById('analyze-button').disabled = true;
-            document.getElementById('analysis-panel').classList.remove('hidden');
-            updatePipelineStatus('claude', 'processing');
             
-            addLog('info', `Starting analysis of ${unanalyzedListings.length} listings`);
-
-            try {
-                let processedCount = 0;
-                
-                for (const listing of unanalyzedListings) {
-                    // Update progress
-                    const progress = (processedCount / unanalyzedListings.length) * 100;
-                    document.getElementById('analysis-progress').style.width = `${progress}%`;
-                    
-                    // Create analysis prompt
-                    const analysisPrompt = `Analyze this marketplace listing for investment potential:
-
-Title: ${listing.title}
-Price: ${listing.price ? '$' + listing.price.toLocaleString() : 'Not specified'}
-Source: ${listing.source}
-URL: ${listing.url}
-Notes: ${listing.notes || 'None'}
-Added: ${new Date(listing.addedDate).toLocaleDateString()}
-
-Please provide a comprehensive analysis in JSON format:
-{
-  "vehicleDetails": {
-    "make": "extracted make",
-    "model": "extracted model", 
-    "year": "extracted year",
-    "type": "motorcycle/car/other",
-    "condition": "estimated condition"
-  },
-  "marketAnalysis": {
-    "priceAssessment": "good_deal|fair_price|overpriced",
-    "marketValue": estimated_market_value_number,
-    "confidenceLevel": "high|medium|low",
-    "reasoning": "brief explanation"
-  },
-  "investmentRecommendation": {
-    "recommendation": "buy|consider|pass",
-    "riskLevel": "low|medium|high",
-    "potentialReturn": "percentage or description",
-    "timeframe": "quick_flip|hold|long_term"
-  },
-  "keyInsights": [
-    "insight 1",
-    "insight 2",
-    "insight 3"
-  ],
-  "redFlags": [
-    "any concerns or red flags"
-  ]
-}
-
-Respond ONLY with valid JSON. Do not include any other text.`;
-
-                    try {
-                        addLog('info', `Sending API request for: ${listing.title}`);
-                        console.log('Making Claude API call for:', listing.title);
-                        
-                        // Call Claude API
-                        const response = await fetch("https://api.anthropic.com/v1/messages", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                model: "claude-sonnet-4-20250514",
-                                max_tokens: 1500,
-                                messages: [
-                                    { role: "user", content: analysisPrompt }
-                                ]
-                            })
-                        });
-
-                        console.log('API Response status:', response.status);
-                        addLog('info', `API response status: ${response.status}`);
-
-                        if (!response.ok) {
-                            const errorText = await response.text();
-                            console.error('API Error:', errorText);
-                            throw new Error(`API request failed: ${response.status} - ${errorText}`);
-                        }
-
-                        const data = await response.json();
-                        console.log('API Response data:', data);
-                        let responseText = data.content[0].text;
-                        
-                        // Clean up response (remove any markdown formatting)
-                        responseText = responseText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-                        
-                        const analysis = JSON.parse(responseText);
-                        
-                        // Store analysis result
-                        analysisResults.push({
-                            listingId: listing.id,
-                            analysis: analysis,
-                            analyzedDate: new Date().toISOString()
-                        });
-
-                        addLog('success', `Analyzed: ${listing.title}`);
-                        
-                        // Update analysis display
-                        document.getElementById('analysis-content').innerHTML += `
-                            <div class="insight-card">
-                                <h5>${listing.title}</h5>
-                                <p><strong>Recommendation:</strong> ${analysis.investmentRecommendation.recommendation.toUpperCase()}</p>
-                                <p><strong>Price Assessment:</strong> ${analysis.marketAnalysis.priceAssessment.replace('_', ' ')}</p>
-                                <p><strong>Key Insight:</strong> ${analysis.keyInsights[0] || 'N/A'}</p>
-                            </div>
-                        `;
-
-                    } catch (error) {
-                        addLog('error', `Failed to analyze ${listing.title}: ${error.message}`);
-                    }
-
-                    processedCount++;
-                }
-
-                // Complete analysis
-                document.getElementById('analysis-progress').style.width = '100%';
-                updatePipelineStatus('claude', 'ready');
-                document.getElementById('sync-button').disabled = false;
-                
-                // Generate market insights
-                generateMarketInsights();
-                
-                addLog('success', `Analysis complete: ${processedCount} listings processed`);
-
-            } catch (error) {
-                addLog('error', `Analysis failed: ${error.message}`);
-                updatePipelineStatus('claude', 'error');
-            }
-
-            document.getElementById('analyze-button').disabled = false;
-            saveData();
-            updateDisplay();
-        }
-
-        // Generate market insights from analysis results
-        function generateMarketInsights() {
-            if (analysisResults.length === 0) return;
-
-            const insights = [];
-            
-            // Price distribution analysis
-            const priceAssessments = analysisResults.map(r => r.analysis.marketAnalysis.priceAssessment);
-            const goodDeals = priceAssessments.filter(p => p === 'good_deal').length;
-            const totalAnalyzed = priceAssessments.length;
-            
-            if (goodDeals > 0) {
-                insights.push({
-                    type: 'deal_opportunity',
-                    title: `${goodDeals} Good Deals Found`,
-                    description: `${Math.round((goodDeals/totalAnalyzed)*100)}% of analyzed listings are good deals`,
-                    priority: 'high'
-                });
-            }
-
-            // Investment recommendations
-            const buyRecommendations = analysisResults.filter(r => 
-                r.analysis.investmentRecommendation.recommendation === 'buy'
-            ).length;
-            
-            if (buyRecommendations > 0) {
-                insights.push({
-                    type: 'investment',
-                    title: `${buyRecommendations} Buy Recommendations`,
-                    description: 'Strong investment opportunities identified',
-                    priority: 'high'
-                });
-            }
-
-            // Vehicle type distribution
-            const vehicleTypes = {};
-            analysisResults.forEach(r => {
-                const type = r.analysis.vehicleDetails.type;
-                vehicleTypes[type] = (vehicleTypes[type] || 0) + 1;
-            });
-
-            const topType = Object.entries(vehicleTypes).sort((a,b) => b[1] - a[1])[0];
-            if (topType) {
-                insights.push({
-                    type: 'market_trend',
-                    title: `${topType[0]} Market Active`,
-                    description: `${topType[1]} ${topType[0]} listings analyzed`,
-                    priority: 'medium'
-                });
-            }
-
-            marketInsights = insights;
-            updateInsightsDisplay();
-        }
-
-        // Update insights display
-        function updateInsightsDisplay() {
-            const container = document.getElementById('insights-content');
-            
-            if (marketInsights.length === 0) {
-                container.innerHTML = '<p style="color: #64748b; text-align: center; padding: 20px;">Run Claude analysis to generate market insights</p>';
-                return;
-            }
-
-            container.innerHTML = marketInsights.map(insight => `
-                <div class="insight-card">
-                    <h5>${insight.title}</h5>
-                    <p>${insight.description}</p>
+            container.innerHTML = listings.map(listing => `
+                <div class="listing-card">
+                    <div class="listing-title">${listing.title}</div>
+                    <div class="listing-price">$${listing.price?.toLocaleString() || 'No price'}</div>
+                    <div class="listing-meta">
+                        ${listing.source} • Added ${new Date(listing.addedDate).toLocaleDateString()}
+                        ${listing.url ? ` • <a href="${listing.url}" target="_blank" style="color: #667eea;">View</a>` : ''}
+                    </div>
                 </div>
             `).join('');
         }
 
-        // Sync to Graph Database
-        async function syncToGraphDB() {
-            if (analysisResults.length === 0) {
-                addLog('error', 'No analysis results to sync');
-                return;
-            }
+        // Modal functions
+        function showModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
 
-            document.getElementById('sync-button').disabled = true;
-            updatePipelineStatus('graph', 'processing');
+        function hideModal() {
+            document.getElementById('modal').style.display = 'none';
+            // Clear form
+            document.getElementById('listingUrl').value = '';
+            document.getElementById('listingTitle').value = '';
+            document.getElementById('listingPrice').value = '';
+        }
+
+        // Add new listing
+        function addListing() {
+            const url = document.getElementById('listingUrl').value;
+            const title = document.getElementById('listingTitle').value;
+            const price = parseFloat(document.getElementById('listingPrice').value);
             
-            addLog('info', 'Starting graph database sync...');
-
-            try {
-                // Simulate graph database operations
-                // In reality, this would call your Ocean Explorer API or Neo4j directly
-                
-                const graphData = {
-                    nodes: [],
-                    edges: []
-                };
-
-                // Create vehicle nodes
-                analysisResults.forEach(result => {
-                    const listing = listings.find(l => l.id === result.listingId);
-                    const analysis = result.analysis;
-
-                    // Vehicle node
-                    graphData.nodes.push({
-                        id: `vehicle_${result.listingId}`,
-                        type: 'Vehicle',
-                        properties: {
-                            make: analysis.vehicleDetails.make,
-                            model: analysis.vehicleDetails.model,
-                            year: analysis.vehicleDetails.year,
-                            condition: analysis.vehicleDetails.condition,
-                            price: listing.price,
-                            marketValue: analysis.marketAnalysis.marketValue,
-                            priceAssessment: analysis.marketAnalysis.priceAssessment,
-                            recommendation: analysis.investmentRecommendation.recommendation,
-                            source: listing.source,
-                            url: listing.url,
-                            analyzedDate: result.analyzedDate
-                        }
-                    });
-
-                    // Market analysis node
-                    graphData.nodes.push({
-                        id: `analysis_${result.listingId}`,
-                        type: 'MarketAnalysis',
-                        properties: {
-                            confidenceLevel: analysis.marketAnalysis.confidenceLevel,
-                            riskLevel: analysis.investmentRecommendation.riskLevel,
-                            potentialReturn: analysis.investmentRecommendation.potentialReturn,
-                            timeframe: analysis.investmentRecommendation.timeframe,
-                            keyInsights: analysis.keyInsights.join('; '),
-                            redFlags: analysis.redFlags.join('; ')
-                        }
-                    });
-
-                    // Relationship between vehicle and analysis
-                    graphData.edges.push({
-                        from: `vehicle_${result.listingId}`,
-                        to: `analysis_${result.listingId}`,
-                        type: 'HAS_ANALYSIS',
-                        properties: {
-                            createdDate: result.analyzedDate
-                        }
-                    });
-                });
-
-                // Here you would actually send this data to your graph database
-                // For now, we'll simulate the API call
-                addLog('info', `Preparing to sync ${graphData.nodes.length} nodes and ${graphData.edges.length} relationships`);
-                
-                // Simulate API delay
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // Store sync status
-                analysisResults.forEach(result => {
-                    result.syncedToGraph = true;
-                    result.syncDate = new Date().toISOString();
-                });
-
-                updatePipelineStatus('graph', 'ready');
-                updatePipelineStatus('nodepad', 'ready');
-                
-                addLog('success', 'Graph database sync complete');
-                
-                // You would call this with real graph DB endpoint:
-                // await syncToOceanExplorer(graphData);
-
-            } catch (error) {
-                addLog('error', `Graph sync failed: ${error.message}`);
-                updatePipelineStatus('graph', 'error');
-            }
-
-            document.getElementById('sync-button').disabled = false;
-            saveData();
-            updateDisplay();
-        }
-
-        // Open NodePad visualization
-        function openNodePad() {
-            // This would open your actual NodePad interface
-            // For now, we'll simulate it
-            addLog('info', 'Opening NodePad visualization...');
-            updatePipelineStatus('nodepad', 'processing');
-            
-            // In reality, this would be:
-            // window.open('/nodepad', '_blank');
-            // or integrate NodePad directly into this interface
-            
-            setTimeout(() => {
-                updatePipelineStatus('nodepad', 'ready');
-                addLog('success', 'NodePad visualization ready');
-                alert('NodePad would open here with your marketplace graph data!');
-            }, 1000);
-        }
-
-        // Mobile interface functions
-        function showMobileTracker() {
-            document.getElementById('mobile-modal').classList.add('show');
-        }
-
-        function hideMobileModal() {
-            document.getElementById('mobile-modal').classList.remove('show');
-        }
-
-        function addQuickListing() {
-            const url = document.getElementById('quick-url').value.trim();
-            const title = document.getElementById('quick-title').value.trim();
-            const price = document.getElementById('quick-price').value;
-
             if (!title) {
                 alert('Please enter a title');
                 return;
             }
-
-            const newListing = {
+            
+            const listing = {
                 id: Date.now(),
-                url: url,
                 title: title,
-                price: price ? parseInt(price) : null,
-                seller: '',
-                location: '',
-                source: url.includes('facebook.com') ? 'Facebook Marketplace' : 'Dealer/Shop',
+                price: price || null,
+                url: url || null,
+                source: url ? getSourceFromUrl(url) : 'Manual Entry',
                 status: 'pending',
                 addedDate: new Date().toISOString(),
-                mobileAdded: true,
-                notes: '',
-                photos: []
+                mobileAdded: true
             };
-
-            listings.unshift(newListing);
             
-            // Clear form
-            document.getElementById('quick-url').value = '';
-            document.getElementById('quick-title').value = '';
-            document.getElementById('quick-price').value = '';
-            
-            hideMobileModal();
+            listings.push(listing);
             saveData();
-            updateDisplay();
+            hideModal();
+        }
+
+        // Extract source from URL
+        function getSourceFromUrl(url) {
+            if (url.includes('facebook.com')) return 'Facebook Marketplace';
+            if (url.includes('craigslist.org')) return 'Craigslist';
+            if (url.includes('autotrader.com')) return 'AutoTrader';
+            if (url.includes('cars.com')) return 'Cars.com';
+            return 'Other';
+        }
+
+        // Sync functions
+        async function uploadData() {
+            const statusDiv = document.getElementById('syncStatus');
+            statusDiv.style.display = 'block';
+            statusDiv.innerHTML = '🔄 Uploading data to cloud...';
+            statusDiv.style.background = '#fff3cd';
+            statusDiv.style.color = '#856404';
             
-            addLog('success', `Added new listing: ${title}`);
+            try {
+                // Generate a simple 6-character sync code
+                const syncCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+                
+                // Prepare data for upload
+                const syncData = {
+                    code: syncCode,
+                    timestamp: new Date().toISOString(),
+                    listingCount: listings.length,
+                    data: listings
+                };
+                
+                // Use JSONBin.io as a simple cloud storage (you'll need an API key for production)
+                // For demo purposes, we'll simulate the upload
+                await simulateUpload(syncData);
+                
+                statusDiv.innerHTML = `✅ Data uploaded! Share this code: <strong>${syncCode}</strong><br><small>Code expires in 24 hours</small>`;
+                statusDiv.style.background = '#d4edda';
+                statusDiv.style.color = '#155724';
+                
+                // Store the sync code for reference
+                localStorage.setItem('lastSyncCode', syncCode);
+                
+            } catch (error) {
+                statusDiv.innerHTML = `❌ Upload failed: ${error.message}`;
+                statusDiv.style.background = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+            }
         }
 
-        function hideAnalysisPanel() {
-            document.getElementById('analysis-panel').classList.add('hidden');
+        function showDownloadSection() {
+            const section = document.getElementById('downloadSection');
+            section.style.display = section.style.display === 'none' ? 'block' : 'none';
         }
 
-        // Update statistics
-        function updateStats() {
-            const analyzedCount = analysisResults.length;
-            const syncedCount = analysisResults.filter(r => r.syncedToGraph).length;
+        async function downloadData() {
+            const syncCode = document.getElementById('syncCodeInput').value.trim().toUpperCase();
+            const statusDiv = document.getElementById('syncStatus');
             
-            document.getElementById('stat-total').textContent = listings.length;
-            document.getElementById('stat-analyzed').textContent = analyzedCount;
-            document.getElementById('stat-insights').textContent = marketInsights.length;
-            document.getElementById('stat-synced').textContent = syncedCount;
-        }
-
-        // Render listings with analysis
-        function renderListings() {
-            const container = document.getElementById('listings-grid');
-            const emptyState = document.getElementById('empty-state');
-
-            if (listings.length === 0) {
-                container.style.display = 'none';
-                emptyState.classList.remove('hidden');
+            if (!syncCode) {
+                alert('Please enter a sync code');
                 return;
             }
-
-            container.style.display = 'grid';
-            emptyState.classList.add('hidden');
-
-            container.innerHTML = listings.map(listing => {
-                const analysis = analysisResults.find(a => a.listingId === listing.id);
-                const isAnalyzed = !!analysis;
-                const isSynced = analysis?.syncedToGraph;
-
-                let statusClass = '';
-                let statusText = 'Pending';
+            
+            statusDiv.style.display = 'block';
+            statusDiv.innerHTML = '🔄 Downloading data from cloud...';
+            statusDiv.style.background = '#fff3cd';
+            statusDiv.style.color = '#856404';
+            
+            try {
+                // Simulate download (in production, this would call the cloud service)
+                const syncData = await simulateDownload(syncCode);
                 
-                if (isSynced) {
-                    statusClass = 'synced';
-                    statusText = 'Synced';
-                } else if (isAnalyzed) {
-                    statusClass = 'analyzed';
-                    statusText = 'Analyzed';
+                if (!syncData) {
+                    throw new Error('Sync code not found or expired');
                 }
-
-                return `
-                <div class="listing-card ${statusClass}">
-                    <div class="listing-header">
-                        <div class="listing-status">
-                            <span class="status-badge ${statusClass}">${statusText}</span>
-                            <span style="font-size: 11px; color: #64748b;">${listing.source}</span>
-                        </div>
-                    </div>
-                    
-                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #1e293b;">
-                        ${listing.title}
-                    </h3>
-                    
-                    ${listing.price ? `<div style="font-size: 18px; font-weight: 700; color: #059669; margin-bottom: 8px;">$${listing.price.toLocaleString()}</div>` : ''}
-                    
-                    ${isAnalyzed ? `
-                        <div class="claude-insights">
-                            <h6>🤖 Claude Analysis</h6>
-                            <div class="price-analysis">
-                                <div class="price-indicator ${analysis.analysis.marketAnalysis.priceAssessment === 'good_deal' ? 'good' : analysis.analysis.marketAnalysis.priceAssessment === 'fair_price' ? 'fair' : 'high'}">
-                                    ${analysis.analysis.marketAnalysis.priceAssessment.replace('_', ' ').toUpperCase()}
-                                </div>
-                                <div class="price-indicator ${analysis.analysis.investmentRecommendation.recommendation === 'buy' ? 'good' : analysis.analysis.investmentRecommendation.recommendation === 'consider' ? 'fair' : 'high'}">
-                                    ${analysis.analysis.investmentRecommendation.recommendation.toUpperCase()}
-                                </div>
-                            </div>
-                            <p style="margin-top: 6px; font-size: 12px; color: #64748b;">
-                                ${analysis.analysis.keyInsights[0] || 'No key insights available'}
-                            </p>
-                        </div>
-                    ` : ''}
-                    
-                    <div style="font-size: 12px; color: #9ca3af; margin-top: 12px;">
-                        Added: ${new Date(listing.addedDate).toLocaleDateString()}
-                        ${isAnalyzed ? `<br>Analyzed: ${new Date(analysis.analyzedDate).toLocaleDateString()}` : ''}
-                    </div>
-                </div>
-            `;
-            }).join('');
-        }
-
-        // Update display
-        function updateDisplay() {
-            updateStats();
-            renderListings();
-            updateInsightsDisplay();
-        }
-
-        // Close modals on background click
-        document.getElementById('mobile-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                hideMobileModal();
+                
+                // Merge downloaded data with existing data
+                const downloadedListings = syncData.data || [];
+                const mergedListings = mergeListings(listings, downloadedListings);
+                
+                listings = mergedListings;
+                saveData();
+                
+                statusDiv.innerHTML = `✅ Downloaded ${downloadedListings.length} listings! Total: ${listings.length}`;
+                statusDiv.style.background = '#d4edda';
+                statusDiv.style.color = '#155724';
+                
+                document.getElementById('downloadSection').style.display = 'none';
+                
+            } catch (error) {
+                statusDiv.innerHTML = `❌ Download failed: ${error.message}`;
+                statusDiv.style.background = '#f8d7da';
+                statusDiv.style.color = '#721c24';
             }
-        });
-
-        // Initialize
-        function init() {
-            loadData();
-            updateDisplay();
-            updatePipelineStatus('mobile', 'ready');
-            
-            // Check if we have analysis results to enable sync
-            if (analysisResults.length > 0) {
-                document.getElementById('sync-button').disabled = false;
-                updatePipelineStatus('claude', 'ready');
-            }
-            
-            addLog('success', `Loaded ${listings.length} listings, ${analysisResults.length} analyzed`);
         }
 
-        // Start the application
-        init();
+        // Simulate cloud upload (replace with real service in production)
+        async function simulateUpload(syncData) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Store in sessionStorage to simulate cloud storage
+                    sessionStorage.setItem(`sync_${syncData.code}`, JSON.stringify(syncData));
+                    resolve(syncData);
+                }, 1500);
+            });
+        }
+
+        // Simulate cloud download (replace with real service in production)
+        async function simulateDownload(syncCode) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const stored = sessionStorage.getItem(`sync_${syncCode}`);
+                    if (stored) {
+                        resolve(JSON.parse(stored));
+                    } else {
+                        reject(new Error('Code not found'));
+                    }
+                }, 1000);
+            });
+        }
+
+        // Merge listings to avoid duplicates
+        function mergeListings(existing, downloaded) {
+            const existingIds = new Set(existing.map(l => l.id));
+            const newListings = downloaded.filter(l => !existingIds.has(l.id));
+            return [...existing, ...newListings];
+        }
+
+        // Initialize app
+        window.addEventListener('load', loadData);
     </script>
 </body>
 </html>
