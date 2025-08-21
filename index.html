@@ -560,6 +560,126 @@
             return [...existing, ...newListings];
         }
 
+        // Copy/Paste Sync Functions
+        function showCopyData() {
+            const copySection = document.getElementById('copySection');
+            const pasteSection = document.getElementById('pasteSection');
+            const copyTextarea = document.getElementById('copyDataTextarea');
+            const statusDiv = document.getElementById('syncStatus');
+            
+            // Hide paste section if open
+            pasteSection.style.display = 'none';
+            
+            // Show copy section
+            copySection.style.display = 'block';
+            
+            // Populate textarea with current data
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                listingCount: listings.length,
+                data: listings
+            };
+            
+            copyTextarea.value = JSON.stringify(exportData, null, 2);
+            
+            // Show status
+            statusDiv.style.display = 'block';
+            statusDiv.innerHTML = `📋 Ready to copy ${listings.length} listings`;
+            statusDiv.style.background = '#d1ecf1';
+            statusDiv.style.color = '#0c5460';
+            
+            // Auto-select the text
+            copyTextarea.select();
+            copyTextarea.setSelectionRange(0, 99999); // For mobile devices
+        }
+
+        function showPasteData() {
+            const copySection = document.getElementById('copySection');
+            const pasteSection = document.getElementById('pasteSection');
+            const pasteTextarea = document.getElementById('pasteDataTextarea');
+            const statusDiv = document.getElementById('syncStatus');
+            
+            // Hide copy section if open
+            copySection.style.display = 'none';
+            
+            // Show paste section
+            pasteSection.style.display = 'block';
+            
+            // Clear previous data
+            pasteTextarea.value = '';
+            
+            // Show status
+            statusDiv.style.display = 'block';
+            statusDiv.innerHTML = '📥 Ready to import data - paste your copied data above';
+            statusDiv.style.background = '#fff3cd';
+            statusDiv.style.color = '#856404';
+            
+            // Focus on textarea
+            pasteTextarea.focus();
+        }
+
+        function importPastedData() {
+            const pasteTextarea = document.getElementById('pasteDataTextarea');
+            const statusDiv = document.getElementById('syncStatus');
+            const pastedData = pasteTextarea.value.trim();
+            
+            if (!pastedData) {
+                statusDiv.innerHTML = '❌ No data to import. Please paste your data first.';
+                statusDiv.style.background = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+                return;
+            }
+            
+            try {
+                // Parse the pasted JSON data
+                const importData = JSON.parse(pastedData);
+                
+                // Validate the data structure
+                if (!importData.data || !Array.isArray(importData.data)) {
+                    throw new Error('Invalid data format. Expected data with listings array.');
+                }
+                
+                const importedListings = importData.data;
+                const originalCount = listings.length;
+                
+                // Merge with existing listings (avoid duplicates)
+                listings = mergeListings(listings, importedListings);
+                
+                // Save the merged data
+                saveData();
+                
+                // Hide paste section
+                hidePasteSection();
+                
+                // Show success status
+                const newCount = listings.length - originalCount;
+                statusDiv.innerHTML = `✅ Successfully imported ${importedListings.length} listings! (${newCount} new, ${importedListings.length - newCount} duplicates skipped)`;
+                statusDiv.style.background = '#d4edda';
+                statusDiv.style.color = '#155724';
+                
+                // Auto-hide status after 5 seconds
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                }, 5000);
+                
+            } catch (error) {
+                console.error('Import error:', error);
+                statusDiv.innerHTML = `❌ Import failed: ${error.message}`;
+                statusDiv.style.background = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+            }
+        }
+
+        function hideCopySection() {
+            document.getElementById('copySection').style.display = 'none';
+            document.getElementById('syncStatus').style.display = 'none';
+        }
+
+        function hidePasteSection() {
+            document.getElementById('pasteSection').style.display = 'none';
+            document.getElementById('syncStatus').style.display = 'none';
+        }
+
         // Initialize app
         window.addEventListener('load', loadData);
     </script>
