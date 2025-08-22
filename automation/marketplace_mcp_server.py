@@ -13,9 +13,7 @@ from typing import Dict, List, Optional, Any
 from urllib.parse import urlparse, parse_qs
 import aiohttp
 from playwright.async_api import async_playwright, Browser, Page
-import pandas as pd
-from mcp.server import Server
-from mcp.types import Tool, TextContent
+# MCP imports removed for now - will add back when MCP package is available
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -34,17 +32,30 @@ class JetSkiMarketplaceMCP:
     def load_reference_data(self):
         """Load jet ski reference data for intelligent enhancement."""
         try:
-            # Load jet ski specs for price validation and data enhancement
             with open('/workspace/reference/jet_ski_specs_main.csv', 'r') as f:
-                reader = csv.DictReader(f)
-                for row in reader:
-                    # Parse specs for each model
-                    for key, value in row.items():
-                        if key != 'Specification':
-                            model_info = key.replace('_', ' ')
+                lines = list(csv.reader(f))
+                
+                if len(lines) < 2:
+                    raise ValueError("CSV file has insufficient data")
+                
+                # First row contains model names (skip 'Specification' column)
+                model_headers = lines[0][1:]  # Skip first column
+                
+                # Process each specification row
+                for row in lines[1:]:
+                    if len(row) < 2:
+                        continue
+                    
+                    spec_name = row[0]  # First column is the specification name
+                    spec_values = row[1:]  # Rest are values for each model
+                    
+                    # Map each model to its specification value
+                    for i, model_name in enumerate(model_headers):
+                        if i < len(spec_values):
+                            model_info = model_name.replace('_', ' ')
                             if model_info not in self.reference_data:
                                 self.reference_data[model_info] = {}
-                            self.reference_data[model_info][row['Specification']] = value
+                            self.reference_data[model_info][spec_name] = spec_values[i]
             
             logger.info(f"Loaded reference data for {len(self.reference_data)} jet ski models")
             
