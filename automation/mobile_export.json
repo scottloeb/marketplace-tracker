@@ -1,0 +1,80 @@
+{
+  "timestamp": "2025-08-22T19:52:32.345511",
+  "listingCount": 6,
+  "exportedFrom": "mobile_tracker_simulation",
+  "data": [
+    {
+      "id": 1640995200000,
+      "title": "2019 Sea-Doo GTX 155 - Excellent condition",
+      "price": 8500,
+      "url": "https://www.facebook.com/marketplace/item/existing1",
+      "source": "Facebook Marketplace",
+      "status": "pending",
+      "addedDate": "2025-01-10T10:00:00Z",
+      "mobileAdded": true,
+      "location": "Sacramento, CA",
+      "seller": "John's Watercraft"
+    },
+    {
+      "id": 1640995300000,
+      "title": "2020 Yamaha VX Cruiser HO - 45 hours",
+      "price": 11200,
+      "url": "https://www.facebook.com/marketplace/item/existing2",
+      "source": "Facebook Marketplace",
+      "status": "pending",
+      "addedDate": "2025-01-10T11:30:00Z",
+      "mobileAdded": true,
+      "location": "San Francisco, CA"
+    },
+    {
+      "id": 1640995400000,
+      "title": "2018 Kawasaki Ultra 310X - Supercharged",
+      "price": 13800,
+      "url": "https://www.facebook.com/marketplace/item/existing3",
+      "source": "Facebook Marketplace",
+      "status": "pending",
+      "addedDate": "2025-01-10T14:15:00Z",
+      "mobileAdded": true,
+      "location": "Los Angeles, CA"
+    },
+    {
+      "id": 1755892352345,
+      "title": "",
+      "price": null,
+      "url": "https://www.facebook.com/marketplace/item/placeholder1",
+      "source": "Facebook Marketplace",
+      "status": "url_only",
+      "addedDate": "2025-08-22T19:52:32.345490",
+      "mobileAdded": true,
+      "urlOnly": true,
+      "enhancementNeeded": true,
+      "notes": "Quick capture - needs laptop enhancement"
+    },
+    {
+      "id": 1755892352346,
+      "title": "Yamaha FX",
+      "price": null,
+      "url": "https://www.facebook.com/marketplace/item/placeholder2",
+      "source": "Facebook Marketplace",
+      "status": "url_only",
+      "addedDate": "2025-08-22T19:52:32.345507",
+      "mobileAdded": true,
+      "urlOnly": true,
+      "enhancementNeeded": true,
+      "notes": "Partial info - needs laptop enhancement"
+    },
+    {
+      "id": 1755892352347,
+      "title": "",
+      "price": null,
+      "url": "https://www.facebook.com/marketplace/item/placeholder3",
+      "source": "Facebook Marketplace",
+      "status": "url_only",
+      "addedDate": "2025-08-22T19:52:32.345509",
+      "mobileAdded": true,
+      "urlOnly": true,
+      "enhancementNeeded": true,
+      "notes": "URL capture - full enhancement needed"
+    }
+  ]
+}

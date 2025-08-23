@@ -1,0 +1,313 @@
+{
+  "timestamp": "2025-08-22T19:53:11.042248",
+  "listingCount": 6,
+  "enhancementMethod": "automated_detail_extraction",
+  "data": [
+    {
+      "id": 1640995200000,
+      "title": "2019 Sea-Doo GTX 155 - Excellent condition",
+      "price": 8500,
+      "url": "https://www.facebook.com/marketplace/item/existing1",
+      "source": "Facebook Marketplace",
+      "status": "pending",
+      "addedDate": "2025-01-10T10:00:00Z",
+      "mobileAdded": true,
+      "location": "Sacramento, CA",
+      "seller": "John's Watercraft",
+      "photos": [],
+      "make": "SeaDoo",
+      "model": "GTX",
+      "year": "2019",
+      "condition": "Excellent",
+      "type": "Jet Ski",
+      "reference_specs": {
+        "Horsepower": "130",
+        "Engine_Displacement_cc": "1494",
+        "Engine_Type": "4-stroke_NA",
+        "Fuel_Capacity_gal": "15.9",
+        "Dry_Weight_lbs": "635",
+        "Length_inches": "139.4",
+        "Beam_Width_inches": "45.1",
+        "Top_Speed_mph": "50",
+        "MSRP_USD": "7499",
+        "Expected_Engine_Life_hours": "300",
+        "Seating_Capacity": "3",
+        "Storage_Capacity_gal": "5.8"
+      },
+      "has_reference_data": true,
+      "matched_model": "SeaDoo 2010 GTI130",
+      "market_analysis": {
+        "status": "overpriced",
+        "confidence": 0.7,
+        "recommendation": "PASS",
+        "reason": "$8,500 is 118% above expected $3,899"
+      },
+      "specs": {
+        "horsepower": "130",
+        "engine_displacement": "1494",
+        "engine_type": "4-stroke_NA",
+        "fuel_capacity": "15.9",
+        "dry_weight": "635",
+        "length": "139.4",
+        "beam_width": "45.1",
+        "top_speed": "50",
+        "msrp": "7499"
+      },
+      "stock_photos": [
+        {
+          "url": "https://example.com/stock/seadoo_gtx_2019_front.jpg",
+          "type": "stock_photo_front",
+          "description": "SeaDoo GTX 2019 front view"
+        },
+        {
+          "url": "https://example.com/stock/seadoo_gtx_2019_side.jpg",
+          "type": "stock_photo_side",
+          "description": "SeaDoo GTX 2019 side view"
+        }
+      ]
+    },
+    {
+      "id": 1640995300000,
+      "title": "2020 Yamaha VX Cruiser HO - 45 hours",
+      "price": 11200,
+      "url": "https://www.facebook.com/marketplace/item/existing2",
+      "source": "Facebook Marketplace",
+      "status": "pending",
+      "addedDate": "2025-01-10T11:30:00Z",
+      "mobileAdded": true,
+      "location": "San Francisco, CA",
+      "photos": [],
+      "make": "Yamaha",
+      "model": "VX",
+      "year": "2020",
+      "condition": "",
+      "type": "Jet Ski",
+      "reference_specs": {
+        "Horsepower": "110",
+        "Engine_Displacement_cc": "1052",
+        "Engine_Type": "4-stroke_NA",
+        "Fuel_Capacity_gal": "10.6",
+        "Dry_Weight_lbs": "502",
+        "Length_inches": "122",
+        "Beam_Width_inches": "41.7",
+        "Top_Speed_mph": "50",
+        "MSRP_USD": "6199",
+        "Expected_Engine_Life_hours": "350",
+        "Seating_Capacity": "1",
+        "Storage_Capacity_gal": "4.2"
+      },
+      "has_reference_data": true,
+      "matched_model": "Yamaha 2010 VXSport",
+      "market_analysis": {
+        "status": "overpriced",
+        "confidence": 0.7,
+        "recommendation": "PASS",
+        "reason": "$11,200 is 201% above expected $3,719"
+      },
+      "specs": {
+        "horsepower": "110",
+        "engine_displacement": "1052",
+        "engine_type": "4-stroke_NA",
+        "fuel_capacity": "10.6",
+        "dry_weight": "502",
+        "length": "122",
+        "beam_width": "41.7",
+        "top_speed": "50",
+        "msrp": "6199"
+      },
+      "stock_photos": [
+        {
+          "url": "https://example.com/stock/yamaha_vx_2020_front.jpg",
+          "type": "stock_photo_front",
+          "description": "Yamaha VX 2020 front view"
+        },
+        {
+          "url": "https://example.com/stock/yamaha_vx_2020_side.jpg",
+          "type": "stock_photo_side",
+          "description": "Yamaha VX 2020 side view"
+        }
+      ]
+    },
+    {
+      "id": 1640995400000,
+      "title": "2018 Kawasaki Ultra 310X - Supercharged",
+      "price": 13800,
+      "url": "https://www.facebook.com/marketplace/item/existing3",
+      "source": "Facebook Marketplace",
+      "status": "pending",
+      "addedDate": "2025-01-10T14:15:00Z",
+      "mobileAdded": true,
+      "location": "Los Angeles, CA",
+      "photos": [],
+      "make": "Kawasaki",
+      "model": "Ultra",
+      "year": "2018",
+      "condition": "",
+      "type": "Jet Ski",
+      "reference_specs": {
+        "Horsepower": "80",
+        "Engine_Displacement_cc": "781",
+        "Engine_Type": "2-stroke",
+        "Fuel_Capacity_gal": "5.3",
+        "Dry_Weight_lbs": "370",
+        "Length_inches": "95.3",
+        "Beam_Width_inches": "27.2",
+        "Top_Speed_mph": "48",
+        "MSRP_USD": "7299",
+        "Expected_Engine_Life_hours": "250",
+        "Seating_Capacity": "1",
+        "Storage_Capacity_gal": "0.5"
+      },
+      "has_reference_data": true,
+      "matched_model": "Kawasaki 2010 800SXR",
+      "market_analysis": {
+        "status": "overpriced",
+        "confidence": 0.7,
+        "recommendation": "PASS",
+        "reason": "$13,800 is 330% above expected $3,212"
+      },
+      "specs": {
+        "horsepower": "80",
+        "engine_displacement": "781",
+        "engine_type": "2-stroke",
+        "fuel_capacity": "5.3",
+        "dry_weight": "370",
+        "length": "95.3",
+        "beam_width": "27.2",
+        "top_speed": "48",
+        "msrp": "7299"
+      },
+      "stock_photos": [
+        {
+          "url": "https://example.com/stock/kawasaki_ultra_2018_front.jpg",
+          "type": "stock_photo_front",
+          "description": "Kawasaki Ultra 2018 front view"
+        },
+        {
+          "url": "https://example.com/stock/kawasaki_ultra_2018_side.jpg",
+          "type": "stock_photo_side",
+          "description": "Kawasaki Ultra 2018 side view"
+        }
+      ]
+    },
+    {
+      "id": 1755892352345,
+      "title": "",
+      "price": null,
+      "url": "https://www.facebook.com/marketplace/item/placeholder1",
+      "source": "Facebook Marketplace",
+      "status": "url_only",
+      "addedDate": "2025-08-22T19:52:32.345490",
+      "mobileAdded": true,
+      "urlOnly": true,
+      "enhancementNeeded": true,
+      "notes": "Quick capture - needs laptop enhancement",
+      "location": "null,RE",
+      "photos": [],
+      "make": "",
+      "model": "",
+      "year": "",
+      "condition": "",
+      "type": "Jet Ski",
+      "has_reference_data": false,
+      "market_analysis": {
+        "status": "unknown",
+        "confidence": 0.0,
+        "recommendation": "RESEARCH",
+        "reason": "Insufficient data for analysis"
+      }
+    },
+    {
+      "id": 1755892352346,
+      "title": "Yamaha FX",
+      "price": null,
+      "url": "https://www.facebook.com/marketplace/item/placeholder2",
+      "source": "Facebook Marketplace",
+      "status": "url_only",
+      "addedDate": "2025-08-22T19:52:32.345507",
+      "mobileAdded": true,
+      "urlOnly": true,
+      "enhancementNeeded": true,
+      "notes": "Partial info - needs laptop enhancement",
+      "location": "null,RE",
+      "photos": [],
+      "make": "Yamaha",
+      "model": "FX",
+      "year": "",
+      "condition": "",
+      "type": "Jet Ski",
+      "reference_specs": {
+        "Horsepower": "110",
+        "Engine_Displacement_cc": "1052",
+        "Engine_Type": "4-stroke_NA",
+        "Fuel_Capacity_gal": "10.6",
+        "Dry_Weight_lbs": "502",
+        "Length_inches": "122",
+        "Beam_Width_inches": "41.7",
+        "Top_Speed_mph": "50",
+        "MSRP_USD": "6199",
+        "Expected_Engine_Life_hours": "350",
+        "Seating_Capacity": "1",
+        "Storage_Capacity_gal": "4.2"
+      },
+      "has_reference_data": true,
+      "matched_model": "Yamaha 2010 VXSport",
+      "market_analysis": {
+        "status": "unknown",
+        "confidence": 0.0,
+        "recommendation": "RESEARCH",
+        "reason": "Insufficient data for analysis"
+      },
+      "specs": {
+        "horsepower": "110",
+        "engine_displacement": "1052",
+        "engine_type": "4-stroke_NA",
+        "fuel_capacity": "10.6",
+        "dry_weight": "502",
+        "length": "122",
+        "beam_width": "41.7",
+        "top_speed": "50",
+        "msrp": "6199"
+      },
+      "stock_photos": [
+        {
+          "url": "https://example.com/stock/yamaha_fx__front.jpg",
+          "type": "stock_photo_front",
+          "description": "Yamaha FX  front view"
+        },
+        {
+          "url": "https://example.com/stock/yamaha_fx__side.jpg",
+          "type": "stock_photo_side",
+          "description": "Yamaha FX  side view"
+        }
+      ]
+    },
+    {
+      "id": 1755892352347,
+      "title": "",
+      "price": null,
+      "url": "https://www.facebook.com/marketplace/item/placeholder3",
+      "source": "Facebook Marketplace",
+      "status": "url_only",
+      "addedDate": "2025-08-22T19:52:32.345509",
+      "mobileAdded": true,
+      "urlOnly": true,
+      "enhancementNeeded": true,
+      "notes": "URL capture - full enhancement needed",
+      "location": "null,RE",
+      "photos": [],
+      "make": "",
+      "model": "",
+      "year": "",
+      "condition": "",
+      "type": "Jet Ski",
+      "has_reference_data": false,
+      "market_analysis": {
+        "status": "unknown",
+        "confidence": 0.0,
+        "recommendation": "RESEARCH",
+        "reason": "Insufficient data for analysis"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "instructions": "Replace placeholder URLs with real Facebook Marketplace URLs",
+  "url_format": "https://www.facebook.com/marketplace/item/[ITEM_ID]",
+  "examples": [
+    "https://www.facebook.com/marketplace/item/1234567890123456",
+    "https://www.facebook.com/marketplace/item/6543210987654321"
+  ],
+  "how_to_get_urls": [
+    "1. Go to Facebook Marketplace",
+    "2. Search for 'jet ski' or 'personal watercraft'",
+    "3. Click on a listing",
+    "4. Copy the URL from your browser",
+    "5. Replace placeholder URLs in tracker_export.json"
+  ],
+  "placeholder_urls_to_replace": [
+    "https://www.facebook.com/marketplace/item/placeholder1",
+    "https://www.facebook.com/marketplace/item/placeholder2",
+    "https://www.facebook.com/marketplace/item/placeholder3"
+  ]
+}

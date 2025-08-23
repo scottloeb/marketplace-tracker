@@ -1,0 +1,11 @@
+{
+  "search_urls": [
+    "https://www.facebook.com/marketplace/search/?query=jet%20ski&daysSinceListed=1"
+  ],
+  "monitoring_interval_minutes": 60,
+  "max_listings_per_run": 25,
+  "auto_export_format": "marketplace_tracker",
+  "deal_alert_threshold": 0.75,
+  "output_directory": "output",
+  "enable_notifications": false
+}

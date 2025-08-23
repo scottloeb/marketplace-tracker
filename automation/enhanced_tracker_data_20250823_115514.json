@@ -1,0 +1,30 @@
+{
+  "timestamp": "2025-08-23T11:55:14.147073",
+  "listingCount": 1,
+  "enhancementMethod": "automated_detail_extraction",
+  "data": [
+    {
+      "id": 1,
+      "title": "",
+      "price": null,
+      "url": "https://facebook.com/marketplace/item/123456789",
+      "addedDate": "2024-08-22T20:00:00.000Z",
+      "urlOnly": true,
+      "enhancementNeeded": true,
+      "location": "null,RE",
+      "photos": [],
+      "make": "",
+      "model": "",
+      "year": "",
+      "condition": "",
+      "type": "Jet Ski",
+      "has_reference_data": false,
+      "market_analysis": {
+        "status": "unknown",
+        "confidence": 0.0,
+        "recommendation": "RESEARCH",
+        "reason": "Insufficient data for analysis"
+      }
+    }
+  ]
+}
