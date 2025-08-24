@@ -7,6 +7,11 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://unpkg.com/@hpcc-js/wasm/dist/index.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
     <style>
         * {
             margin: 0;
@@ -168,6 +173,141 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
+        /* Filter Controls */
+        .filter-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            min-width: 150px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .filter-group input[type="number"] {
+            width: 80px;
+        }
+
+        /* Map Container */
+        .map-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: none;
+            height: 600px;
+        }
+
+        #mapView {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .map-controls {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .map-legend {
+            background: rgba(255,255,255,0.9);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        /* Engine Hours Indicator */
+        .hours-indicator {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .hours-low { background-color: #4CAF50; }
+        .hours-moderate { background-color: #FF9800; }
+        .hours-high { background-color: #FF5722; }
+        .hours-very-high { background-color: #9C27B0; }
+
+        /* Pulse animation for high-opportunity distant deals */
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .pulse-marker {
+            animation: pulse 2s infinite;
+        }
+
+        /* Information completeness indicators */
+        .info-score-high { color: #4CAF50; font-weight: bold; }
+        .info-score-medium { color: #FF9800; font-weight: bold; }
+        .info-score-low { color: #f44336; font-weight: bold; }
+
+        .maintenance-excellent { color: #4CAF50; }
+        .maintenance-good { color: #8BC34A; }
+        .maintenance-average { color: #FF9800; }
+        .maintenance-poor { color: #f44336; }
+        .maintenance-unknown { color: #9E9E9E; }
+
         .deal-item {
             background: #f8f9fa;
             border-left: 4px solid #4CAF50;
@@ -313,7 +453,103 @@
                 <button class="btn btn-secondary" onclick="setViewMode('overview')">📈 Overview</button>
                 <button class="btn btn-secondary" onclick="setViewMode('deals')">🔥 Deals Focus</button>
                 <button class="btn btn-secondary" onclick="setViewMode('trends')">📊 Trends</button>
+                <button class="btn btn-secondary" onclick="setViewMode('map')">🗺️ Map View</button>
                 <button class="btn btn-secondary" onclick="setViewMode('graph')">🕸️ Graph View</button>
+            </div>
+
+            <!-- Advanced Filtering Controls -->
+            <div class="filter-section" id="filterSection">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Make:</label>
+                        <select id="filterMake" onchange="applyFilters()">
+                            <option value="">All Makes</option>
+                            <option value="Kawasaki">Kawasaki</option>
+                            <option value="Yamaha">Yamaha</option>
+                            <option value="Sea-Doo">Sea-Doo</option>
+                            <option value="Polaris">Polaris</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Model:</label>
+                        <select id="filterModel" onchange="applyFilters()">
+                            <option value="">All Models</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Year Range:</label>
+                        <input type="number" id="filterYearMin" placeholder="Min" min="2000" max="2025" onchange="applyFilters()">
+                        <input type="number" id="filterYearMax" placeholder="Max" min="2000" max="2025" onchange="applyFilters()">
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Price Range ($):</label>
+                        <input type="number" id="filterPriceMin" placeholder="Min" onchange="applyFilters()">
+                        <input type="number" id="filterPriceMax" placeholder="Max" onchange="applyFilters()">
+                    </div>
+                    <div class="filter-group">
+                        <label>Max Distance (miles):</label>
+                        <input type="number" id="filterDistance" placeholder="Miles" value="100" onchange="applyFilters()">
+                    </div>
+                    <div class="filter-group">
+                        <label>Engine Hours Utilization:</label>
+                        <select id="filterEngineHours" onchange="applyFilters()">
+                            <option value="">All Levels</option>
+                            <option value="low">Low (0-25%)</option>
+                            <option value="moderate">Moderate (25-50%)</option>
+                            <option value="high">High (50-75%)</option>
+                            <option value="very-high">Very High (75%+)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Deal Quality:</label>
+                        <select id="filterDealQuality" onchange="applyFilters()">
+                            <option value="">All Deals</option>
+                            <option value="EXCEPTIONAL_BUY">💎 EXCEPTIONAL BUY</option>
+                            <option value="URGENT_BUY">⚡ URGENT BUY</option>
+                            <option value="PERFORMANCE_BUY">🚀 PERFORMANCE BUY</option>
+                            <option value="BUY">🔥 BUY NOW</option>
+                            <option value="WORTH_THE_TRIP">🛣️ WORTH THE TRIP</option>
+                            <option value="BUNDLE_DEAL">🎁 BUNDLE OPPORTUNITY</option>
+                            <option value="CONSIDER">💰 STRONG CONSIDER</option>
+                            <option value="INSPECT">🔍 INSPECT FIRST</option>
+                            <option value="EXPERT_INSPECT">🔧 EXPERT INSPECT</option>
+                            <option value="REQUEST_INFO">📞 REQUEST INFO</option>
+                            <option value="RESEARCH">📋 RESEARCH MORE</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Info Completeness:</label>
+                        <select id="filterInfoCompleteness" onchange="applyFilters()">
+                            <option value="">All Levels</option>
+                            <option value="high">High (80%+)</option>
+                            <option value="medium">Medium (60-80%)</option>
+                            <option value="low">Low (<60%)</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Maintenance Level:</label>
+                        <select id="filterMaintenance" onchange="applyFilters()">
+                            <option value="">All Levels</option>
+                            <option value="excellent">Excellent Care</option>
+                            <option value="good">Good Care</option>
+                            <option value="average">Average Care</option>
+                            <option value="poor">Poor Care</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>User Location:</label>
+                        <input type="text" id="userLocation" placeholder="Enter your city/zip" onchange="updateUserLocation()">
+                        <button class="btn btn-primary" onclick="getCurrentLocation()">📍 Use Current</button>
+                    </div>
+                    <div class="filter-group">
+                        <button class="btn btn-warning" onclick="clearAllFilters()">🗑️ Clear Filters</button>
+                        <button class="btn btn-secondary" onclick="exportFilteredData()">📊 Export Filtered</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -372,6 +608,56 @@
             </div>
         </div>
 
+        <!-- Map View Section -->
+        <div class="map-container" id="mapContainer">
+            <div class="map-controls">
+                <h2>🗺️ Geographic Distribution</h2>
+                <div style="margin-left: auto; display: flex; gap: 10px;">
+                    <button class="btn btn-secondary" onclick="centerMap()">📍 Center Map</button>
+                    <button class="btn btn-secondary" onclick="toggleHeatMap()">🔥 Toggle Heat Map</button>
+                    <button class="btn btn-secondary" onclick="toggleClusters()">📊 Toggle Clusters</button>
+                </div>
+            </div>
+            <div id="mapView"></div>
+            <div class="map-legend" id="mapLegend">
+                <h4 style="margin: 0 0 10px 0;">Deal Quality</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #ff4444;"></div>
+                    <span>🔥 BUY - Excellent Deal</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #ff9800;"></div>
+                    <span>💰 CONSIDER - Good Value</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #4CAF50;"></div>
+                    <span>🔍 RESEARCH - Fair Price</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #9e9e9e;"></div>
+                    <span>❌ PASS - Overpriced</span>
+                </div>
+                <hr style="margin: 10px 0;">
+                <h4 style="margin: 0 0 10px 0;">Engine Hours</h4>
+                <div class="legend-item">
+                    <div class="legend-color hours-low"></div>
+                    <span>Low (0-25%)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color hours-moderate"></div>
+                    <span>Moderate (25-50%)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color hours-high"></div>
+                    <span>High (50-75%)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color hours-very-high"></div>
+                    <span>Very High (75%+)</span>
+                </div>
+            </div>
+        </div>
+
         <!-- Graph Network View (Hidden by default) -->
         <div class="viz-card" id="graphNetworkView" style="display: none;">
             <h3>🕸️ Marketplace Network Graph</h3>
@@ -388,6 +674,12 @@
         let currentViewMode = 'overview';
         let currentDataSource = 'mobile';
         let analysisResults = {};
+        let filteredData = [];
+        let map = null;
+        let markerCluster = null;
+        let userLocation = null;
+        let heatMapLayer = null;
+        let clusteringEnabled = true;
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
@@ -610,6 +902,9 @@
                     break;
                 case 'trends':
                     showTrendsMode();
+                    break;
+                case 'map':
+                    showMapMode();
                     break;
                 case 'graph':
                     showGraphMode();
@@ -999,6 +1294,1097 @@
                     break;
             }
         }
+        // ===== MAP AND FILTERING FUNCTIONALITY =====
+
+        // Enhanced filtering system with sophisticated analysis
+        function applyFilters() {
+            const make = document.getElementById('filterMake').value;
+            const model = document.getElementById('filterModel').value;
+            const yearMin = document.getElementById('filterYearMin').value;
+            const yearMax = document.getElementById('filterYearMax').value;
+            const priceMin = document.getElementById('filterPriceMin').value;
+            const priceMax = document.getElementById('filterPriceMax').value;
+            const maxDistance = document.getElementById('filterDistance').value;
+            const engineHours = document.getElementById('filterEngineHours').value;
+            const dealQuality = document.getElementById('filterDealQuality').value;
+            const infoCompleteness = document.getElementById('filterInfoCompleteness').value;
+            const maintenanceLevel = document.getElementById('filterMaintenance').value;
+
+            filteredData = currentData.filter(listing => {
+                // Calculate sophisticated analysis for this listing
+                const sophisticatedAnalysis = calculateSophisticatedDealScore(listing, userLocation);
+                
+                // Make filter
+                if (make && listing.make !== make) return false;
+                
+                // Model filter
+                if (model && listing.model !== model) return false;
+                
+                // Year range filter
+                if (yearMin && listing.year && parseInt(listing.year) < parseInt(yearMin)) return false;
+                if (yearMax && listing.year && parseInt(listing.year) > parseInt(yearMax)) return false;
+                
+                // Price range filter
+                if (priceMin && listing.price < parseFloat(priceMin)) return false;
+                if (priceMax && listing.price > parseFloat(priceMax)) return false;
+                
+                // Distance filter
+                if (maxDistance && sophisticatedAnalysis.distance && sophisticatedAnalysis.distance > parseFloat(maxDistance)) return false;
+                
+                // Engine hours utilization filter
+                if (engineHours) {
+                    const utilization = calculateEngineHoursUtilization(listing);
+                    switch(engineHours) {
+                        case 'low': if (utilization > 0.25) return false; break;
+                        case 'moderate': if (utilization <= 0.25 || utilization > 0.50) return false; break;
+                        case 'high': if (utilization <= 0.50 || utilization > 0.75) return false; break;
+                        case 'very-high': if (utilization <= 0.75) return false; break;
+                    }
+                }
+                
+                // Sophisticated deal quality filter
+                if (dealQuality && sophisticatedAnalysis.recommendation.action !== dealQuality) {
+                    return false;
+                }
+                
+                // Information completeness filter
+                if (infoCompleteness) {
+                    const infoScore = sophisticatedAnalysis.infoCompleteness;
+                    switch(infoCompleteness) {
+                        case 'high': if (infoScore < 80) return false; break;
+                        case 'medium': if (infoScore < 60 || infoScore >= 80) return false; break;
+                        case 'low': if (infoScore >= 60) return false; break;
+                    }
+                }
+                
+                // Maintenance level filter
+                if (maintenanceLevel && sophisticatedAnalysis.maintenanceAnalysis.maintenanceLevel !== maintenanceLevel) {
+                    return false;
+                }
+                
+                return true;
+            });
+
+            // Update displays
+            updateFilteredResults();
+            if (currentViewMode === 'map') {
+                updateMap();
+            }
+            updateModelOptions(); // Update model dropdown based on selected make
+        }
+
+        function updateModelOptions() {
+            const make = document.getElementById('filterMake').value;
+            const modelSelect = document.getElementById('filterModel');
+            
+            // Clear existing options
+            modelSelect.innerHTML = '<option value="">All Models</option>';
+            
+            if (make) {
+                const models = [...new Set(currentData
+                    .filter(listing => listing.make === make)
+                    .map(listing => listing.model)
+                    .filter(model => model))];
+                
+                models.forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    modelSelect.appendChild(option);
+                });
+            }
+        }
+
+        function calculateEngineHoursUtilization(listing) {
+            const hours = parseFloat(listing.engine_hours || listing.hours || 0);
+            const year = parseInt(listing.year || new Date().getFullYear());
+            const age = new Date().getFullYear() - year;
+            
+            // Expected engine hours based on age (approximate 50 hours/year average usage)
+            const expectedHours = age * 50;
+            const maxExpectedLifespan = 1500; // Typical jet ski engine lifespan
+            
+            if (expectedHours === 0) return hours / maxExpectedLifespan;
+            return Math.min(hours / maxExpectedLifespan, 1.0);
+        }
+
+        // ===== SOPHISTICATED MARKETPLACE INTELLIGENCE =====
+
+        function calculateInformationCompleteness(listing) {
+            let score = 0;
+            let maxScore = 0;
+            
+            // Essential information (40% of score)
+            const essentialFields = ['title', 'price', 'year', 'location'];
+            essentialFields.forEach(field => {
+                maxScore += 10;
+                if (listing[field] && listing[field] !== '' && listing[field] !== 0) {
+                    score += 10;
+                }
+            });
+            
+            // Detailed information (30% of score)
+            const detailFields = ['engine_hours', 'make', 'model', 'condition'];
+            detailFields.forEach(field => {
+                maxScore += 7.5;
+                if (listing[field] && listing[field] !== '') {
+                    score += 7.5;
+                }
+            });
+            
+            // Rich content (30% of score)
+            maxScore += 15; // Description quality
+            if (listing.description) {
+                const desc = listing.description.toLowerCase();
+                let descScore = 0;
+                if (desc.length > 50) descScore += 5; // Detailed description
+                if (desc.includes('hour') || desc.includes('service') || desc.includes('maintenance')) descScore += 5;
+                if (desc.includes('garage') || desc.includes('cover') || desc.includes('flush')) descScore += 3;
+                if (desc.includes('replace') || desc.includes('new') || desc.includes('service record')) descScore += 2;
+                score += Math.min(descScore, 15);
+            }
+            
+            maxScore += 15; // Photos
+            const photoCount = (listing.photos || []).length;
+            score += Math.min(photoCount * 2, 15);
+            
+            return Math.round((score / maxScore) * 100);
+        }
+
+        function analyzeMaintenanceHistory(listing) {
+            const description = (listing.description || '').toLowerCase();
+            const title = (listing.title || '').toLowerCase();
+            const fullText = `${title} ${description}`;
+            
+            const analysis = {
+                maintenanceScore: 0,
+                riskFactors: [],
+                positiveFactors: [],
+                maintenanceLevel: 'unknown',
+                confidenceLevel: 'low'
+            };
+            
+            // Positive maintenance indicators
+            const positiveKeywords = [
+                { terms: ['service record', 'maintenance record', 'all service'], score: 15, factor: 'Complete service records' },
+                { terms: ['garage kept', 'garage stored', 'indoor storage'], score: 10, factor: 'Protected storage' },
+                { terms: ['dealer service', 'dealer maintained'], score: 12, factor: 'Professional service' },
+                { terms: ['fresh water only', 'lake only', 'river only'], score: 8, factor: 'Fresh water use' },
+                { terms: ['flushed after every use', 'always flushed', 'religiously flushed'], score: 10, factor: 'Consistent flushing' },
+                { terms: ['new engine', 'rebuilt engine', 'engine replaced'], score: 15, factor: 'Engine replacement' },
+                { terms: ['recent service', 'just serviced', 'winterized'], score: 6, factor: 'Recent maintenance' },
+                { terms: ['oil change', 'regular oil'], score: 4, factor: 'Oil maintenance' },
+                { terms: ['never raced', 'easy riding', 'family use'], score: 5, factor: 'Gentle use' }
+            ];
+            
+            // Risk factors
+            const riskKeywords = [
+                { terms: ['salt water', 'ocean use', 'beach'], score: -8, factor: 'Salt water exposure' },
+                { terms: ['needs work', 'project', 'repair needed'], score: -15, factor: 'Known issues' },
+                { terms: ['no maintenance', 'never serviced'], score: -12, factor: 'Poor maintenance' },
+                { terms: ['raced', 'racing', 'performance mods'], score: -6, factor: 'Hard use/modifications' },
+                { terms: ['sits outside', 'stored outside'], score: -5, factor: 'Outdoor storage' },
+                { terms: ['engine knock', 'rough idle', 'hard to start'], score: -10, factor: 'Engine problems' },
+                { terms: ['as is', 'no warranty', 'sold as-is'], score: -8, factor: 'As-is sale' }
+            ];
+            
+            // Analyze positive factors
+            positiveKeywords.forEach(keyword => {
+                const found = keyword.terms.some(term => fullText.includes(term));
+                if (found) {
+                    analysis.maintenanceScore += keyword.score;
+                    analysis.positiveFactors.push(keyword.factor);
+                }
+            });
+            
+            // Analyze risk factors  
+            riskKeywords.forEach(keyword => {
+                const found = keyword.terms.some(term => fullText.includes(term));
+                if (found) {
+                    analysis.maintenanceScore += keyword.score; // Already negative
+                    analysis.riskFactors.push(keyword.factor);
+                }
+            });
+            
+            // Determine maintenance level
+            if (analysis.maintenanceScore >= 15) {
+                analysis.maintenanceLevel = 'excellent';
+                analysis.confidenceLevel = 'high';
+            } else if (analysis.maintenanceScore >= 5) {
+                analysis.maintenanceLevel = 'good';
+                analysis.confidenceLevel = 'medium';
+            } else if (analysis.maintenanceScore >= -5) {
+                analysis.maintenanceLevel = 'average';
+                analysis.confidenceLevel = 'medium';
+            } else {
+                analysis.maintenanceLevel = 'poor';
+                analysis.confidenceLevel = 'high';
+            }
+            
+            return analysis;
+        }
+
+        function calculateSophisticatedDealScore(listing, userLocation = null) {
+            // Get basic information
+            const infoCompleteness = calculateInformationCompleteness(listing);
+            const maintenanceAnalysis = analyzeMaintenanceHistory(listing);
+            const marketConditions = analyzeMarketConditions(listing);
+            const hours = parseFloat(listing.engine_hours || listing.hours || 0);
+            const price = listing.price || 0;
+            
+            // Calculate distance if user location available
+            let distance = null;
+            if (userLocation && listing.coordinates) {
+                distance = calculateDistance(userLocation.lat, userLocation.lng, 
+                                          listing.coordinates.lat, listing.coordinates.lng);
+            }
+            
+            // Base opportunity score from existing market analysis
+            let opportunityScore = 0;
+            const recommendation = listing.market_analysis?.recommendation || 'RESEARCH';
+            switch(recommendation) {
+                case 'BUY': opportunityScore = 80; break;
+                case 'CONSIDER': opportunityScore = 60; break;
+                case 'RESEARCH': opportunityScore = 40; break;
+                case 'PASS': opportunityScore = 20; break;
+            }
+            
+            // Adjust for maintenance quality (this is key!)
+            const maintenanceMultiplier = {
+                'excellent': 1.3,   // Great maintenance can overcome higher hours
+                'good': 1.1,        // Good maintenance adds value
+                'average': 1.0,     // Neutral
+                'poor': 0.7,        // Poor maintenance significantly reduces value
+                'unknown': 0.9      // Uncertainty penalty
+            };
+            
+            opportunityScore *= maintenanceMultiplier[maintenanceAnalysis.maintenanceLevel];
+            
+            // Apply market condition bonuses
+            opportunityScore += marketConditions.marketConditionScore;
+            
+            // Special handling for supercharged engines
+            const superchargedAdjustment = adjustForSuperchargedEngine(listing, opportunityScore);
+            if (superchargedAdjustment.adjusted) {
+                opportunityScore = superchargedAdjustment.score;
+            }
+            
+            // Bundle deal analysis
+            const bundleAnalysis = calculateBundleDealValue(listing, marketConditions);
+            if (bundleAnalysis && bundleAnalysis.estimatedItems > 1) {
+                // Bundle deals get significant opportunity boost
+                opportunityScore += 25;
+            }
+            
+            // Information completeness affects confidence, not opportunity
+            const infoConfidenceMultiplier = infoCompleteness / 100;
+            
+            // Distance affects required confidence level BUT exceptional deals get overrides
+            let requiredConfidenceThreshold = 0.6; // Base threshold
+            if (distance) {
+                if (distance > 100) requiredConfidenceThreshold = 0.85;      // Need high confidence for far deals
+                else if (distance > 50) requiredConfidenceThreshold = 0.75;  // Need good confidence for medium distance
+                else if (distance > 25) requiredConfidenceThreshold = 0.65;  // Slightly higher for moderate distance
+                
+                // SPECIAL EXCEPTION: Exceptional market conditions can override distance requirements
+                if (marketConditions.priceOverrideJustified) {
+                    requiredConfidenceThreshold -= 0.15; // Lower the bar for exceptional deals
+                }
+            }
+            
+            // Calculate actionability (can we act on this deal?)
+            const meetsConfidenceThreshold = infoConfidenceMultiplier >= requiredConfidenceThreshold;
+            let actionable = meetsConfidenceThreshold || distance === null || distance <= 25;
+            
+            // OVERRIDE: Bundle deals and exceptional specimens are actionable even if far
+            if (marketConditions.bundleDeal || 
+                (marketConditions.exceptionalSpecimen && marketConditions.motivatedSeller)) {
+                actionable = true;
+            }
+            
+            // Risk assessment
+            let riskLevel = 'low';
+            if (maintenanceAnalysis.riskFactors.length > 2) riskLevel = 'high';
+            else if (maintenanceAnalysis.riskFactors.length > 0) riskLevel = 'medium';
+            
+            if (distance && distance > 75 && infoCompleteness < 70 && !marketConditions.priceOverrideJustified) {
+                riskLevel = 'high';
+            }
+            
+            // Special risk considerations for supercharged engines
+            if (superchargedAdjustment.adjusted && superchargedAdjustment.requiresExpertInspection) {
+                riskLevel = riskLevel === 'low' ? 'medium' : 'high';
+            }
+            
+            return {
+                opportunityScore: Math.round(Math.min(opportunityScore, 120)), // Cap at 120 for exceptional deals
+                infoCompleteness,
+                maintenanceAnalysis,
+                marketConditions,
+                bundleAnalysis,
+                superchargedAdjustment,
+                distance,
+                requiredConfidenceThreshold,
+                meetsConfidenceThreshold,
+                actionable,
+                riskLevel,
+                recommendation: getEnhancedRecommendation(opportunityScore, actionable, riskLevel, distance, marketConditions, superchargedAdjustment)
+            };
+        }
+
+        function getEnhancedRecommendation(opportunityScore, actionable, riskLevel, distance, marketConditions = {}, superchargedAdjustment = {}) {
+            // SPECIAL: Bundle deals get unique recommendations
+            if (marketConditions.bundleDeal) {
+                return {
+                    action: 'BUNDLE_DEAL',
+                    label: '🎁 BUNDLE OPPORTUNITY',
+                    reason: `Bundle deal detected - ${marketConditions.specialFactors.join(', ')}`,
+                    color: '#9C27B0'
+                };
+            }
+            
+            // SPECIAL: Exceptional specimens with motivated sellers
+            if (marketConditions.exceptionalSpecimen && marketConditions.motivatedSeller && opportunityScore >= 80) {
+                return {
+                    action: 'URGENT_BUY',
+                    label: '⚡ URGENT BUY',
+                    reason: 'Exceptional specimen with motivated seller - rare opportunity',
+                    color: '#E91E63'
+                };
+            }
+            
+            // SPECIAL: Supercharged engines need different handling
+            if (superchargedAdjustment.adjusted) {
+                if (superchargedAdjustment.requiresExpertInspection) {
+                    return {
+                        action: 'EXPERT_INSPECT',
+                        label: '🔧 EXPERT INSPECT',
+                        reason: 'Supercharged engine - requires expert inspection',
+                        color: '#FF5722'
+                    };
+                } else if (opportunityScore >= 85) {
+                    return {
+                        action: 'PERFORMANCE_BUY',
+                        label: '🚀 PERFORMANCE BUY',
+                        reason: 'Excellent supercharged opportunity',
+                        color: '#673AB7'
+                    };
+                }
+            }
+            
+            // Handle distant deals that aren't actionable
+            if (!actionable && distance > 50) {
+                if (opportunityScore >= 90) {
+                    return {
+                        action: 'WORTH_THE_TRIP',
+                        label: '🛣️ WORTH THE TRIP',
+                        reason: 'Exceptional deal worth traveling for - get more info first',
+                        color: '#FF6F00'
+                    };
+                } else {
+                    return {
+                        action: 'REQUEST_INFO',
+                        label: '📞 REQUEST INFO',
+                        reason: 'Good potential but need more details for distant deal',
+                        color: '#9C27B0'
+                    };
+                }
+            }
+            
+            // Exceptional opportunity scores (100+)
+            if (opportunityScore >= 100 && actionable) {
+                return {
+                    action: 'EXCEPTIONAL_BUY',
+                    label: '💎 EXCEPTIONAL BUY',
+                    reason: 'Outstanding opportunity - act immediately',
+                    color: '#1A237E'
+                };
+            }
+            
+            // High opportunity scores with good conditions
+            if (opportunityScore >= 85 && actionable && riskLevel !== 'high') {
+                return {
+                    action: 'BUY',
+                    label: '🔥 BUY NOW',
+                    reason: 'Excellent opportunity with sufficient information',
+                    color: '#F44336'
+                };
+            }
+            
+            // Good opportunities requiring more consideration
+            if (opportunityScore >= 70 && actionable) {
+                if (riskLevel === 'high') {
+                    return {
+                        action: 'INSPECT',
+                        label: '🔍 INSPECT FIRST',
+                        reason: 'Good deal but requires in-person verification',
+                        color: '#FF9800'
+                    };
+                } else {
+                    return {
+                        action: 'CONSIDER',
+                        label: '💰 STRONG CONSIDER',
+                        reason: 'Good opportunity with adequate information',
+                        color: '#FF9800'
+                    };
+                }
+            }
+            
+            // Moderate opportunities
+            if (opportunityScore >= 55 && actionable) {
+                return {
+                    action: 'CONSIDER',
+                    label: '💰 CONSIDER',
+                    reason: 'Decent opportunity worth investigating',
+                    color: '#FFC107'
+                };
+            }
+            
+            // Research-worthy opportunities
+            if (opportunityScore >= 40) {
+                return {
+                    action: 'RESEARCH',
+                    label: '📋 RESEARCH MORE',
+                    reason: 'Potential opportunity needs investigation',
+                    color: '#4CAF50'
+                };
+            }
+            
+            return {
+                action: 'PASS',
+                label: '❌ PASS',
+                reason: 'Limited opportunity or high risk',
+                color: '#9E9E9E'
+            };
+        }
+
+        // ===== MARKET CONDITION & SPECIAL OPPORTUNITY ANALYSIS =====
+
+        function analyzeMarketConditions(listing) {
+            const description = (listing.description || '').toLowerCase();
+            const title = (listing.title || '').toLowerCase();
+            const fullText = `${title} ${description}`;
+            
+            const conditions = {
+                motivatedSeller: false,
+                urgentSale: false,
+                bundleDeal: false,
+                superchargedEngine: false,
+                exceptionalSpecimen: false,
+                marketConditionScore: 0,
+                specialFactors: [],
+                priceOverrideJustified: false
+            };
+            
+            // Motivated seller indicators
+            const motivatedSellerKeywords = [
+                { terms: ['must sell', 'need to sell', 'forced to sell'], score: 15, factor: 'Forced sale' },
+                { terms: ['moving', 'relocating', 'job transfer'], score: 12, factor: 'Relocation sale' },
+                { terms: ['divorce', 'health issues', 'medical'], score: 10, factor: 'Personal circumstances' },
+                { terms: ['cash only', 'quick sale', 'priced to sell'], score: 8, factor: 'Quick cash needed' },
+                { terms: ['taking best offer', 'open to offers', 'negotiable'], score: 6, factor: 'Open to negotiation' }
+            ];
+            
+            // Urgent sale indicators
+            const urgentSaleKeywords = [
+                { terms: ['this weekend only', 'leaving town', 'first come'], score: 12, factor: 'Time pressure' },
+                { terms: ['reduced price', 'price drop', 'was asking'], score: 8, factor: 'Recent price reduction' },
+                { terms: ['no reasonable offer refused', 'make offer'], score: 10, factor: 'Very flexible on price' }
+            ];
+            
+            // Bundle deal detection
+            const bundleKeywords = [
+                { terms: ['two for', '2 for', 'both for', 'pair for'], score: 20, factor: 'Bundle deal' },
+                { terms: ['with trailer', 'trailer included', 'comes with'], score: 8, factor: 'Includes trailer/extras' },
+                { terms: ['spare parts', 'extra engine', 'parts included'], score: 6, factor: 'Includes spare parts' }
+            ];
+            
+            // Supercharged/performance engine detection
+            const superchargedKeywords = [
+                { terms: ['supercharged', 'supercharger', 'sc'], score: 0, factor: 'Supercharged engine' },
+                { terms: ['turbo', 'turbocharged'], score: 0, factor: 'Turbocharged engine' },
+                { terms: ['intercooled', 'high output'], score: 0, factor: 'Performance engine' }
+            ];
+            
+            // Exceptional specimen indicators
+            const exceptionalKeywords = [
+                { terms: ['museum quality', 'showroom condition', 'pristine'], score: 15, factor: 'Museum quality' },
+                { terms: ['one owner', 'adult owned', 'doctor owned'], score: 10, factor: 'Single careful owner' },
+                { terms: ['never raced', 'garage queen', 'barely used'], score: 8, factor: 'Pampered condition' },
+                { terms: ['all records', 'every service', 'religiously maintained'], score: 12, factor: 'Complete service history' }
+            ];
+            
+            // Analyze motivated seller factors
+            motivatedSellerKeywords.forEach(keyword => {
+                if (keyword.terms.some(term => fullText.includes(term))) {
+                    conditions.motivatedSeller = true;
+                    conditions.marketConditionScore += keyword.score;
+                    conditions.specialFactors.push(keyword.factor);
+                }
+            });
+            
+            // Analyze urgent sale factors
+            urgentSaleKeywords.forEach(keyword => {
+                if (keyword.terms.some(term => fullText.includes(term))) {
+                    conditions.urgentSale = true;
+                    conditions.marketConditionScore += keyword.score;
+                    conditions.specialFactors.push(keyword.factor);
+                }
+            });
+            
+            // Analyze bundle deals
+            bundleKeywords.forEach(keyword => {
+                if (keyword.terms.some(term => fullText.includes(term))) {
+                    conditions.bundleDeal = true;
+                    conditions.marketConditionScore += keyword.score;
+                    conditions.specialFactors.push(keyword.factor);
+                }
+            });
+            
+            // Analyze supercharged engines
+            superchargedKeywords.forEach(keyword => {
+                if (keyword.terms.some(term => fullText.includes(term))) {
+                    conditions.superchargedEngine = true;
+                    conditions.specialFactors.push(keyword.factor);
+                }
+            });
+            
+            // Analyze exceptional specimens
+            exceptionalKeywords.forEach(keyword => {
+                if (keyword.terms.some(term => fullText.includes(term))) {
+                    conditions.exceptionalSpecimen = true;
+                    conditions.marketConditionScore += keyword.score;
+                    conditions.specialFactors.push(keyword.factor);
+                }
+            });
+            
+            // Determine if price/distance overrides are justified
+            if (conditions.bundleDeal || 
+                (conditions.exceptionalSpecimen && conditions.motivatedSeller) ||
+                conditions.marketConditionScore >= 25) {
+                conditions.priceOverrideJustified = true;
+            }
+            
+            return conditions;
+        }
+
+        function calculateBundleDealValue(listing, marketConditions) {
+            if (!marketConditions.bundleDeal) return null;
+            
+            const description = (listing.description || '').toLowerCase();
+            const title = (listing.title || '').toLowerCase();
+            const fullText = `${title} ${description}`;
+            
+            let itemCount = 1;
+            let bundleValue = {
+                estimatedItems: 1,
+                perItemPrice: listing.price || 0,
+                bundleDiscount: 0,
+                bundleAnalysis: 'Single item'
+            };
+            
+            // Try to detect number of items
+            const bundlePatterns = [
+                { pattern: /two|2(?!\d)/, count: 2 },
+                { pattern: /three|3(?!\d)/, count: 3 },
+                { pattern: /four|4(?!\d)/, count: 4 },
+                { pattern: /pair/, count: 2 },
+                { pattern: /both/, count: 2 }
+            ];
+            
+            bundlePatterns.forEach(bundle => {
+                if (bundle.pattern.test(fullText)) {
+                    itemCount = Math.max(itemCount, bundle.count);
+                }
+            });
+            
+            if (itemCount > 1) {
+                const perItemPrice = (listing.price || 0) / itemCount;
+                const estimatedSinglePrice = perItemPrice * 1.3; // Assume 30% bundle discount
+                
+                bundleValue = {
+                    estimatedItems: itemCount,
+                    perItemPrice: Math.round(perItemPrice),
+                    bundleDiscount: Math.round((estimatedSinglePrice - perItemPrice) * itemCount),
+                    bundleAnalysis: `${itemCount} items at $${Math.round(perItemPrice).toLocaleString()} each (est. $${Math.round(bundleValue.bundleDiscount).toLocaleString()} savings)`
+                };
+            }
+            
+            return bundleValue;
+        }
+
+        function adjustForSuperchargedEngine(listing, baseScore) {
+            const description = (listing.description || '').toLowerCase();
+            const title = (listing.title || '').toLowerCase();
+            const fullText = `${title} ${description}`;
+            
+            const isSupercharged = /supercharged|supercharger|sc|turbo|intercooled/.test(fullText);
+            
+            if (!isSupercharged) return { adjusted: false, score: baseScore, notes: [] };
+            
+            let adjustedScore = baseScore;
+            const notes = ['Supercharged/turbo engine detected'];
+            
+            // Supercharged engines require more scrutiny but can be exceptional
+            const hours = parseFloat(listing.engine_hours || listing.hours || 0);
+            
+            // Lower hours are MORE critical for supercharged engines
+            if (hours <= 50) {
+                adjustedScore += 15; // Very low hours are exceptional
+                notes.push('Extremely low hours for supercharged engine');
+            } else if (hours <= 100) {
+                adjustedScore += 5; // Still good for supercharged
+                notes.push('Good hours for supercharged engine');
+            } else if (hours > 200) {
+                adjustedScore -= 10; // High hours are more concerning
+                notes.push('High hours for supercharged engine - needs careful inspection');
+            }
+            
+            // Check for specific supercharged maintenance mentions
+            if (/intercooler|supercharger service|sc service/.test(fullText)) {
+                adjustedScore += 10;
+                notes.push('Supercharger-specific maintenance mentioned');
+            }
+            
+            // Price expectations - supercharged usually cost more new, may depreciate faster
+            if (/300|310|ultra|gtr|gtx/.test(fullText)) {
+                notes.push('High-performance model - worth premium if well-maintained');
+            }
+            
+            return {
+                adjusted: true,
+                score: adjustedScore,
+                notes: notes,
+                requiresExpertInspection: hours > 150
+            };
+        }
+
+        function clearAllFilters() {
+            document.getElementById('filterMake').value = '';
+            document.getElementById('filterModel').value = '';
+            document.getElementById('filterYearMin').value = '';
+            document.getElementById('filterYearMax').value = '';
+            document.getElementById('filterPriceMin').value = '';
+            document.getElementById('filterPriceMax').value = '';
+            document.getElementById('filterDistance').value = '100';
+            document.getElementById('filterEngineHours').value = '';
+            document.getElementById('filterDealQuality').value = '';
+            
+            filteredData = currentData;
+            updateFilteredResults();
+            if (currentViewMode === 'map') {
+                updateMap();
+            }
+        }
+
+        function updateFilteredResults() {
+            const resultsCount = filteredData.length;
+            showStatus(`📊 Showing ${resultsCount} of ${currentData.length} listings`, 'info');
+            
+            // Update any displayed data with filtered results
+            if (currentViewMode !== 'map') {
+                updateAnalysisWithFilteredData();
+            }
+        }
+
+        function updateAnalysisWithFilteredData() {
+            const analysis = runDataAnalysis(filteredData);
+            updateDashboard(analysis);
+            updateAllCharts();
+        }
+
+        // Map functionality
+        function initializeMap() {
+            if (map) {
+                map.remove();
+            }
+
+            map = L.map('mapView').setView([39.8283, -98.5795], 4); // Center of US
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            markerCluster = L.markerClusterGroup({
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: true,
+                zoomToBoundsOnClick: true
+            });
+
+            map.addLayer(markerCluster);
+        }
+
+        function showMapMode() {
+            // Hide other views
+            document.getElementById('visualizationGrid').style.display = 'none';
+            document.getElementById('graphNetworkView').style.display = 'none';
+            
+            // Show map
+            document.getElementById('mapContainer').style.display = 'block';
+            
+            // Initialize map if not already done
+            if (!map) {
+                setTimeout(() => {
+                    initializeMap();
+                    updateMap();
+                }, 100);
+            } else {
+                setTimeout(() => {
+                    map.invalidateSize();
+                    updateMap();
+                }, 100);
+            }
+        }
+
+        function updateMap() {
+            if (!map || !markerCluster) return;
+            
+            markerCluster.clearLayers();
+            
+            const dataToShow = filteredData.length > 0 ? filteredData : currentData;
+            
+            dataToShow.forEach(listing => {
+                const coords = getListingCoordinates(listing);
+                if (!coords) return;
+                
+                const marker = createListingMarker(listing, coords);
+                markerCluster.addLayer(marker);
+            });
+            
+            // Add user location marker if available
+            if (userLocation) {
+                const userMarker = L.marker([userLocation.lat, userLocation.lng], {
+                    icon: L.icon({
+                        iconUrl: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><circle cx="12.5" cy="12.5" r="8" fill="%234CAF50" stroke="white" stroke-width="3"/><circle cx="12.5" cy="12.5" r="4" fill="white"/></svg>',
+                        iconSize: [25, 25],
+                        iconAnchor: [12.5, 12.5]
+                    })
+                }).addTo(map);
+                
+                userMarker.bindPopup('<b>📍 Your Location</b>');
+            }
+        }
+
+        function getListingCoordinates(listing) {
+            // If coordinates already exist, use them
+            if (listing.coordinates) {
+                return listing.coordinates;
+            }
+            
+            // Try to geocode from location string
+            const location = listing.location || listing.seller_location || '';
+            if (!location) return null;
+            
+            // Simple geocoding fallback for demo purposes
+            const coords = geocodeLocation(location);
+            if (coords) {
+                listing.coordinates = coords; // Cache the result
+                return coords;
+            }
+            
+            return null;
+        }
+
+        function geocodeLocation(locationString) {
+            // Simple geocoding for major cities (in a real app, use a proper geocoding service)
+            const locationMap = {
+                'Sacramento, CA': { lat: 38.5816, lng: -121.4944 },
+                'San Francisco, CA': { lat: 37.7749, lng: -122.4194 },
+                'Los Angeles, CA': { lat: 34.0522, lng: -118.2437 },
+                'San Diego, CA': { lat: 32.7157, lng: -117.1611 },
+                'Phoenix, AZ': { lat: 33.4484, lng: -112.0740 },
+                'Las Vegas, NV': { lat: 36.1699, lng: -115.1398 },
+                'Portland, OR': { lat: 45.5152, lng: -122.6784 },
+                'Seattle, WA': { lat: 47.6062, lng: -122.3321 },
+                'Denver, CO': { lat: 39.7392, lng: -104.9903 },
+                'Austin, TX': { lat: 30.2672, lng: -97.7431 },
+                'Dallas, TX': { lat: 32.7767, lng: -96.7970 },
+                'Houston, TX': { lat: 29.7604, lng: -95.3698 },
+                'Miami, FL': { lat: 25.7617, lng: -80.1918 },
+                'Tampa, FL': { lat: 27.9506, lng: -82.4572 },
+                'Atlanta, GA': { lat: 33.7490, lng: -84.3880 },
+                'Chicago, IL': { lat: 41.8781, lng: -87.6298 },
+                'New York, NY': { lat: 40.7128, lng: -74.0060 },
+                'Boston, MA': { lat: 42.3601, lng: -71.0589 }
+            };
+            
+            // Try exact match first
+            for (const [city, coords] of Object.entries(locationMap)) {
+                if (locationString.includes(city) || locationString.includes(city.split(',')[0])) {
+                    return coords;
+                }
+            }
+            
+            // Add some random variation for demo purposes
+            const baseCoords = { lat: 39.8283, lng: -98.5795 }; // Center of US
+            return {
+                lat: baseCoords.lat + (Math.random() - 0.5) * 20,
+                lng: baseCoords.lng + (Math.random() - 0.5) * 40
+            };
+        }
+
+        function createListingMarker(listing, coords) {
+            // Use sophisticated analysis instead of simple recommendation
+            const sophisticatedAnalysis = calculateSophisticatedDealScore(listing, userLocation);
+            const hoursUtilization = calculateEngineHoursUtilization(listing);
+            
+            // Color coding based on sophisticated recommendation
+            const recommendation = sophisticatedAnalysis.recommendation;
+            const color = recommendation.color;
+            
+            // Marker size based on opportunity score
+            const baseRadius = 6;
+            const sizeMultiplier = Math.max(0.8, sophisticatedAnalysis.opportunityScore / 100);
+            const radius = baseRadius + (sizeMultiplier * 4);
+            
+            // Create custom marker with sophisticated analysis
+            const marker = L.circleMarker(coords, {
+                radius: radius,
+                fillColor: color,
+                color: sophisticatedAnalysis.actionable ? '#333' : '#fff',
+                weight: sophisticatedAnalysis.actionable ? 2 : 4,
+                opacity: 1,
+                fillOpacity: sophisticatedAnalysis.actionable ? 0.9 : 0.6,
+                // Pulse animation for high-opportunity distant deals that need info
+                className: !sophisticatedAnalysis.actionable && sophisticatedAnalysis.opportunityScore > 70 ? 'pulse-marker' : ''
+            });
+            
+            // Create enhanced popup content
+            const distance = sophisticatedAnalysis.distance;
+            const analysis = sophisticatedAnalysis;
+            
+            const popupContent = `
+                <div style="max-width: 350px; font-size: 13px;">
+                    <h4 style="margin-bottom: 8px; color: #333;">${listing.title || 'Unknown Title'}</h4>
+                    
+                    <div style="background: ${color}15; padding: 8px; border-radius: 6px; margin-bottom: 8px; border-left: 4px solid ${color};">
+                        <strong style="color: ${color};">${recommendation.label}</strong><br>
+                        <small style="color: #666;">${recommendation.reason}</small>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                        <div><strong>💰 Price:</strong> $${(listing.price || 0).toLocaleString()}</div>
+                        <div><strong>📍 Location:</strong> ${listing.location || 'Unknown'}</div>
+                        ${distance ? `<div><strong>🛣️ Distance:</strong> ${distance.toFixed(1)} mi</div>` : '<div></div>'}
+                        <div><strong>🎯 Make/Model:</strong> ${listing.make || 'Unknown'} ${listing.model || ''}</div>
+                    </div>
+                    
+                    <div style="background: #f5f5f5; padding: 8px; border-radius: 6px; margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span><strong>📊 Info Complete:</strong> ${analysis.infoCompleteness}%</span>
+                            <span><strong>⚡ Opportunity:</strong> ${analysis.opportunityScore}/120</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span><strong>🔧 Maintenance:</strong> ${analysis.maintenanceAnalysis.maintenanceLevel}</span>
+                            <span><strong>⚠️ Risk:</strong> ${analysis.riskLevel}</span>
+                        </div>
+                    </div>
+                    
+                    ${analysis.marketConditions && analysis.marketConditions.specialFactors.length > 0 ? 
+                        `<div style="background: #e3f2fd; padding: 6px; border-radius: 4px; margin-bottom: 6px; border-left: 3px solid #2196f3;">
+                            <strong style="color: #1976d2;">🌟 Special Conditions:</strong><br>
+                            <small>${analysis.marketConditions.specialFactors.join(', ')}</small>
+                        </div>` : ''}
+                    
+                    ${analysis.bundleAnalysis && analysis.bundleAnalysis.estimatedItems > 1 ? 
+                        `<div style="background: #f3e5f5; padding: 6px; border-radius: 4px; margin-bottom: 6px; border-left: 3px solid #9c27b0;">
+                            <strong style="color: #7b1fa2;">🎁 Bundle Deal:</strong><br>
+                            <small>${analysis.bundleAnalysis.bundleAnalysis}</small>
+                        </div>` : ''}
+                    
+                    ${analysis.superchargedAdjustment && analysis.superchargedAdjustment.adjusted ? 
+                        `<div style="background: #fff3e0; padding: 6px; border-radius: 4px; margin-bottom: 6px; border-left: 3px solid #ff9800;">
+                            <strong style="color: #f57c00;">🚀 Performance Engine:</strong><br>
+                            <small>${analysis.superchargedAdjustment.notes.join(', ')}</small>
+                        </div>` : ''}
+                    
+                    ${analysis.maintenanceAnalysis.positiveFactors.length > 0 ? 
+                        `<div style="margin-bottom: 6px;">
+                            <strong style="color: #4CAF50;">✅ Positive:</strong><br>
+                            <small>${analysis.maintenanceAnalysis.positiveFactors.join(', ')}</small>
+                        </div>` : ''}
+                    
+                    ${analysis.maintenanceAnalysis.riskFactors.length > 0 ? 
+                        `<div style="margin-bottom: 6px;">
+                            <strong style="color: #f44336;">⚠️ Concerns:</strong><br>
+                            <small>${analysis.maintenanceAnalysis.riskFactors.join(', ')}</small>
+                        </div>` : ''}
+                    
+                    ${!analysis.actionable && distance > 50 ? 
+                        `<div style="background: #fff3cd; padding: 6px; border-radius: 4px; margin-bottom: 8px; border-left: 3px solid #ffc107;">
+                            <small><strong>📞 Action Required:</strong> Contact seller for more details (${Math.round(analysis.requiredConfidenceThreshold * 100)}% info confidence needed for ${distance.toFixed(0)} mile trip)</small>
+                        </div>` : ''}
+                    
+                    <div style="text-align: center; margin-top: 8px;">
+                        <a href="${listing.url}" target="_blank" style="color: #4CAF50; text-decoration: none; font-weight: bold;">🔗 View Listing</a>
+                    </div>
+                </div>
+            `;
+            
+            marker.bindPopup(popupContent);
+            
+            return marker;
+        }
+
+        function getHoursIndicatorColor(utilization) {
+            if (utilization <= 0.25) return '#4CAF50';
+            if (utilization <= 0.50) return '#FF9800';
+            if (utilization <= 0.75) return '#FF5722';
+            return '#9C27B0';
+        }
+
+        function getHoursLevel(utilization) {
+            if (utilization <= 0.25) return 'low';
+            if (utilization <= 0.50) return 'moderate';
+            if (utilization <= 0.75) return 'high';
+            return 'very-high';
+        }
+
+        function calculateDistance(lat1, lng1, lat2, lng2) {
+            const R = 3959; // Earth's radius in miles
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLng = (lng2 - lng1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                     Math.sin(dLng/2) * Math.sin(dLng/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // Map control functions
+        function centerMap() {
+            if (!map) return;
+            
+            if (userLocation) {
+                map.setView([userLocation.lat, userLocation.lng], 10);
+            } else if (markerCluster.getLayers().length > 0) {
+                map.fitBounds(markerCluster.getBounds(), { padding: [20, 20] });
+            }
+        }
+
+        function toggleHeatMap() {
+            showStatus('🔥 Heat map feature coming soon...', 'info');
+        }
+
+        function toggleClusters() {
+            if (!map || !markerCluster) return;
+            
+            clusteringEnabled = !clusteringEnabled;
+            
+            if (clusteringEnabled) {
+                map.addLayer(markerCluster);
+                showStatus('📊 Clustering enabled', 'success');
+            } else {
+                map.removeLayer(markerCluster);
+                // Add individual markers
+                markerCluster.getLayers().forEach(marker => {
+                    marker.addTo(map);
+                });
+                showStatus('📍 Individual markers enabled', 'success');
+            }
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        userLocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        
+                        document.getElementById('userLocation').value = `${userLocation.lat.toFixed(4)}, ${userLocation.lng.toFixed(4)}`;
+                        
+                        if (map) {
+                            map.setView([userLocation.lat, userLocation.lng], 10);
+                            updateMap();
+                        }
+                        
+                        showStatus('📍 Location updated successfully', 'success');
+                        applyFilters(); // Refresh with distance calculations
+                    },
+                    function(error) {
+                        showStatus('❌ Unable to get your location', 'error');
+                    }
+                );
+            } else {
+                showStatus('❌ Geolocation not supported', 'error');
+            }
+        }
+
+        function updateUserLocation() {
+            const locationInput = document.getElementById('userLocation').value;
+            if (!locationInput) return;
+            
+            // Try to parse coordinates or geocode
+            const coords = parseLocationInput(locationInput);
+            if (coords) {
+                userLocation = coords;
+                if (map) {
+                    map.setView([userLocation.lat, userLocation.lng], 10);
+                    updateMap();
+                }
+                applyFilters();
+            }
+        }
+
+        function parseLocationInput(input) {
+            // Try parsing as coordinates (lat, lng)
+            const coordMatch = input.match(/(-?\d+\.?\d*),\s*(-?\d+\.?\d*)/);
+            if (coordMatch) {
+                return {
+                    lat: parseFloat(coordMatch[1]),
+                    lng: parseFloat(coordMatch[2])
+                };
+            }
+            
+            // Try geocoding as city name
+            const coords = geocodeLocation(input);
+            return coords;
+        }
+
+        function exportFilteredData() {
+            const dataToExport = {
+                timestamp: new Date().toISOString(),
+                filters: {
+                    make: document.getElementById('filterMake').value,
+                    model: document.getElementById('filterModel').value,
+                    yearMin: document.getElementById('filterYearMin').value,
+                    yearMax: document.getElementById('filterYearMax').value,
+                    priceMin: document.getElementById('filterPriceMin').value,
+                    priceMax: document.getElementById('filterPriceMax').value,
+                    maxDistance: document.getElementById('filterDistance').value,
+                    engineHours: document.getElementById('filterEngineHours').value,
+                    dealQuality: document.getElementById('filterDealQuality').value
+                },
+                totalListings: currentData.length,
+                filteredListings: filteredData.length,
+                data: filteredData
+            };
+            
+            const blob = new Blob([JSON.stringify(dataToExport, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `filtered_marketplace_data_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showStatus(`📊 Exported ${filteredData.length} filtered listings`, 'success');
+        }
+
+        // Initialize filtered data when new data loads
+        function updateDataAndFilters(newData) {
+            currentData = newData;
+            filteredData = newData;
+            updateModelOptions();
+            if (currentViewMode === 'map') {
+                updateMap();
+            }
+        }
+
     </script>
 </body>
 </html>

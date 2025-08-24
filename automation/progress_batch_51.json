@@ -1,7 +1,9 @@
 {
-  "timestamp": "2025-08-23T23:35:42.611Z",
-  "listingCount": 286,
-  "data": [
+  "timestamp": "2025-08-24T14:23:57.245682",
+  "processed_count": 255,
+  "total_listings": 286,
+  "progress_percentage": 89.2,
+  "enhanced_listings": [
     {
       "id": 1755727468533,
       "url": "https://www.facebook.com/share/19ZfYyNhm2/?mibextid=wwXIfr",
@@ -14,7 +16,12 @@
       "addedDate": "2025-08-20T22:04:28.533Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:16.732099",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Yamaha"
     },
     {
       "id": 1755727433110,
@@ -28,7 +35,12 @@
       "addedDate": "2025-08-20T22:03:53.110Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:16.732104",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Sea-Doo"
     },
     {
       "id": 1755727391440,
@@ -42,7 +54,12 @@
       "addedDate": "2025-08-20T22:03:11.440Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:16.732107",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Yamaha"
     },
     {
       "id": 1755727351228,
@@ -56,7 +73,12 @@
       "addedDate": "2025-08-20T22:02:31.228Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:16.732108",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727323207,
@@ -70,7 +92,12 @@
       "addedDate": "2025-08-20T22:02:03.207Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:16.732110",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727290594,
@@ -84,7 +111,12 @@
       "addedDate": "2025-08-20T22:01:30.595Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:18.736746",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Yamaha"
     },
     {
       "id": 1755727255967,
@@ -98,7 +130,12 @@
       "addedDate": "2025-08-20T22:00:55.967Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:18.736759",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727221892,
@@ -112,7 +149,12 @@
       "addedDate": "2025-08-20T22:00:21.892Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:18.736762",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Yamaha"
     },
     {
       "id": 1755727124539,
@@ -126,7 +168,12 @@
       "addedDate": "2025-08-20T21:58:44.539Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:18.736764",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727038875,
@@ -140,7 +187,12 @@
       "addedDate": "2025-08-20T21:57:18.875Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:18.736766",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Sea-Doo"
     },
     {
       "id": 1755727000011,
@@ -154,7 +206,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:20.742556",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000012,
@@ -168,7 +225,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:20.742567",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000013,
@@ -182,7 +244,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:20.742570",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000014,
@@ -196,7 +263,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:20.742573",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000015,
@@ -210,7 +282,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:20.742575",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000016,
@@ -224,7 +301,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:22.745562",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000017,
@@ -238,7 +320,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:22.745577",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000018,
@@ -252,7 +339,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:22.745580",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000019,
@@ -266,7 +358,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:22.745582",
+      "enhancement_status": "completed",
+      "market_analysis": "CONSIDER - Fair price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000020,
@@ -280,7 +377,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:22.745584",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000021,
@@ -294,7 +396,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:24.749357",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000022,
@@ -308,7 +415,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:24.749366",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000023,
@@ -322,7 +434,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:24.749369",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000024,
@@ -336,7 +453,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:24.749371",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000025,
@@ -350,7 +472,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:24.749373",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000026,
@@ -364,7 +491,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:26.750874",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000027,
@@ -378,7 +510,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:26.750889",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000028,
@@ -392,7 +529,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:26.750893",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000029,
@@ -406,7 +548,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:26.750896",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000030,
@@ -420,7 +567,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:26.750898",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000031,
@@ -434,7 +586,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:28.757510",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000032,
@@ -448,7 +605,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:28.757518",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000033,
@@ -462,7 +624,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:28.757520",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000034,
@@ -476,7 +643,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:28.757522",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000035,
@@ -490,7 +662,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:28.757523",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000036,
@@ -504,7 +681,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:30.764543",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000037,
@@ -518,7 +700,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:30.764552",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000038,
@@ -532,7 +719,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:30.764555",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000039,
@@ -546,7 +738,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:30.764556",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000040,
@@ -560,7 +757,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:30.764558",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000041,
@@ -574,7 +776,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:32.769849",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000042,
@@ -588,7 +795,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:32.769865",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000043,
@@ -602,7 +814,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:32.769869",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000044,
@@ -616,7 +833,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:32.769873",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000045,
@@ -630,7 +852,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:32.769875",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000046,
@@ -644,7 +871,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:34.777480",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000047,
@@ -658,7 +890,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:34.777492",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000048,
@@ -672,7 +909,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:34.777494",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000049,
@@ -686,7 +928,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:34.777496",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000050,
@@ -700,7 +947,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:34.777497",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000051,
@@ -714,7 +966,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:36.798280",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000052,
@@ -728,7 +985,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:36.798294",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000053,
@@ -742,7 +1004,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:36.798297",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000054,
@@ -756,7 +1023,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:36.798299",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000055,
@@ -770,7 +1042,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:36.798300",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000056,
@@ -784,7 +1061,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:38.805013",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000057,
@@ -798,7 +1080,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:38.805021",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000058,
@@ -812,7 +1099,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:38.805023",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000059,
@@ -826,7 +1118,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:38.805024",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000060,
@@ -840,7 +1137,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:38.805025",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000061,
@@ -854,7 +1156,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:40.806566",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000062,
@@ -868,7 +1175,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:40.806576",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000063,
@@ -882,7 +1194,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:40.806578",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000064,
@@ -896,7 +1213,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:40.806579",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000065,
@@ -910,7 +1232,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:40.806581",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000066,
@@ -924,7 +1251,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:42.812335",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000067,
@@ -938,7 +1270,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:42.812372",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000068,
@@ -952,7 +1289,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:42.812382",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000069,
@@ -966,7 +1308,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:42.812385",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000070,
@@ -980,7 +1327,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:42.812388",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000071,
@@ -994,7 +1346,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:44.820817",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000072,
@@ -1008,7 +1365,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:44.820831",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000073,
@@ -1022,7 +1384,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:44.820835",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000074,
@@ -1036,7 +1403,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:44.820838",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000075,
@@ -1050,7 +1422,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:44.820841",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000076,
@@ -1064,7 +1441,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:46.826652",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000077,
@@ -1078,7 +1460,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:46.826666",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000078,
@@ -1092,7 +1479,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:46.826669",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000079,
@@ -1106,7 +1498,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:46.826672",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000080,
@@ -1120,7 +1517,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:46.826674",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000081,
@@ -1134,7 +1536,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:48.835077",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000082,
@@ -1148,7 +1555,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:48.835088",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000083,
@@ -1162,7 +1574,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:48.835091",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000084,
@@ -1176,7 +1593,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:48.835093",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000085,
@@ -1190,7 +1612,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:48.835095",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000086,
@@ -1204,7 +1631,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:50.843566",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000087,
@@ -1218,7 +1650,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:50.843581",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000088,
@@ -1232,7 +1669,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:50.843584",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000089,
@@ -1246,7 +1688,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:50.843586",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000090,
@@ -1260,7 +1707,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:50.843588",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000091,
@@ -1274,7 +1726,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:52.852106",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000092,
@@ -1288,7 +1745,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:52.852118",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000093,
@@ -1302,7 +1764,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:52.852121",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000094,
@@ -1316,7 +1783,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:52.852123",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000095,
@@ -1330,7 +1802,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:52.852125",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000096,
@@ -1344,7 +1821,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:54.859680",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000097,
@@ -1358,7 +1840,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:54.859687",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000098,
@@ -1372,7 +1859,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:54.859689",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000099,
@@ -1386,7 +1878,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:54.859691",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000100,
@@ -1400,7 +1897,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:54.859692",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000101,
@@ -1414,7 +1916,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:56.866656",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000102,
@@ -1428,7 +1935,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:56.866678",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000103,
@@ -1442,7 +1954,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:56.866682",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000104,
@@ -1456,7 +1973,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:56.866685",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000105,
@@ -1470,7 +1992,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:56.866689",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000106,
@@ -1484,7 +2011,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:58.875035",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000107,
@@ -1498,7 +2030,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:58.875045",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000108,
@@ -1512,7 +2049,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:58.875047",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000109,
@@ -1526,7 +2068,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:58.875048",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000110,
@@ -1540,7 +2087,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:22:58.875050",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000111,
@@ -1554,7 +2106,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:00.882266",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000112,
@@ -1568,7 +2125,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:00.882280",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000113,
@@ -1582,7 +2144,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:00.882283",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000114,
@@ -1596,7 +2163,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:00.882286",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000115,
@@ -1610,7 +2182,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:00.882288",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000116,
@@ -1624,7 +2201,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:02.890718",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000117,
@@ -1638,7 +2220,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:02.890734",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000118,
@@ -1652,7 +2239,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:02.890739",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000119,
@@ -1666,7 +2258,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:02.890742",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000120,
@@ -1680,7 +2277,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:02.890745",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000121,
@@ -1694,7 +2296,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:04.900436",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000122,
@@ -1708,7 +2315,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:04.900450",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000123,
@@ -1722,7 +2334,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:04.900454",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000124,
@@ -1736,7 +2353,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:04.900457",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000125,
@@ -1750,7 +2372,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:04.900460",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000126,
@@ -1764,7 +2391,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:06.933290",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000127,
@@ -1778,7 +2410,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:06.933326",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000128,
@@ -1792,7 +2429,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:06.933331",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000129,
@@ -1806,7 +2448,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:06.933335",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000130,
@@ -1820,7 +2467,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:06.933456",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000131,
@@ -1834,7 +2486,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:08.942493",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000132,
@@ -1848,7 +2505,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:08.942525",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000133,
@@ -1862,7 +2524,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:08.942530",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000134,
@@ -1876,7 +2543,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:08.942533",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000135,
@@ -1890,7 +2562,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:08.942536",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000136,
@@ -1904,7 +2581,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:10.953521",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000137,
@@ -1918,7 +2600,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:10.953536",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000138,
@@ -1932,7 +2619,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:10.953539",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000139,
@@ -1946,7 +2638,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:10.953541",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000140,
@@ -1960,7 +2657,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:10.953544",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000141,
@@ -1974,7 +2676,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:12.960879",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000142,
@@ -1988,7 +2695,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:12.960887",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000143,
@@ -2002,7 +2714,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:12.960889",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000144,
@@ -2016,7 +2733,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:12.960890",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000145,
@@ -2030,7 +2752,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:12.960892",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000146,
@@ -2044,7 +2771,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:14.968483",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000147,
@@ -2058,7 +2790,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:14.968492",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000148,
@@ -2072,7 +2809,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:14.968494",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000149,
@@ -2086,7 +2828,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:14.968495",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000150,
@@ -2100,7 +2847,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:14.968497",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000151,
@@ -2114,7 +2866,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:16.974827",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000152,
@@ -2128,7 +2885,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:16.974845",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000153,
@@ -2142,7 +2904,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:16.974850",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000154,
@@ -2156,7 +2923,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:16.974854",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000155,
@@ -2170,7 +2942,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:16.974857",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000156,
@@ -2184,7 +2961,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:18.986002",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000157,
@@ -2198,7 +2980,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:18.986019",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000158,
@@ -2212,7 +2999,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:18.986025",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000159,
@@ -2226,7 +3018,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:18.986028",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000160,
@@ -2240,7 +3037,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:18.986032",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000161,
@@ -2254,7 +3056,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:20.993830",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000162,
@@ -2268,7 +3075,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:20.993842",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000163,
@@ -2282,7 +3094,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:20.993844",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000164,
@@ -2296,7 +3113,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:20.993846",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000165,
@@ -2310,7 +3132,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:20.993848",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000166,
@@ -2324,7 +3151,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:23.001604",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000167,
@@ -2338,7 +3170,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:23.001615",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000168,
@@ -2352,7 +3189,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:23.001617",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000169,
@@ -2366,7 +3208,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:23.001619",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000170,
@@ -2380,7 +3227,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:23.001621",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000171,
@@ -2394,7 +3246,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:25.007758",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000172,
@@ -2408,7 +3265,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:25.007770",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000173,
@@ -2422,7 +3284,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:25.007772",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000174,
@@ -2436,7 +3303,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:25.007774",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000175,
@@ -2450,7 +3322,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:25.007776",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000176,
@@ -2464,7 +3341,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:27.015818",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000177,
@@ -2478,7 +3360,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:27.015829",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000178,
@@ -2492,7 +3379,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:27.015831",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000179,
@@ -2506,7 +3398,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:27.015832",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000180,
@@ -2520,7 +3417,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:27.015833",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000181,
@@ -2534,7 +3436,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:29.021236",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000182,
@@ -2548,7 +3455,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:29.021246",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000183,
@@ -2562,7 +3474,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:29.021249",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000184,
@@ -2576,7 +3493,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:29.021251",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000185,
@@ -2590,7 +3512,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:29.021253",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000186,
@@ -2604,7 +3531,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:31.029459",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000187,
@@ -2618,7 +3550,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:31.029471",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000188,
@@ -2632,7 +3569,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:31.029473",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000189,
@@ -2646,7 +3588,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:31.029474",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000190,
@@ -2660,7 +3607,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:31.029476",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000191,
@@ -2674,7 +3626,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:33.040700",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000192,
@@ -2688,7 +3645,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:33.040711",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000193,
@@ -2702,7 +3664,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:33.040713",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000194,
@@ -2716,7 +3683,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:33.040714",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000195,
@@ -2730,7 +3702,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:33.040716",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000196,
@@ -2744,7 +3721,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:35.125706",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000197,
@@ -2758,7 +3740,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:35.125720",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000198,
@@ -2772,7 +3759,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:35.125724",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000199,
@@ -2786,7 +3778,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:35.125727",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000200,
@@ -2800,7 +3797,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:35.125730",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000201,
@@ -2814,7 +3816,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:37.135278",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000202,
@@ -2828,7 +3835,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:37.135286",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000203,
@@ -2842,7 +3854,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:37.135288",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000204,
@@ -2856,7 +3873,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:37.135289",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000205,
@@ -2870,7 +3892,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:37.135290",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000206,
@@ -2884,7 +3911,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:39.143182",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000207,
@@ -2898,7 +3930,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:39.143196",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000208,
@@ -2912,7 +3949,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:39.143198",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000209,
@@ -2926,7 +3968,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:39.143199",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000210,
@@ -2940,7 +3987,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:39.143200",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000211,
@@ -2954,7 +4006,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:41.152620",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000212,
@@ -2968,7 +4025,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:41.152631",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000213,
@@ -2982,7 +4044,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:41.152633",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000214,
@@ -2996,7 +4063,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:41.152635",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000215,
@@ -3010,7 +4082,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:41.152636",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000216,
@@ -3024,7 +4101,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:43.161027",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000217,
@@ -3038,7 +4120,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:43.161042",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000218,
@@ -3052,7 +4139,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:43.161045",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000219,
@@ -3066,7 +4158,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:43.161047",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000220,
@@ -3080,7 +4177,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:43.161049",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000221,
@@ -3094,7 +4196,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:45.170652",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000222,
@@ -3108,7 +4215,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:45.170661",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000223,
@@ -3122,7 +4234,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:45.170663",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000224,
@@ -3136,7 +4253,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:45.170664",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000225,
@@ -3150,7 +4272,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:45.170666",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000226,
@@ -3164,7 +4291,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:47.183276",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000227,
@@ -3178,7 +4310,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:47.183295",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000228,
@@ -3192,7 +4329,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:47.183300",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000229,
@@ -3206,7 +4348,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:47.183303",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000230,
@@ -3220,7 +4367,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:47.183306",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000231,
@@ -3234,7 +4386,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:49.196261",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000232,
@@ -3248,7 +4405,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:49.196294",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000233,
@@ -3262,7 +4424,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:49.196299",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000234,
@@ -3276,7 +4443,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:49.196303",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000235,
@@ -3290,7 +4462,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:49.196306",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000236,
@@ -3304,7 +4481,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:51.208696",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000237,
@@ -3318,7 +4500,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:51.208716",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000238,
@@ -3332,7 +4519,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:51.208721",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000239,
@@ -3346,7 +4538,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:51.208724",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000240,
@@ -3360,7 +4557,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:51.208727",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000241,
@@ -3374,7 +4576,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:53.220105",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000242,
@@ -3388,7 +4595,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:53.220135",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000243,
@@ -3402,7 +4614,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:53.220140",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000244,
@@ -3416,7 +4633,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:53.220145",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000245,
@@ -3430,7 +4652,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:53.220149",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000246,
@@ -3444,7 +4671,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:55.231501",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000247,
@@ -3458,7 +4690,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:55.231639",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000248,
@@ -3472,7 +4709,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:55.231651",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000249,
@@ -3486,7 +4728,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:55.231655",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000250,
@@ -3500,7 +4747,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:55.231659",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000251,
@@ -3514,7 +4766,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:57.245646",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000252,
@@ -3528,7 +4785,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:57.245666",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000253,
@@ -3542,7 +4804,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:57.245671",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000254,
@@ -3556,7 +4823,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:57.245674",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     },
     {
       "id": 1755727000255,
@@ -3570,441 +4842,12 @@
       "addedDate": "2025-08-20T21:00:00.000Z",
       "mobileAdded": true,
       "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000256,
-      "url": "https://www.facebook.com/share/sample256/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 256",
-      "price": 33600,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000257,
-      "url": "https://www.facebook.com/share/sample257/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 257",
-      "price": 33700,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000258,
-      "url": "https://www.facebook.com/share/sample258/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 258",
-      "price": 33800,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000259,
-      "url": "https://www.facebook.com/share/sample259/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 259",
-      "price": 33900,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000260,
-      "url": "https://www.facebook.com/share/sample260/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 260",
-      "price": 34000,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000261,
-      "url": "https://www.facebook.com/share/sample261/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 261",
-      "price": 34100,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000262,
-      "url": "https://www.facebook.com/share/sample262/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 262",
-      "price": 34200,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000263,
-      "url": "https://www.facebook.com/share/sample263/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 263",
-      "price": 34300,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000264,
-      "url": "https://www.facebook.com/share/sample264/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 264",
-      "price": 34400,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000265,
-      "url": "https://www.facebook.com/share/sample265/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 265",
-      "price": 34500,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000266,
-      "url": "https://www.facebook.com/share/sample266/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 266",
-      "price": 34600,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000267,
-      "url": "https://www.facebook.com/share/sample267/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 267",
-      "price": 34700,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000268,
-      "url": "https://www.facebook.com/share/sample268/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 268",
-      "price": 34800,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000269,
-      "url": "https://www.facebook.com/share/sample269/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 269",
-      "price": 34900,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000270,
-      "url": "https://www.facebook.com/share/sample270/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 270",
-      "price": 35000,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000271,
-      "url": "https://www.facebook.com/share/sample271/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 271",
-      "price": 35100,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000272,
-      "url": "https://www.facebook.com/share/sample272/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 272",
-      "price": 35200,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000273,
-      "url": "https://www.facebook.com/share/sample273/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 273",
-      "price": 35300,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000274,
-      "url": "https://www.facebook.com/share/sample274/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 274",
-      "price": 35400,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000275,
-      "url": "https://www.facebook.com/share/sample275/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 275",
-      "price": 35500,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000276,
-      "url": "https://www.facebook.com/share/sample276/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 276",
-      "price": 35600,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000277,
-      "url": "https://www.facebook.com/share/sample277/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 277",
-      "price": 35700,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000278,
-      "url": "https://www.facebook.com/share/sample278/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 278",
-      "price": 35800,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000279,
-      "url": "https://www.facebook.com/share/sample279/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 279",
-      "price": 35900,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000280,
-      "url": "https://www.facebook.com/share/sample280/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 280",
-      "price": 36000,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000281,
-      "url": "https://www.facebook.com/share/sample281/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 281",
-      "price": 36100,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000282,
-      "url": "https://www.facebook.com/share/sample282/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 282",
-      "price": 36200,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000283,
-      "url": "https://www.facebook.com/share/sample283/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 283",
-      "price": 36300,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000284,
-      "url": "https://www.facebook.com/share/sample284/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 284",
-      "price": 36400,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000285,
-      "url": "https://www.facebook.com/share/sample285/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 285",
-      "price": 36500,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
-    },
-    {
-      "id": 1755727000286,
-      "url": "https://www.facebook.com/share/sample286/?mibextid=wwXIfr",
-      "title": "Sample Jet Ski 286",
-      "price": 36600,
-      "seller": "",
-      "location": "",
-      "source": "Facebook Marketplace",
-      "status": "pending",
-      "addedDate": "2025-08-20T21:00:00.000Z",
-      "mobileAdded": true,
-      "notes": "",
-      "photos": []
+      "photos": [],
+      "enhanced": true,
+      "enhanced_date": "2025-08-24T14:23:57.245676",
+      "enhancement_status": "completed",
+      "market_analysis": "PASS - High price",
+      "make": "Unknown"
     }
   ]
 }
