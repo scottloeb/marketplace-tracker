@@ -1,0 +1,77 @@
+{
+  "sqlite_db": "marketplace_intelligence.db",
+  "neo4j": {
+    "uri": "bolt://localhost:7687",
+    "username": "neo4j",
+    "password": "password",
+    "database": "marketplace"
+  },
+  "nodepad": {
+    "host": "localhost", 
+    "port": 3000,
+    "endpoint": "/api/marketplace",
+    "websocket_endpoint": "/ws/marketplace"
+  },
+  "ocean_explorer": {
+    "host": "localhost",
+    "port": 5000,
+    "username": "demo",
+    "password": "demo123",
+    "api_endpoint": "/api/marketplace"
+  },
+  "sync_settings": {
+    "enable_real_time": true,
+    "sync_interval_seconds": 30,
+    "batch_size": 100,
+    "auto_backup": true,
+    "enable_notifications": true
+  },
+  "data_sources": {
+    "mobile_tracker": {
+      "url": "https://marketplace-tracker-omega.vercel.app",
+      "api_endpoint": "/api/listings",
+      "priority": 1,
+      "enabled": true
+    },
+    "automation_exports": {
+      "directory": "./automation/",
+      "file_patterns": [
+        "full_286_export.json",
+        "complete_286_export.json", 
+        "enhanced_tracker_data_*.json"
+      ],
+      "priority": 2,
+      "enabled": true
+    },
+    "price_tracker": {
+      "database": "price_history.db",
+      "priority": 3,
+      "enabled": true
+    }
+  },
+  "visualization": {
+    "default_chart_type": "interactive",
+    "enable_real_time_updates": true,
+    "chart_refresh_interval": 10,
+    "max_data_points": 1000
+  },
+  "analysis_settings": {
+    "confidence_threshold": 0.7,
+    "deal_threshold_percentage": 15,
+    "urgent_deal_threshold_percentage": 25,
+    "enable_ai_recommendations": true,
+    "market_trend_analysis_days": 30
+  },
+  "mobile_settings": {
+    "enable_push_notifications": false,
+    "cache_duration_hours": 24,
+    "offline_mode": true,
+    "compress_data": true
+  },
+  "security": {
+    "encrypt_sensitive_data": true,
+    "session_timeout_minutes": 60,
+    "enable_audit_log": true,
+    "backup_encryption": true
+  }
+}

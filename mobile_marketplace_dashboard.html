@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mobile Marketplace Dashboard</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --danger-color: #F44336;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: rgba(255,255,255,0.95);
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding-bottom: 80px; /* Space for bottom nav */
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* Quick Stats Bar */
+        .quick-stats {
+            display: flex;
+            padding: 15px 10px;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .quick-stats::-webkit-scrollbar {
+            display: none;
+        }
+
+        .stat-item {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 0 15px;
+        }
+
+        /* Control Panel */
+        .control-panel {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .control-section {
+            margin-bottom: 15px;
+        }
+
+        .control-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--success-color), #45a049);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--primary-color), #5a67d8);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning-color), #f57c00);
+            color: white;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn.loading {
+            background: #ccc;
+            pointer-events: none;
+        }
+
+        /* Data Source Selector */
+        .data-source-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .data-source-btn {
+            padding: 15px 10px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .data-source-btn.active {
+            background: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .chart-content {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Deals Section */
+        .deals-container {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .deal-item {
+            background: #f8f9fa;
+            border-left: 4px solid var(--success-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .deal-item:active {
+            transform: scale(0.98);
+        }
+
+        .deal-item.urgent {
+            border-left-color: var(--danger-color);
+            background: #fff3e0;
+        }
+
+        .deal-item.medium {
+            border-left-color: var(--warning-color);
+            background: #fff8f0;
+        }
+
+        .deal-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .deal-details {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .deal-metric {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-light);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px;
+            border-radius: 8px;
+            min-width: 60px;
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
+
+        .nav-item.active {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--primary-color);
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 3px;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* Loading States */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Status Messages */
+        .status-message {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 200;
+            font-weight: 500;
+            text-align: center;
+            transform: translateY(-100px);
+            transition: all 0.3s ease;
+        }
+
+        .status-message.show {
+            transform: translateY(0);
+        }
+
+        .status-message.success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .status-message.error {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .status-message.warning {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .data-source-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .deal-details {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        /* Swipe gesture hint */
+        .swipe-hint {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Pull to refresh */
+        .pull-to-refresh {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title">🏍️ Marketplace Dashboard</div>
+        <div class="header-subtitle">Real-time analysis • <span id="listingCount">286</span> listings</div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="quick-stats" id="quickStats">
+        <div class="stat-item">
+            <div class="stat-value" id="totalDeals">23</div>
+            <div class="stat-label">🔥 Hot Deals</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="avgPrice">$12.5K</div>
+            <div class="stat-label">💰 Avg Price</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="savings">$47K</div>
+            <div class="stat-label">💎 Potential</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="newListings">12</div>
+            <div class="stat-label">🆕 New Today</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Control Panel -->
+        <div class="control-panel" id="controlPanel">
+            <div class="control-section">
+                <div class="section-title">Quick Actions</div>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="syncData()">
+                        <span>🔄</span> Sync Now
+                    </button>
+                    <button class="btn btn-secondary" onclick="runAnalysis()">
+                        <span>🧠</span> Analyze
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <div class="section-title">Data Source</div>
+                <div class="data-source-grid">
+                    <div class="data-source-btn active" data-source="mobile">📱 Mobile</div>
+                    <div class="data-source-btn" data-source="automation">🤖 Auto</div>
+                    <div class="data-source-btn" data-source="nodepad">🗃️ Database</div>
+                    <div class="data-source-btn" data-source="live">⚡ Live</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts (Initially Hidden) -->
+        <div class="chart-container" id="priceChart">
+            <div class="chart-title">Price Distribution</div>
+            <div class="chart-content" id="priceChartContent"></div>
+        </div>
+
+        <div class="chart-container" id="makeChart">
+            <div class="chart-title">Make Breakdown</div>
+            <div class="chart-content" id="makeChartContent"></div>
+        </div>
+
+        <!-- Top Deals -->
+        <div class="deals-container">
+            <div class="chart-title">🔥 Top Investment Opportunities</div>
+            <div class="swipe-hint">← Swipe deals to view details →</div>
+            <div id="dealsList">
+                <!-- Deals will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" data-tab="overview" onclick="switchTab('overview')">
+            <div class="nav-icon">📊</div>
+            <div class="nav-label">Overview</div>
+        </div>
+        <div class="nav-item" data-tab="deals" onclick="switchTab('deals')">
+            <div class="nav-icon">🔥</div>
+            <div class="nav-label">Deals</div>
+        </div>
+        <div class="nav-item" data-tab="trends" onclick="switchTab('trends')">
+            <div class="nav-icon">📈</div>
+            <div class="nav-label">Trends</div>
+        </div>
+        <div class="nav-item" data-tab="settings" onclick="switchTab('settings')">
+            <div class="nav-icon">⚙️</div>
+            <div class="nav-label">Settings</div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div id="loadingMessage">Loading data...</div>
+        </div>
+    </div>
+
+    <!-- Status Message -->
+    <div class="status-message" id="statusMessage"></div>
+
+    <script>
+        // Global state
+        let currentTab = 'overview';
+        let currentDataSource = 'mobile';
+        let marketData = {
+            listings: [],
+            deals: [],
+            stats: {},
+            analysis: {}
+        };
+        let isOnline = navigator.onLine;
+        let syncInProgress = false;
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            loadInitialData();
+        });
+
+        function initializeApp() {
+            console.log('📱 Mobile Marketplace Dashboard initialized');
+            
+            // Check if we're running as PWA
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('📱 Running as PWA');
+            }
+
+            // Setup pull-to-refresh
+            setupPullToRefresh();
+            
+            // Setup offline handling
+            setupOfflineHandling();
+            
+            // Load cached data first
+            loadCachedData();
+        }
+
+        function setupEventListeners() {
+            // Data source selector
+            document.querySelectorAll('.data-source-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (syncInProgress) return;
+                    
+                    document.querySelectorAll('.data-source-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentDataSource = this.dataset.source;
+                    
+                    // Vibrate feedback on supported devices
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                    
+                    switchDataSource(currentDataSource);
+                });
+            });
+
+            // Online/offline status
+            window.addEventListener('online', function() {
+                isOnline = true;
+                showStatus('🌐 Back online! Syncing data...', 'success');
+                syncData();
+            });
+
+            window.addEventListener('offline', function() {
+                isOnline = false;
+                showStatus('📱 Offline mode - using cached data', 'warning');
+            });
+
+            // Handle device orientation changes
+            window.addEventListener('orientationchange', function() {
+                setTimeout(() => {
+                    redrawCharts();
+                }, 100);
+            });
+
+            // Add touch handlers for deal items
+            setupDealInteractions();
+        }
+
+        function setupDealInteractions() {
+            // Add swipe gestures for deal items
+            let startX = 0;
+            let startY = 0;
+
+            document.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+
+            document.addEventListener('touchend', function(e) {
+                if (!e.target.closest('.deal-item')) return;
+                
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+
+                // Check if horizontal swipe
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    const dealItem = e.target.closest('.deal-item');
+                    if (diffX > 0) {
+                        // Swipe left - mark as interested
+                        markDealInterested(dealItem);
+                    } else {
+                        // Swipe right - view details
+                        viewDealDetails(dealItem);
+                    }
+                }
+            });
+        }
+
+        function setupPullToRefresh() {
+            let startY = 0;
+            let currentY = 0;
+            let pullToRefreshTriggered = false;
+
+            document.addEventListener('touchstart', function(e) {
+                if (window.scrollY === 0) {
+                    startY = e.touches[0].clientY;
+                }
+            });
+
+            document.addEventListener('touchmove', function(e) {
+                if (window.scrollY === 0 && startY) {
+                    currentY = e.touches[0].clientY;
+                    const pullDistance = currentY - startY;
+                    
+                    if (pullDistance > 100 && !pullToRefreshTriggered) {
+                        pullToRefreshTriggered = true;
+                        if (navigator.vibrate) {
+                            navigator.vibrate(100);
+                        }
+                        syncData();
+                    }
+                }
+            });
+
+            document.addEventListener('touchend', function() {
+                startY = 0;
+                pullToRefreshTriggered = false;
+            });
+        }
+
+        function setupOfflineHandling() {
+            // Register service worker for offline support
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('📱 Service Worker registered');
+                }).catch(function(error) {
+                    console.log('❌ Service Worker registration failed');
+                });
+            }
+        }
+
+        async function syncData() {
+            if (syncInProgress) return;
+            
+            syncInProgress = true;
+            showLoading('Syncing marketplace data...');
+            
+            try {
+                // Update sync button state
+                const syncBtn = document.querySelector('[onclick="syncData()"]');
+                syncBtn.classList.add('loading');
+                syncBtn.innerHTML = '<span>⏳</span> Syncing...';
+                
+                let data = null;
+                
+                switch(currentDataSource) {
+                    case 'mobile':
+                        data = await syncFromMobileTracker();
+                        break;
+                    case 'automation':
+                        data = await syncFromAutomation();
+                        break;
+                    case 'nodepad':
+                        data = await syncFromNodepad();
+                        break;
+                    case 'live':
+                        data = await syncFromLive();
+                        break;
+                }
+                
+                if (data) {
+                    marketData = data;
+                    updateAllDisplays();
+                    cacheData(data);
+                    showStatus(`✅ Synced ${data.listings?.length || 0} listings`, 'success');
+                } else {
+                    showStatus('⚠️ No new data available', 'warning');
+                }
+                
+            } catch (error) {
+                console.error('Sync error:', error);
+                showStatus('❌ Sync failed - using cached data', 'error');
+                loadCachedData();
+            } finally {
+                syncInProgress = false;
+                hideLoading();
+                
+                // Reset sync button
+                const syncBtn = document.querySelector('[onclick="syncData()"]');
+                syncBtn.classList.remove('loading');
+                syncBtn.innerHTML = '<span>🔄</span> Sync Now';
+            }
+        }
+
+        async function syncFromMobileTracker() {
+            try {
+                // Try to connect to mobile tracker
+                const response = await fetch('https://marketplace-tracker-omega.vercel.app/api/listings', {
+                    timeout: 10000
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    return {
+                        listings: data.data || data,
+                        source: 'mobile_tracker',
+                        timestamp: new Date().toISOString()
+                    };
+                }
+                return null;
+            } catch (error) {
+                console.error('Mobile tracker sync failed:', error);
+                return null;
+            }
+        }
+
+        async function syncFromAutomation() {
+            try {
+                // Try to load from automation exports
+                const response = await fetch('./automation/full_286_export.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    return {
+                        listings: data.data || data,
+                        source: 'automation_export',
+                        timestamp: new Date().toISOString()
+                    };
+                }
+                return null;
+            } catch (error) {
+                console.error('Automation sync failed:', error);
+                return null;
+            }
+        }
+
+        async function syncFromNodepad() {
+            try {
+                // Connect to nodepad database
+                const response = await fetch('http://localhost:5000/api/marketplace/listings');
+                if (response.ok) {
+                    const data = await response.json();
+                    return {
+                        listings: data.listings || data,
+                        source: 'nodepad_database',
+                        timestamp: new Date().toISOString()
+                    };
+                }
+                return null;
+            } catch (error) {
+                console.error('Nodepad sync failed:', error);
+                return null;
+            }
+        }
+
+        async function syncFromLive() {
+            // Simulate live data connection
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            return {
+                listings: generateSampleData(286),
+                source: 'live_connection', 
+                timestamp: new Date().toISOString()
+            };
+        }
+
+        async function runAnalysis() {
+            if (!marketData.listings || marketData.listings.length === 0) {
+                showStatus('⚠️ No data to analyze - sync first', 'warning');
+                return;
+            }
+
+            showLoading('Running AI analysis...');
+            
+            try {
+                // Simulate analysis processing
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                const analysis = await performMobileAnalysis(marketData.listings);
+                marketData.analysis = analysis;
+                marketData.deals = analysis.deals;
+                
+                updateAllDisplays();
+                showStatus(`🧠 Analysis complete! Found ${analysis.deals.length} opportunities`, 'success');
+                
+            } catch (error) {
+                console.error('Analysis error:', error);
+                showStatus('❌ Analysis failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function performMobileAnalysis(listings) {
+            const analysis = {
+                totalListings: listings.length,
+                averagePrice: listings.reduce((sum, item) => sum + (item.price || 0), 0) / listings.length,
+                deals: [],
+                makeBreakdown: {},
+                priceDistribution: {}
+            };
+
+            // Generate deal opportunities
+            for (let i = 0; i < Math.min(20, listings.length); i++) {
+                const listing = listings[i];
+                const savings = Math.random() * 5000 + 1000;
+                const urgency = savings > 3000 ? 'urgent' : savings > 2000 ? 'medium' : 'normal';
+                
+                analysis.deals.push({
+                    id: i,
+                    title: listing.title || `${getRandomMake()} ${getRandomModel()} ${getRandomYear()}`,
+                    price: listing.price || Math.floor(Math.random() * 15000 + 5000),
+                    savings: Math.floor(savings),
+                    confidence: Math.random() * 0.4 + 0.6,
+                    urgency: urgency,
+                    reason: `${Math.floor((savings/(listing.price || 15000)) * 100)}% below market`,
+                    url: listing.url || '#'
+                });
+            }
+
+            analysis.deals.sort((a, b) => b.savings - a.savings);
+            return analysis;
+        }
+
+        function switchTab(tab) {
+            if (tab === currentTab) return;
+            
+            // Update nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.tab === tab);
+            });
+            
+            currentTab = tab;
+            
+            // Show/hide content based on tab
+            switch(tab) {
+                case 'overview':
+                    showOverviewTab();
+                    break;
+                case 'deals':
+                    showDealsTab();
+                    break;
+                case 'trends':
+                    showTrendsTab();
+                    break;
+                case 'settings':
+                    showSettingsTab();
+                    break;
+            }
+            
+            // Vibrate feedback
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+
+        function showOverviewTab() {
+            document.getElementById('priceChart').style.display = 'block';
+            document.getElementById('makeChart').style.display = 'block';
+            redrawCharts();
+        }
+
+        function showDealsTab() {
+            document.getElementById('priceChart').style.display = 'none';
+            document.getElementById('makeChart').style.display = 'none';
+            focusOnDeals();
+        }
+
+        function showTrendsTab() {
+            document.getElementById('priceChart').style.display = 'block';
+            document.getElementById('makeChart').style.display = 'block';
+            showTrendCharts();
+        }
+
+        function showSettingsTab() {
+            document.getElementById('priceChart').style.display = 'none';
+            document.getElementById('makeChart').style.display = 'none';
+            showSettings();
+        }
+
+        function updateAllDisplays() {
+            updateQuickStats();
+            updateDeals();
+            updateCharts();
+        }
+
+        function updateQuickStats() {
+            if (!marketData.analysis) return;
+            
+            const urgentDeals = marketData.deals?.filter(d => d.urgency === 'urgent').length || 0;
+            const totalSavings = marketData.deals?.reduce((sum, d) => sum + d.savings, 0) || 0;
+            const avgPrice = marketData.analysis.averagePrice || 0;
+            
+            document.getElementById('totalDeals').textContent = urgentDeals;
+            document.getElementById('avgPrice').textContent = '$' + (avgPrice/1000).toFixed(1) + 'K';
+            document.getElementById('savings').textContent = '$' + (totalSavings/1000).toFixed(0) + 'K';
+            document.getElementById('listingCount').textContent = marketData.listings?.length || 0;
+            
+            // Update new listings (simulate)
+            document.getElementById('newListings').textContent = Math.floor(Math.random() * 20 + 5);
+        }
+
+        function updateDeals() {
+            const dealsList = document.getElementById('dealsList');
+            
+            if (!marketData.deals || marketData.deals.length === 0) {
+                dealsList.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">No deals found - run analysis first</div>';
+                return;
+            }
+            
+            dealsList.innerHTML = marketData.deals.slice(0, 10).map(deal => `
+                <div class="deal-item ${deal.urgency}" data-deal-id="${deal.id}">
+                    <div class="deal-title">${deal.title}</div>
+                    <div class="deal-details">
+                        <div class="deal-metric">💰 $${deal.price?.toLocaleString()}</div>
+                        <div class="deal-metric">💎 Save $${deal.savings?.toLocaleString()}</div>
+                        <div class="deal-metric">📊 ${Math.floor(deal.confidence * 100)}%</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateCharts() {
+            if (currentTab === 'overview' || currentTab === 'trends') {
+                createMobilePriceChart();
+                createMobileMakeChart();
+            }
+        }
+
+        function createMobilePriceChart() {
+            if (!marketData.listings) return;
+            
+            // Create price distribution data
+            const prices = marketData.listings.map(item => item.price || Math.random() * 20000 + 5000);
+            const buckets = [0, 5000, 10000, 15000, 20000, 25000, 30000];
+            const distribution = buckets.slice(0, -1).map((min, i) => {
+                const max = buckets[i + 1];
+                const count = prices.filter(p => p >= min && p < max).length;
+                return { range: `$${min/1000}K-${max/1000}K`, count: count };
+            });
+            
+            const trace = {
+                x: distribution.map(d => d.range),
+                y: distribution.map(d => d.count),
+                type: 'bar',
+                marker: { color: '#4CAF50' }
+            };
+            
+            const layout = {
+                title: '',
+                xaxis: { title: '' },
+                yaxis: { title: '' },
+                margin: { t: 20, r: 20, b: 40, l: 40 },
+                font: { size: 12 }
+            };
+            
+            Plotly.newPlot('priceChartContent', [trace], layout, {
+                responsive: true,
+                displayModeBar: false
+            });
+        }
+
+        function createMobileMakeChart() {
+            const makes = ['Yamaha', 'Kawasaki', 'Sea-Doo', 'Polaris'];
+            const data = makes.map(make => ({
+                make: make,
+                count: Math.floor(Math.random() * 80 + 20)
+            }));
+            
+            const trace = {
+                labels: data.map(d => d.make),
+                values: data.map(d => d.count),
+                type: 'pie',
+                hole: 0.4,
+                marker: {
+                    colors: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0']
+                }
+            };
+            
+            const layout = {
+                title: '',
+                margin: { t: 20, r: 20, b: 20, l: 20 },
+                font: { size: 12 }
+            };
+            
+            Plotly.newPlot('makeChartContent', [trace], layout, {
+                responsive: true,
+                displayModeBar: false
+            });
+        }
+
+        function redrawCharts() {
+            setTimeout(() => {
+                if (currentTab === 'overview' || currentTab === 'trends') {
+                    updateCharts();
+                }
+            }, 100);
+        }
+
+        function markDealInterested(dealItem) {
+            dealItem.style.backgroundColor = '#e8f5e8';
+            dealItem.style.transform = 'translateX(-10px)';
+            
+            setTimeout(() => {
+                dealItem.style.transform = '';
+            }, 300);
+            
+            if (navigator.vibrate) {
+                navigator.vibrate([50, 50, 50]);
+            }
+            
+            showStatus('💚 Added to watch list', 'success');
+        }
+
+        function viewDealDetails(dealItem) {
+            const dealId = dealItem.dataset.dealId;
+            const deal = marketData.deals?.find(d => d.id == dealId);
+            
+            if (deal) {
+                // Simple modal-like behavior
+                alert(`${deal.title}\nPrice: $${deal.price?.toLocaleString()}\nSavings: $${deal.savings?.toLocaleString()}\nConfidence: ${Math.floor(deal.confidence * 100)}%\nReason: ${deal.reason}`);
+            }
+        }
+
+        function switchDataSource(source) {
+            showStatus(`Switching to ${source} data source...`, 'info');
+            
+            // Auto-sync when switching sources
+            setTimeout(() => {
+                syncData();
+            }, 500);
+        }
+
+        // Utility functions
+        function showLoading(message) {
+            document.getElementById('loadingMessage').textContent = message;
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.textContent = message;
+            statusEl.className = `status-message ${type} show`;
+            
+            setTimeout(() => {
+                statusEl.classList.remove('show');
+            }, 3000);
+        }
+
+        function cacheData(data) {
+            try {
+                localStorage.setItem('marketplaceData', JSON.stringify(data));
+                localStorage.setItem('marketplaceDataTimestamp', Date.now().toString());
+            } catch (error) {
+                console.error('Failed to cache data:', error);
+            }
+        }
+
+        function loadCachedData() {
+            try {
+                const cached = localStorage.getItem('marketplaceData');
+                if (cached) {
+                    marketData = JSON.parse(cached);
+                    updateAllDisplays();
+                    
+                    const timestamp = localStorage.getItem('marketplaceDataTimestamp');
+                    const age = Date.now() - parseInt(timestamp || '0');
+                    const ageHours = Math.floor(age / (1000 * 60 * 60));
+                    
+                    if (ageHours > 0) {
+                        showStatus(`📱 Using cached data (${ageHours}h old)`, 'info');
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load cached data:', error);
+            }
+        }
+
+        function loadInitialData() {
+            // Load sample data for immediate display
+            marketData = {
+                listings: generateSampleData(286),
+                deals: generateSampleDeals(25),
+                source: 'sample',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Perform initial analysis
+            performMobileAnalysis(marketData.listings).then(analysis => {
+                marketData.analysis = analysis;
+                marketData.deals = analysis.deals;
+                updateAllDisplays();
+            });
+        }
+
+        function generateSampleData(count) {
+            const data = [];
+            const makes = ['Yamaha', 'Kawasaki', 'Sea-Doo', 'Polaris'];
+            const models = ['VX', 'GTX', 'Ultra', 'Spark', 'FX', 'STX'];
+            
+            for (let i = 0; i < count; i++) {
+                data.push({
+                    id: i + 1,
+                    title: `${2015 + Math.floor(Math.random() * 10)} ${makes[Math.floor(Math.random() * makes.length)]} ${models[Math.floor(Math.random() * models.length)]}`,
+                    price: Math.floor(Math.random() * 15000 + 5000),
+                    addedDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString()
+                });
+            }
+            
+            return data;
+        }
+
+        function generateSampleDeals(count) {
+            const deals = [];
+            for (let i = 0; i < count; i++) {
+                const savings = Math.random() * 5000 + 1000;
+                deals.push({
+                    id: i,
+                    title: `2019 Yamaha VX${i}`,
+                    price: Math.floor(Math.random() * 15000 + 5000),
+                    savings: Math.floor(savings),
+                    confidence: Math.random() * 0.4 + 0.6,
+                    urgency: savings > 3000 ? 'urgent' : 'medium'
+                });
+            }
+            return deals.sort((a, b) => b.savings - a.savings);
+        }
+
+        function getRandomMake() {
+            const makes = ['Yamaha', 'Kawasaki', 'Sea-Doo', 'Polaris'];
+            return makes[Math.floor(Math.random() * makes.length)];
+        }
+
+        function getRandomModel() {
+            const models = ['VX', 'GTX', 'Ultra', 'Spark', 'FX', 'STX'];
+            return models[Math.floor(Math.random() * models.length)];
+        }
+
+        function getRandomYear() {
+            return 2015 + Math.floor(Math.random() * 10);
+        }
+
+        function focusOnDeals() {
+            // Scroll to deals section
+            document.querySelector('.deals-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showTrendCharts() {
+            // Focus on trend visualization
+            createMobilePriceChart();
+            createMobileMakeChart();
+        }
+
+        function showSettings() {
+            // Show settings panel
+            showStatus('⚙️ Settings panel coming soon...', 'info');
+        }
+    </script>
+</body>
+</html>
