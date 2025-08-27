@@ -26,10 +26,11 @@ def full_harbor_sync():
             readme_backup = f.read()
         print("  💾 Backed up marketplace-tracker README")
     
-    # Remove existing Harbor content (except our README)
+    # Remove existing Harbor content (except our README and sync metadata)
+    preserve_files = {MARKETPLACE_README, 'sync.log', 'sync-info.json', 'harbor-git-info.json'}
     if os.path.exists(HARBOR_LOCAL):
         for item in os.listdir(HARBOR_LOCAL):
-            if item != MARKETPLACE_README:
+            if item not in preserve_files:
                 item_path = os.path.join(HARBOR_LOCAL, item)
                 try:
                     if os.path.isdir(item_path):
@@ -38,7 +39,7 @@ def full_harbor_sync():
                         os.remove(item_path)
                 except Exception as e:
                     print(f"  ⚠️  Could not remove {item}: {e}")
-        print("  🧹 Cleared existing Harbor content")
+        print("  🧹 Cleared existing Harbor content (preserved metadata)")
     else:
         os.makedirs(HARBOR_LOCAL)
         print(f"  📁 Created {HARBOR_LOCAL} directory")
@@ -57,8 +58,10 @@ def full_harbor_sync():
         
         try:
             if os.path.isdir(source_path):
+                # Use dirs_exist_ok=True to prevent errors when destination exists
                 shutil.copytree(source_path, dest_path, 
-                              ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '.git*', 'venv*', '*_env'))
+                              ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '.git*', 'venv*', '*_env'),
+                              dirs_exist_ok=True)
             else:
                 shutil.copy2(source_path, dest_path)
             
@@ -173,6 +176,32 @@ def get_harbor_git_info():
         # Return to marketplace-tracker directory
         os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+def cleanup_duplicates():
+    """Remove duplicate files created by interrupted syncs or merges"""
+    print("🧹 Checking for duplicate files...")
+    
+    duplicate_patterns = [' 2.', ' 3.', ' 4.', ' (1)', ' (2)', ' copy', '.bak']
+    cleaned_files = []
+    
+    for root, dirs, files in os.walk(HARBOR_LOCAL):
+        for file in files:
+            for pattern in duplicate_patterns:
+                if pattern in file:
+                    file_path = os.path.join(root, file)
+                    try:
+                        os.remove(file_path)
+                        cleaned_files.append(file_path)
+                        print(f"  🗑️  Removed duplicate: {file}")
+                    except Exception as e:
+                        print(f"  ❌ Could not remove {file}: {e}")
+    
+    if cleaned_files:
+        print(f"  ✅ Cleaned {len(cleaned_files)} duplicate files")
+    else:
+        print("  ✅ No duplicate files found")
+    
+    return len(cleaned_files)
+
 def main():
     """Main function - Full Harbor repository mirror"""
     print("🏗️ Harbor Repository Mirror Tool")
@@ -191,6 +220,9 @@ def main():
     if not os.path.exists(HARBOR_LOCAL):
         os.makedirs(HARBOR_LOCAL)
         print(f"📁 Created {HARBOR_LOCAL} directory")
+    
+    # Clean up any existing duplicates first
+    cleanup_duplicates()
     
     if check_harbor_updates():
         synced_count, errors = full_harbor_sync()
