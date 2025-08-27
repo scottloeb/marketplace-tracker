@@ -133,6 +133,20 @@ python3 50-scripts/sync-harbor.py
 - **Purpose**: Reference for Ocean Explorer components
 - **Rule**: NEVER modify Harbor files, only read/reference them
 
+### **📂 When to Use Which Harbor Location**
+```
+Use Local Mirror (80-harbor/):
+✅ For normal development and reference
+✅ When working within marketplace-tracker context
+✅ For automated scripts and builds
+
+Use Absolute Paths (/Users/scottloeb/Documents/NeurOasis/GitHub/harbor/):
+✅ When Claude needs fresh/current Harbor files
+✅ When project knowledge is overloaded
+✅ For debugging Harbor integration issues
+✅ When mirror sync is behind
+```
+
 ### **Supabase Database**
 - **Status**: Configured and integrated
 - **Purpose**: Real-time sync between mobile and desktop
@@ -153,6 +167,23 @@ python3 50-scripts/sync-harbor.py
 ---
 
 ## 🔍 **When Project Knowledge Is Overloaded**
+
+### **🚨 Critical: Local File Paths for Claude**
+```
+🏠 ABSOLUTE PATHS (Harbor files too large for project knowledge):
+
+Primary Repositories:
+- Harbor Repository: /Users/scottloeb/Documents/NeurOasis/GitHub/harbor/
+- Marketplace Tracker: /Users/scottloeb/Documents/NeurOasis/GitHub/marketplace-tracker/
+
+Key Harbor Files for Reference:
+- Ocean Explorer: /Users/scottloeb/Documents/NeurOasis/GitHub/harbor/applications/ocean_explorer/
+- Toolshed Components: /Users/scottloeb/Documents/NeurOasis/GitHub/harbor/toolshed/
+- Sample Data: /Users/scottloeb/Documents/NeurOasis/GitHub/harbor/neo4j-sample-data/
+
+Marketplace Mirror (Local Copy):
+- Local Harbor Mirror: /Users/scottloeb/Documents/NeurOasis/GitHub/marketplace-tracker/80-harbor/
+```
 
 ### **Step 1: Reset Context with Local Files**
 ```
