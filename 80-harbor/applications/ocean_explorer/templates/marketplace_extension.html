@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}Marketplace Intelligence - Ocean Explorer{% endblock %}
+
+{% block content %}
+<h2>📊 Marketplace Intelligence</h2>
+
+<div class="card">
+    <h3>Mobile Data Import</h3>
+    <p>Import listings captured on your mobile device for processing and analysis.</p>
+    
+    <button onclick="importMobileListings()" style="padding: 10px 20px; background-color: #336633; color: white; border: none; cursor: pointer; margin-right: 10px;">
+        📱 Import Mobile Listings
+    </button>
+    
+    <button onclick="refreshData()" style="padding: 10px 20px; background-color: #666; color: white; border: none; cursor: pointer;">
+        🔄 Refresh Data
+    </button>
+    
+    <div id="importStatus" style="margin-top: 10px; font-weight: bold;"></div>
+</div>
+
+<div class="card">
+    <h3>Pending Listings (<span id="pendingCount">0</span>)</h3>
+    <div id="pendingListings">
+        <p>Click "Import Mobile Listings" to load your 286 mobile listings...</p>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Completed Listings (<span id="completedCount">0</span>)</h3>
+    <div id="completedListings">
+        <p>Completed listings will appear here after processing...</p>
+    </div>
+</div>
+
+<script>
+let mobileListings = [];
+let pendingListings = [];
+let completedListings = [];
+
+async function importMobileListings() {
+    const statusDiv = document.getElementById('importStatus');
+    statusDiv.innerHTML = '🔄 Connecting to mobile tracker...';
+    statusDiv.style.color = '#f59e0b';
+    
+    try {
+        // Your mobile tracker is hosted on Vercel
+        const response = await fetch('https://marketplace-tracker-omega.vercel.app/api/listings', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        mobileListings = await response.json();
+        
+        // Filter pending vs completed
+        pendingListings = mobileListings.filter(listing => listing.status === 'pending');
+        completedListings = mobileListings.filter(listing => listing.status === 'complete');
+        
+        displayListings();
+        
+        statusDiv.innerHTML = `✅ Successfully imported ${mobileListings.length} listings!`;
+        statusDiv.style.color = '#10b981';
+        
+    } catch (error) {
+        console.error('Import error:', error);
+        
+        // Fallback: Try to access localStorage directly (for same-domain)
+        try {
+            const localStorage = window.localStorage;
+            const saved = localStorage.getItem('smart-marketplace-listings');
+            if (saved) {
+                mobileListings = JSON.parse(saved);
+                pendingListings = mobileListings.filter(listing => listing.status === 'pending');
+                completedListings = mobileListings.filter(listing => listing.status === 'complete');
+                displayListings();
+                statusDiv.innerHTML = `✅ Loaded ${mobileListings.length} listings from local storage!`;
+                statusDiv.style.color = '#10b981';
+            } else {
+                throw new Error('No local data found');
+            }
+        } catch (localError) {
+            statusDiv.innerHTML = `❌ Error importing data: ${error.message}`;
+            statusDiv.style.color = '#ef4444';
+            
+            // Show instructions for manual import
+            statusDiv.innerHTML += `<br><br>💡 <strong>Manual Import Instructions:</strong><br>
+            1. Open your mobile tracker: <a href="https://marketplace-tracker-omega.vercel.app" target="_blank">marketplace-tracker-omega.vercel.app</a><br>
+            2. Export your data or copy the localStorage content<br>
+            3. Paste it here for import`;
+        }
+    }
+}
+
+function displayListings() {
+    // Update counters
+    document.getElementById('pendingCount').textContent = pendingListings.length;
+    document.getElementById('completedCount').textContent = completedListings.length;
+    
+    // Display pending listings
+    const pendingDiv = document.getElementById('pendingListings');
+    if (pendingListings.length === 0) {
+        pendingDiv.innerHTML = '<p>No pending listings found.</p>';
+    } else {
+        pendingDiv.innerHTML = pendingListings.map(listing => `
+            <div style="border: 1px solid #ddd; padding: 10px; margin: 5px 0;" data-id="${listing.id}">
+                <strong>${listing.title || 'Untitled Listing'}</strong> - $${listing.price || 'No price'}<br>
+                <small>Status: ${listing.status} | Source: ${listing.source || 'Unknown'}</small><br>
+                <small>Added: ${new Date(listing.addedDate).toLocaleDateString()}</small><br>
+                ${listing.url ? `<small><a href="${listing.url}" target="_blank">View Original</a></small><br>` : ''}
+                <button onclick="editListing('${listing.id}')" style="margin-top: 5px;">✏️ Edit & Complete</button>
+            </div>
+        `).join('');
+    }
+    
+    // Display completed listings  
+    const completedDiv = document.getElementById('completedListings');
+    if (completedListings.length === 0) {
+        completedDiv.innerHTML = '<p>No completed listings yet.</p>';
+    } else {
+        completedDiv.innerHTML = completedListings.map(listing => `
+            <div style="border: 1px solid #ddd; padding: 10px; margin: 5px 0; background-color: #f8f9fa;">
+                <strong>${listing.title}</strong> - $${listing.price}<br>
+                <small>Status: ${listing.status} | Seller: ${listing.seller || 'Not set'}</small><br>
+                <small>Location: ${listing.location || 'Not set'}</small><br>
+                <small>Notes: ${listing.notes || 'No notes'}</small><br>
+                <button onclick="runAnalysis('${listing.id}')" style="margin-top: 5px;">🧠 Run Claude Analysis</button>
+            </div>
+        `).join('');
+    }
+}
+
+function editListing(listingId) {
+    const listing = pendingListings.find(l => l.id === listingId);
+    if (!listing) return;
+    
+    const seller = prompt(`Edit details for: ${listing.title}\n\nSeller:`, listing.seller || '');
+    if (seller === null) return;
+    
+    const location = prompt('Location:', listing.location || '');
+    if (location === null) return;
+    
+    const notes = prompt('Notes/Condition:', listing.notes || '');
+    if (notes === null) return;
+    
+    // Update the listing
+    listing.seller = seller;
+    listing.location = location;
+    listing.notes = notes;
+    listing.status = 'complete';
+    
+    // Move from pending to completed
+    pendingListings = pendingListings.filter(l => l.id !== listingId);
+    completedListings.push(listing);
+    
+    // Update display
+    displayListings();
+    
+    // TODO: Save back to mobile tracker
+    console.log('Updated listing:', listing);
+}
+
+function runAnalysis(listingId) {
+    const listing = completedListings.find(l => l.id === listingId);
+    if (!listing) return;
+    
+    alert(`Running Claude analysis for: ${listing.title}\n\nThis would analyze:\n• Market value vs asking price\n• Seller reputation\n• Location factors\n• Seasonal trends\n• Buy/pass recommendation`);
+    
+    // TODO: Implement actual Claude analysis
+}
+
+function refreshData() {
+    location.reload();
+}
+
+// Auto-load on page load
+window.addEventListener('load', function() {
+    setTimeout(importMobileListings, 1000);
+});
+</script>
+
+{% endblock %}

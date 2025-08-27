@@ -1,0 +1,22 @@
+{
+    "connections": [
+        {
+            "name": "1graph",
+            "uri": "bolt://localhost:7687",
+            "username": "neo4j",
+            "password": "beacon",
+            "database": "neo4j",
+            "module_path": "beacon_connection_1graph.py",
+            "created": "2025-03-09T13:29:50.376703"
+        },
+        {
+            "name": "bolt_localhost_7687graph",
+            "uri": "bolt://localhost:7687",
+            "username": "neo4j",
+            "password": "beacon",
+            "database": "neo4j",
+            "module_path": "beacon_connection_bolt_localhost_7687graph.py",
+            "created": "2025-03-09T19:11:08.983050"
+        }
+    ]
+}

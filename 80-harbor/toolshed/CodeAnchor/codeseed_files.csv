@@ -1,0 +1,3 @@
+created_date,directory,documentation_density,extension,line_count,marker_emoji,marker_emoji_sample,marker_question,marker_question_sample,mime_type,modified_date,name,path,pattern_class_definition,pattern_decorator,pattern_docstring,pattern_for_loop,pattern_function_call,pattern_if_else,pattern_jsdoc,pattern_list_comprehension,pattern_readme_section,pattern_try_except,pattern_while_loop,size_bytes,total_documentation,total_identifiers,total_patterns
+2025-03-28,.,0.14047362755651238,.py,1858,10,🌱,1,marks often indicate uncertainty,text/x-python,2025-03-28,code_seed.py,code_seed.py,9,2,53,36,382,6,,34,16,4,1,75087,261,391,543
+2025-03-28,.,0.02336448598130841,.md,214,4,🌱,,,text/markdown,2025-03-28,README.md,README.md,,,,1,,,4,,24,,,9416,5,88,29

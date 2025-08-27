@@ -1,0 +1,267 @@
+content,doc_type,file_name,file_path,has_markers,line_number,modified_date
+CodeSeed: Semantic Forest Mapper v1.0 A metadata extraction system designed to reveal the structural,docstring,code_seed.py,code_seed.py,True,2,2025-03-28
+Layer 1 (Forest Metaphor): - Files → Trees of different species - Directories → Groves with similar ,docstring,code_seed.py,code_seed.py,False,44,2025-03-28
+Tracks and analyzes code identifiers with their semantic context. The IdentifierTracker serves as th,docstring,code_seed.py,code_seed.py,False,88,2025-03-28
+Initialize the identifier tracking system with language-specific patterns. The initialization create,docstring,code_seed.py,code_seed.py,False,104,2025-03-28
+Extract identifiers from content based on file type patterns. This method acts as a specialized scan,docstring,code_seed.py,code_seed.py,True,171,2025-03-28
+"Map file type to appropriate language pattern set. Acts as a linguistic interpreter, determining whi",docstring,code_seed.py,code_seed.py,True,236,2025-03-28
+"Extract surrounding context for an identifier. Gathers the ecosystem around each identifier, capturi",docstring,code_seed.py,code_seed.py,False,276,2025-03-28
+"Update relationship map for an identifier. Maps connections between identifiers, like tracing how tr",docstring,code_seed.py,code_seed.py,False,334,2025-03-28
+"Get structured data for all tracked identifiers. Compiles the complete forest taxonomy, organizing a",docstring,code_seed.py,code_seed.py,False,374,2025-03-28
+Extracts and analyzes documentation from code files. The DocumentationExtractor serves as our forest,docstring,code_seed.py,code_seed.py,False,404,2025-03-28
+Initialize documentation extraction patterns. Sets up the specialized lenses needed to distinguish d,docstring,code_seed.py,code_seed.py,False,420,2025-03-28
+(.*?),docstring,code_seed.py,code_seed.py,False,430,2025-03-28
+|\'\'\')(.*?)(?:,docstring,code_seed.py,code_seed.py,False,433,2025-03-28
+"Extract documentation elements from file content. Like a careful archaeologist, this method uncovers",docstring,code_seed.py,code_seed.py,True,473,2025-03-28
+"Map file type to appropriate language pattern set. Acts as a linguistic interpreter, determining whi",docstring,code_seed.py,code_seed.py,True,533,2025-03-28
+Clean up extracted documentation content. Processes raw documentation to remove formatting artifacts,docstring,code_seed.py,code_seed.py,False,573,2025-03-28
+Extract cognitive markers from documentation. Identifies special patterns that reveal developer thou,docstring,code_seed.py,code_seed.py,False,607,2025-03-28
+Get structured data for all extracted documentation. Compiles the complete documentation archive int,docstring,code_seed.py,code_seed.py,False,632,2025-03-28
+"Identifies recurring patterns and structures in code. The PatternRecognizer is our forest ecologist,",docstring,code_seed.py,code_seed.py,False,670,2025-03-28
+Initialize pattern recognition system. Sets up the specialized pattern detectors that can recognize ,docstring,code_seed.py,code_seed.py,False,685,2025-03-28
+.*?,docstring,code_seed.py,code_seed.py,False,719,2025-03-28
+.*?,docstring,code_seed.py,code_seed.py,False,750,2025-03-28
+"Identify recurring patterns in file content. Like a naturalist recognizing common plant groupings, t",docstring,code_seed.py,code_seed.py,True,759,2025-03-28
+"Identify code style signatures. Detects distinctive elements that define a codebase's ""handwriting"" ",docstring,code_seed.py,code_seed.py,False,789,2025-03-28
+"Get the most frequently occurring patterns. Identifies the ""keystone species"" of the code ecosystem ",docstring,code_seed.py,code_seed.py,False,821,2025-03-28
+"Determine the category for a pattern. Classifies patterns into higher-level groupings, like organizi",docstring,code_seed.py,code_seed.py,False,844,2025-03-28
+"Comprehensive analyzer for individual code files. The FileAnalyzer is our specialized arborist, exam",docstring,code_seed.py,code_seed.py,False,885,2025-03-28
+Initialize file analysis components. Creates the specialized analysis systems needed to extract rich,docstring,code_seed.py,code_seed.py,False,899,2025-03-28
+Perform comprehensive analysis of a single file. This method coordinates a multi-faceted examination,docstring,code_seed.py,code_seed.py,False,914,2025-03-28
+Determine the MIME type of a file. Identifies the general category of a file to determine appropriat,docstring,code_seed.py,code_seed.py,False,1021,2025-03-28
+Determine if a file is a text file based on MIME type. Distinguishes between files that can be analy,docstring,code_seed.py,code_seed.py,False,1071,2025-03-28
+Generate a hash of file content. Creates a unique fingerprint for file content to identify duplicate,docstring,code_seed.py,code_seed.py,False,1093,2025-03-28
+Extract cognitive markers from file content. Identifies special patterns that reveal developer inten,docstring,code_seed.py,code_seed.py,False,1109,2025-03-28
+Flatten nested identifier data for output. Transforms the hierarchical identifier data into a flat s,docstring,code_seed.py,code_seed.py,False,1146,2025-03-28
+Flatten nested documentation data for output. Transforms the hierarchical documentation data into a ,docstring,code_seed.py,code_seed.py,False,1176,2025-03-28
+"Comprehensive analyzer for directory structures. The DirectoryAnalyzer is our forest ranger, examini",docstring,code_seed.py,code_seed.py,True,1206,2025-03-28
+Initialize directory analysis system. Creates the specialized analysis systems needed to understand ,docstring,code_seed.py,code_seed.py,False,1220,2025-03-28
+"Scan a directory recursively, analyzing all files. Performs a comprehensive survey of the code fores",docstring,code_seed.py,code_seed.py,False,1239,2025-03-28
+"Convert MIME type to language name. Maps technical MIME types to more human-readable language names,",docstring,code_seed.py,code_seed.py,False,1354,2025-03-28
+"Update the relationship map for a file. Identifies and records relationships between files, like map",docstring,code_seed.py,code_seed.py,False,1384,2025-03-28
+Get structured relationship data for output. Transforms the relationship map into a format suitable ,docstring,code_seed.py,code_seed.py,False,1426,2025-03-28
+"Extract summary of cross-file patterns. Identifies patterns that span multiple files, revealing high",docstring,code_seed.py,code_seed.py,False,1445,2025-03-28
+"Manages output generation in various formats. The OutputManager is our forest cartographer, creating",docstring,code_seed.py,code_seed.py,False,1468,2025-03-28
+Initialize output management system. Creates the specialized formatting systems needed to transform ,docstring,code_seed.py,code_seed.py,False,1480,2025-03-28
+"Write data records to CSV file. Transforms complex, nested data structures into flat tabular format ",docstring,code_seed.py,code_seed.py,False,1499,2025-03-28
+Generate CSV of file-level metadata. Creates a comprehensive tabular view of file metadata for analy,docstring,code_seed.py,code_seed.py,False,1564,2025-03-28
+Generate CSV of identifier metadata. Creates a detailed tabular view of all code identifiers for ana,docstring,code_seed.py,code_seed.py,False,1618,2025-03-28
+Generate CSV of documentation metadata. Creates a detailed tabular view of all code documentation fo,docstring,code_seed.py,code_seed.py,False,1658,2025-03-28
+"Main API for code metadata extraction and analysis. CodeSeed is our master forester, coordinating al",docstring,code_seed.py,code_seed.py,False,1702,2025-03-28
+Initialize the CodeSeed system. Creates the master coordination system that orchestrates the detaile,docstring,code_seed.py,code_seed.py,False,1715,2025-03-28
+Perform comprehensive analysis of a directory. Orchestrates a complete survey and analysis of the co,docstring,code_seed.py,code_seed.py,False,1734,2025-03-28
+"Perform comprehensive analysis of a single file. Provides direct access to detailed file analysis, l",docstring,code_seed.py,code_seed.py,False,1777,2025-03-28
+"Command-line entry point for CodeSeed. Provides a user-friendly interface to the CodeSeed system, al",docstring,code_seed.py,code_seed.py,False,1797,2025-03-28
+(.*?),docstring_single,code_seed.py,code_seed.py,False,431,2025-03-28
+!/usr/bin/env python3,inline_comment,code_seed.py,code_seed.py,False,1,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,41,2025-03-28
+META4 STACK TRACE,inline_comment,code_seed.py,code_seed.py,False,42,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,43,2025-03-28
+Configure logging to track analysis process,inline_comment,code_seed.py,code_seed.py,False,74,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,83,2025-03-28
+SeedCore: Fundamental Components of the Forest,inline_comment,code_seed.py,code_seed.py,False,84,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,85,2025-03-28
+Language-specific identifier patterns,inline_comment,code_seed.py,code_seed.py,False,111,2025-03-28
+Python identifier patterns,inline_comment,code_seed.py,code_seed.py,False,113,2025-03-28
+JavaScript identifier patterns,inline_comment,code_seed.py,code_seed.py,False,123,2025-03-28
+HTML identifier patterns,inline_comment,code_seed.py,code_seed.py,False,136,2025-03-28
+CSS identifier patterns,inline_comment,code_seed.py,code_seed.py,False,143,2025-03-28
+"([a-zA-Z][a-zA-Z0-9_-]*)',",inline_comment,code_seed.py,code_seed.py,False,146,2025-03-28
+Markdown identifier patterns,inline_comment,code_seed.py,code_seed.py,False,152,2025-03-28
+"+\s+(.+)$',",inline_comment,code_seed.py,code_seed.py,False,154,2025-03-28
+Storage for identifier contexts,inline_comment,code_seed.py,code_seed.py,False,162,2025-03-28
+Network of relationships between identifiers,inline_comment,code_seed.py,code_seed.py,False,165,2025-03-28
+Container for findings,inline_comment,code_seed.py,code_seed.py,False,188,2025-03-28
+Apply each pattern for the detected language,inline_comment,code_seed.py,code_seed.py,False,191,2025-03-28
+Extract and store each match with its context,inline_comment,code_seed.py,code_seed.py,False,195,2025-03-28
+Handle special cases like parameters that need parsing,inline_comment,code_seed.py,code_seed.py,False,197,2025-03-28
+Split and process individual parameters,inline_comment,code_seed.py,code_seed.py,False,201,2025-03-28
+"Handle default values, type hints, etc.",inline_comment,code_seed.py,code_seed.py,False,204,2025-03-28
+Create an identifier record,inline_comment,code_seed.py,code_seed.py,False,207,2025-03-28
+Standard identifier extraction,inline_comment,code_seed.py,code_seed.py,False,217,2025-03-28
+Update relationship map for this identifier,inline_comment,code_seed.py,code_seed.py,False,228,2025-03-28
+Map common file types/extensions to language pattern sets,inline_comment,code_seed.py,code_seed.py,False,248,2025-03-28
+Check for direct MIME type match,inline_comment,code_seed.py,code_seed.py,False,263,2025-03-28
+Check for extension match,inline_comment,code_seed.py,code_seed.py,False,267,2025-03-28
+Default to a basic set of patterns,inline_comment,code_seed.py,code_seed.py,False,272,2025-03-28
+Default to Python patterns,inline_comment,code_seed.py,code_seed.py,False,273,2025-03-28
+Find the start and end of the line containing the match,inline_comment,code_seed.py,code_seed.py,False,290,2025-03-28
+Get the content of the line,inline_comment,code_seed.py,code_seed.py,False,296,2025-03-28
+Check for comments on the same line,inline_comment,code_seed.py,code_seed.py,False,299,2025-03-28
+'),inline_comment,code_seed.py,code_seed.py,False,300,2025-03-28
+Look for docstring or comment above,inline_comment,code_seed.py,code_seed.py,False,306,2025-03-28
+Start before the newline,inline_comment,code_seed.py,code_seed.py,False,308,2025-03-28
+Collect up to 3 non-empty lines above,inline_comment,code_seed.py,code_seed.py,False,310,2025-03-28
+Move to the next line up,inline_comment,code_seed.py,code_seed.py,False,321,2025-03-28
+Combine collected context,inline_comment,code_seed.py,code_seed.py,False,323,2025-03-28
+Skip very common or short identifiers to reduce noise,inline_comment,code_seed.py,code_seed.py,False,346,2025-03-28
+Find related identifiers in the same scope,inline_comment,code_seed.py,code_seed.py,False,350,2025-03-28
+(simplified: look in the same function/class or nearby),inline_comment,code_seed.py,code_seed.py,False,351,2025-03-28
+Find other identifiers in this scope,inline_comment,code_seed.py,code_seed.py,False,362,2025-03-28
+Add bidirectional relationship,inline_comment,code_seed.py,code_seed.py,False,369,2025-03-28
+Process each identifier type,inline_comment,code_seed.py,code_seed.py,False,386,2025-03-28
+Process each identifier instance,inline_comment,code_seed.py,code_seed.py,False,388,2025-03-28
+Patterns for documentation extraction,inline_comment,code_seed.py,code_seed.py,False,426,2025-03-28
+Python documentation patterns,inline_comment,code_seed.py,code_seed.py,False,428,2025-03-28
+"\s*(.*?)$',",inline_comment,code_seed.py,code_seed.py,False,432,2025-03-28
+JavaScript documentation patterns,inline_comment,code_seed.py,code_seed.py,False,435,2025-03-28
+HTML documentation patterns,inline_comment,code_seed.py,code_seed.py,False,442,2025-03-28
+CSS documentation patterns,inline_comment,code_seed.py,code_seed.py,False,447,2025-03-28
+Markdown documentation patterns,inline_comment,code_seed.py,code_seed.py,False,452,2025-03-28
+Patterns for identifying cognitive markers,inline_comment,code_seed.py,code_seed.py,False,457,2025-03-28
+Detect metaphors,inline_comment,code_seed.py,code_seed.py,False,465,2025-03-28
+Multiple question marks often indicate uncertainty,inline_comment,code_seed.py,code_seed.py,False,466,2025-03-28
+Multiple exclamation points indicate emphasis,inline_comment,code_seed.py,code_seed.py,False,467,2025-03-28
+Container for findings,inline_comment,code_seed.py,code_seed.py,False,490,2025-03-28
+Extract standard documentation based on language,inline_comment,code_seed.py,code_seed.py,False,493,2025-03-28
+Skip empty documentation,inline_comment,code_seed.py,code_seed.py,False,501,2025-03-28
+Create documentation record,inline_comment,code_seed.py,code_seed.py,False,505,2025-03-28
+Extract cognitive markers across all content,inline_comment,code_seed.py,code_seed.py,False,515,2025-03-28
+Map common file types/extensions to language pattern sets,inline_comment,code_seed.py,code_seed.py,False,545,2025-03-28
+Check for direct MIME type match,inline_comment,code_seed.py,code_seed.py,False,560,2025-03-28
+Check for extension match,inline_comment,code_seed.py,code_seed.py,False,564,2025-03-28
+Default to a basic set of patterns,inline_comment,code_seed.py,code_seed.py,False,569,2025-03-28
+Default to Python patterns,inline_comment,code_seed.py,code_seed.py,False,570,2025-03-28
+Remove common indentation,inline_comment,code_seed.py,code_seed.py,False,588,2025-03-28
+Find minimum indentation (excluding empty lines),inline_comment,code_seed.py,code_seed.py,False,591,2025-03-28
+Remove the common indentation from all lines after the first,inline_comment,code_seed.py,code_seed.py,False,596,2025-03-28
+Rejoin and normalize whitespace,inline_comment,code_seed.py,code_seed.py,False,599,2025-03-28
+Check for each marker type,inline_comment,code_seed.py,code_seed.py,False,621,2025-03-28
+Process each documentation type,inline_comment,code_seed.py,code_seed.py,False,646,2025-03-28
+Process each documentation element,inline_comment,code_seed.py,code_seed.py,False,648,2025-03-28
+Add cognitive markers if present,inline_comment,code_seed.py,code_seed.py,False,659,2025-03-28
+Common code pattern templates,inline_comment,code_seed.py,code_seed.py,False,691,2025-03-28
+Design patterns,inline_comment,code_seed.py,code_seed.py,False,693,2025-03-28
+Architectural patterns,inline_comment,code_seed.py,code_seed.py,False,700,2025-03-28
+Code structures,inline_comment,code_seed.py,code_seed.py,False,707,2025-03-28
+Documentation patterns,inline_comment,code_seed.py,code_seed.py,False,718,2025-03-28
+"+\s+.+?$',",inline_comment,code_seed.py,code_seed.py,False,721,2025-03-28
+Testing patterns,inline_comment,code_seed.py,code_seed.py,False,723,2025-03-28
+Counter for pattern occurrences,inline_comment,code_seed.py,code_seed.py,False,729,2025-03-28
+Code signature elements to identify,inline_comment,code_seed.py,code_seed.py,False,732,2025-03-28
+".*?$|//.*?$',",inline_comment,code_seed.py,code_seed.py,False,751,2025-03-28
+Apply each pattern,inline_comment,code_seed.py,code_seed.py,False,775,2025-03-28
+Check each signature element category,inline_comment,code_seed.py,code_seed.py,False,804,2025-03-28
+Get the top patterns,inline_comment,code_seed.py,code_seed.py,False,833,2025-03-28
+Design patterns,inline_comment,code_seed.py,code_seed.py,False,856,2025-03-28
+Architectural patterns,inline_comment,code_seed.py,code_seed.py,False,860,2025-03-28
+Code structures,inline_comment,code_seed.py,code_seed.py,False,864,2025-03-28
+Documentation patterns,inline_comment,code_seed.py,code_seed.py,False,869,2025-03-28
+Testing patterns,inline_comment,code_seed.py,code_seed.py,False,873,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,880,2025-03-28
+SeedMapper: Core Analysis Engine,inline_comment,code_seed.py,code_seed.py,False,881,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,882,2025-03-28
+Initialize analysis components,inline_comment,code_seed.py,code_seed.py,False,906,2025-03-28
+Basic file metadata,inline_comment,code_seed.py,code_seed.py,False,930,2025-03-28
+Determine if this is a text file we should analyze in detail,inline_comment,code_seed.py,code_seed.py,False,945,2025-03-28
+"For text files, perform deep analysis",inline_comment,code_seed.py,code_seed.py,False,949,2025-03-28
+Limit to 1MB,inline_comment,code_seed.py,code_seed.py,False,950,2025-03-28
+Read file content,inline_comment,code_seed.py,code_seed.py,False,952,2025-03-28
+Basic content statistics,inline_comment,code_seed.py,code_seed.py,False,956,2025-03-28
+Extract identifiers,inline_comment,code_seed.py,code_seed.py,False,965,2025-03-28
+Extract documentation,inline_comment,code_seed.py,code_seed.py,False,970,2025-03-28
+Recognize patterns,inline_comment,code_seed.py,code_seed.py,False,975,2025-03-28
+Identify code signatures,inline_comment,code_seed.py,code_seed.py,False,980,2025-03-28
+Calculate documentation density,inline_comment,code_seed.py,code_seed.py,False,984,2025-03-28
+Extract cognitive markers,inline_comment,code_seed.py,code_seed.py,False,990,2025-03-28
+Create enriched metadata,inline_comment,code_seed.py,code_seed.py,False,995,2025-03-28
+Common extensions to MIME types,inline_comment,code_seed.py,code_seed.py,False,1036,2025-03-28
+Try to get MIME type from extension,inline_comment,code_seed.py,code_seed.py,False,1052,2025-03-28
+Fall back to simple check,inline_comment,code_seed.py,code_seed.py,False,1056,2025-03-28
+Handle binary file types,inline_comment,code_seed.py,code_seed.py,False,1060,2025-03-28
+Default,inline_comment,code_seed.py,code_seed.py,False,1067,2025-03-28
+Common cognitive markers,inline_comment,code_seed.py,code_seed.py,False,1124,2025-03-28
+Track emoji usage,inline_comment,code_seed.py,code_seed.py,False,1133,2025-03-28
+Extract each marker type,inline_comment,code_seed.py,code_seed.py,False,1136,2025-03-28
+Process each identifier type,inline_comment,code_seed.py,code_seed.py,False,1161,2025-03-28
+Process each identifier,inline_comment,code_seed.py,code_seed.py,False,1163,2025-03-28
+Process each documentation type,inline_comment,code_seed.py,code_seed.py,False,1190,2025-03-28
+Process each documentation element,inline_comment,code_seed.py,code_seed.py,False,1192,2025-03-28
+Limit length for CSV,inline_comment,code_seed.py,code_seed.py,False,1197,2025-03-28
+Initialize file analyzer component,inline_comment,code_seed.py,code_seed.py,False,1227,2025-03-28
+Map of file relationships,inline_comment,code_seed.py,code_seed.py,False,1230,2025-03-28
+Track inaccessible directories,inline_comment,code_seed.py,code_seed.py,False,1233,2025-03-28
+Compile exclude patterns,inline_comment,code_seed.py,code_seed.py,False,1255,2025-03-28
+Initialize directory metadata,inline_comment,code_seed.py,code_seed.py,False,1261,2025-03-28
+Walk the directory tree,inline_comment,code_seed.py,code_seed.py,False,1274,2025-03-28
+Check if this directory should be excluded,inline_comment,code_seed.py,code_seed.py,False,1276,2025-03-28
+Skip all subdirectories,inline_comment,code_seed.py,code_seed.py,False,1280,2025-03-28
+Check if directory is accessible,inline_comment,code_seed.py,code_seed.py,False,1283,2025-03-28
+Skip all subdirectories,inline_comment,code_seed.py,code_seed.py,False,1287,2025-03-28
+Count directories,inline_comment,code_seed.py,code_seed.py,False,1290,2025-03-28
+Process each file,inline_comment,code_seed.py,code_seed.py,False,1293,2025-03-28
+Check if file should be excluded,inline_comment,code_seed.py,code_seed.py,False,1295,2025-03-28
+Analyze file,inline_comment,code_seed.py,code_seed.py,False,1302,2025-03-28
+Update directory statistics,inline_comment,code_seed.py,code_seed.py,False,1306,2025-03-28
+Update extension statistics,inline_comment,code_seed.py,code_seed.py,False,1310,2025-03-28
+Update language statistics based on MIME type,inline_comment,code_seed.py,code_seed.py,False,1315,2025-03-28
+Map file relationships,inline_comment,code_seed.py,code_seed.py,False,1321,2025-03-28
+Add to files list,inline_comment,code_seed.py,code_seed.py,False,1324,2025-03-28
+Log progress periodically,inline_comment,code_seed.py,code_seed.py,False,1327,2025-03-28
+Calculate completion time,inline_comment,code_seed.py,code_seed.py,False,1335,2025-03-28
+Add relationship data,inline_comment,code_seed.py,code_seed.py,False,1339,2025-03-28
+Extract cross-file patterns,inline_comment,code_seed.py,code_seed.py,False,1342,2025-03-28
+Count inaccessible directories,inline_comment,code_seed.py,code_seed.py,False,1345,2025-03-28
+Find related files based on directory structure,inline_comment,code_seed.py,code_seed.py,False,1401,2025-03-28
+Add relationship based on shared directory,inline_comment,code_seed.py,code_seed.py,False,1406,2025-03-28
+Find related files based on name patterns,inline_comment,code_seed.py,code_seed.py,False,1410,2025-03-28
+Look for files with similar names in the entire directory tree,inline_comment,code_seed.py,code_seed.py,False,1415,2025-03-28
+Add relationship based on name similarity,inline_comment,code_seed.py,code_seed.py,False,1418,2025-03-28
+Convert set values to lists for JSON serialization,inline_comment,code_seed.py,code_seed.py,False,1438,2025-03-28
+Get dominant patterns,inline_comment,code_seed.py,code_seed.py,False,1455,2025-03-28
+Group patterns by category,inline_comment,code_seed.py,code_seed.py,False,1458,2025-03-28
+Set output directory,inline_comment,code_seed.py,code_seed.py,False,1490,2025-03-28
+Ensure output directory exists,inline_comment,code_seed.py,code_seed.py,False,1493,2025-03-28
+Prepare output path,inline_comment,code_seed.py,code_seed.py,False,1519,2025-03-28
+Collect all field names,inline_comment,code_seed.py,code_seed.py,False,1522,2025-03-28
+Sort fields for consistent output,inline_comment,code_seed.py,code_seed.py,False,1527,2025-03-28
+Write to CSV,inline_comment,code_seed.py,code_seed.py,False,1530,2025-03-28
+"Write each record, truncating long fields",inline_comment,code_seed.py,code_seed.py,False,1535,2025-03-28
+Process record to handle special values and truncate,inline_comment,code_seed.py,code_seed.py,False,1537,2025-03-28
+Convert complex types to JSON strings,inline_comment,code_seed.py,code_seed.py,False,1544,2025-03-28
+Convert to string,inline_comment,code_seed.py,code_seed.py,False,1549,2025-03-28
+Truncate if too long,inline_comment,code_seed.py,code_seed.py,False,1552,2025-03-28
+Filter and prepare file records,inline_comment,code_seed.py,code_seed.py,False,1580,2025-03-28
+Create a clean record with essential metadata,inline_comment,code_seed.py,code_seed.py,False,1583,2025-03-28
+Add pattern counts if available,inline_comment,code_seed.py,code_seed.py,False,1600,2025-03-28
+Add cognitive markers if available,inline_comment,code_seed.py,code_seed.py,False,1605,2025-03-28
+Collect all identifiers across files,inline_comment,code_seed.py,code_seed.py,False,1634,2025-03-28
+Skip files without identifier analysis,inline_comment,code_seed.py,code_seed.py,False,1637,2025-03-28
+Process identifiers,inline_comment,code_seed.py,code_seed.py,False,1641,2025-03-28
+Collect all documentation across files,inline_comment,code_seed.py,code_seed.py,False,1674,2025-03-28
+Skip files without documentation analysis,inline_comment,code_seed.py,code_seed.py,False,1677,2025-03-28
+Process documentation,inline_comment,code_seed.py,code_seed.py,False,1681,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,1697,2025-03-28
+SeedCore: Main API,inline_comment,code_seed.py,code_seed.py,False,1698,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,1699,2025-03-28
+Initialize component systems,inline_comment,code_seed.py,code_seed.py,False,1725,2025-03-28
+Perform directory analysis,inline_comment,code_seed.py,code_seed.py,False,1751,2025-03-28
+Generate output files,inline_comment,code_seed.py,code_seed.py,False,1754,2025-03-28
+File metadata CSV,inline_comment,code_seed.py,code_seed.py,False,1757,2025-03-28
+Identifier metadata CSV,inline_comment,code_seed.py,code_seed.py,False,1762,2025-03-28
+Documentation metadata CSV,inline_comment,code_seed.py,code_seed.py,False,1767,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,1792,2025-03-28
+Command-Line Interface,inline_comment,code_seed.py,code_seed.py,False,1793,2025-03-28
+======================================================================,inline_comment,code_seed.py,code_seed.py,False,1794,2025-03-28
+Set up argument parser,inline_comment,code_seed.py,code_seed.py,False,1805,2025-03-28
+Parse arguments,inline_comment,code_seed.py,code_seed.py,False,1822,2025-03-28
+Show version if requested,inline_comment,code_seed.py,code_seed.py,False,1825,2025-03-28
+Configure logging level,inline_comment,code_seed.py,code_seed.py,False,1830,2025-03-28
+Run analysis,inline_comment,code_seed.py,code_seed.py,False,1834,2025-03-28
+Initialize CodeSeed,inline_comment,code_seed.py,code_seed.py,False,1836,2025-03-28
+Analyze directory,inline_comment,code_seed.py,code_seed.py,False,1839,2025-03-28
+Show results,inline_comment,code_seed.py,code_seed.py,False,1843,2025-03-28
+"Command-line entry point for CodeSeed. Provides a user-friendly interface to the CodeSeed system, al",function_docstring,code_seed.py,code_seed.py,False,1796,2025-03-28
+reference,cognitive_marker,code_seed.py,code_seed.py,False,24,2025-03-28
+specialized,cognitive_marker,code_seed.py,code_seed.py,False,174,2025-03-28
+botanist,cognitive_marker,code_seed.py,code_seed.py,False,175,2025-03-28
+linguistic,cognitive_marker,code_seed.py,code_seed.py,False,239,2025-03-28
+careful,cognitive_marker,code_seed.py,code_seed.py,False,476,2025-03-28
+linguistic,cognitive_marker,code_seed.py,code_seed.py,False,536,2025-03-28
+naturalist,cognitive_marker,code_seed.py,code_seed.py,False,762,2025-03-28
+whole,cognitive_marker,code_seed.py,code_seed.py,False,1212,2025-03-28
+living,cognitive_marker,README.md,README.md,False,18,2025-03-28
+forest,cognitive_marker,README.md,README.md,False,18,2025-03-28
+rich,cognitive_marker,README.md,README.md,False,18,2025-03-28
+rich,cognitive_marker,README.md,README.md,False,72,2025-03-28
+Context,cognitive_marker,README.md,README.md,False,173,2025-03-28

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Beacon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Beacon</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('connect') }}">Connect</a></li>
+                    <li><a href="{{ url_for('patterns') }}">Patterns</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="dashboard">
+                <h2>Dashboard</h2>
+                
+                {% if error %}
+                <div class="error-message">
+                    <p>{{ error }}</p>
+                </div>
+                {% endif %}
+
+                {% if stats %}
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Database Statistics</h3>
+                        <div class="stat-item">
+                            <span class="label">Nodes:</span>
+                            <span class="value">{{ stats.node_count }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Relationships:</span>
+                            <span class="value">{{ stats.relationship_count }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Node Labels:</span>
+                            <span class="value">{{ stats.node_labels|length }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Relationship Types:</span>
+                            <span class="value">{{ stats.relationship_types|length }}</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Node Labels</h3>
+                        <ul class="label-list">
+                            {% for label in stats.node_labels %}
+                            <li>{{ label }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Relationship Types</h3>
+                        <ul class="type-list">
+                            {% for rel_type in stats.relationship_types %}
+                            <li>{{ rel_type }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a href="{{ url_for('patterns') }}" class="btn btn-primary">Explore Patterns</a>
+                    <button id="refreshStats" class="btn btn-secondary">Refresh Statistics</button>
+                </div>
+                {% else %}
+                <div class="no-data">
+                    <p>No database statistics available. Please check your connection.</p>
+                    <a href="{{ url_for('connect') }}" class="btn btn-primary">Reconnect</a>
+                </div>
+                {% endif %}
+            </section>
+        </main>
+
+        <footer>
+            <p>Beacon - Part of the H.A.R.B.O.R. Ecosystem</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

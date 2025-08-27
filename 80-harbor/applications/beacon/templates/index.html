@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Beacon</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('connect') }}">Connect</a></li>
+                    <li><a href="{{ url_for('patterns') }}">Patterns</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h2>Welcome to Beacon</h2>
+                <p>Part of the H.A.R.B.O.R. ecosystem for Neo4j graph databases.</p>
+                <p>Beacon provides an intuitive interface for exploring and visualizing graph data through pattern recognition and interactive visualizations.</p>
+            </section>
+
+            <section class="features">
+                <h3>Key Features</h3>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <h4>Database Connection</h4>
+                        <p>Connect to Neo4j databases with ease</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Pattern Detection</h4>
+                        <p>Discover patterns in your graph data</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Interactive Visualization</h4>
+                        <p>Explore data through dynamic charts</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta">
+                <a href="{{ url_for('connect') }}" class="btn btn-primary">Get Started</a>
+            </section>
+        </main>
+
+        <footer>
+            <p>Beacon - Part of the H.A.R.B.O.R. Ecosystem</p>
+        </footer>
+    </div>
+</body>
+</html>

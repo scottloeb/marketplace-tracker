@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ChartOne 7.0 - Continuous Horizontal Flow</title>
+  <style id="readerStyles"></style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    (() => {
+      // =========================================================
+      // CORE CONFIGURATION - ALL VALUES IN ONE PLACE
+      // =========================================================
+      
+      const CONFIG = {
+        ui: {
+          container: { bg: 'white', radius: '8px', shadow: '0 2px 10px rgba(0,0,0,0.1)', padding: '20px' },
+          canvas: { height: '80px', bg: '#f5f5f5', radius: '4px', border: '1px solid #ddd' },
+          colors: { primary: '#3498db', text: '#333', muted: '#666', bg: '#f9f9f9' },
+          button: { padding: '8px 15px', radius: '4px' },
+          spacing: (n=1) => `${15*n}px`,
+          typography: {
+            base: { family: 'Arial, sans-serif', size: '14px', lineHeight: 1.6 },
+            reader: { 
+              weight: 400, 
+              letterSpacing: '0.01em', 
+              wordSpacing: '0.05em',
+              lineJoinText: ' ◆ ' // Symbol to join what were previously separate lines
+            }
+          }
+        },
+        
+        reader: {
+          speed: 150,             // Initial speed in pixels/second
+          windowSize: 60,         // % of canvas width
+          fontSize: 40,           // Base font size in pixels
+          tapTempoSettings: {
+            maxTapCount: 10,      // Maximum taps to consider
+            timeoutMs: 2000,      // Reset after inactivity
+            blendFactor: 0.3,     // How much to blend (0-1)
+            pixelsPerBeat: 120,   // Conversion between BPM and pixels/sec
+            minTapIntervalMs: 200 // Minimum time between taps (debounce)
+          }
+        },
+        
+        defaultText: `The Development of ChartOne - A Cognitive-Aligned Reading Interface ◆ This document chronicles the development of the Focused Linear One-line Window for Enhanced Reading (ChartOne), a novel reading interface designed to align digital text presentation with natural cognitive processing patterns. Through seven iterative versions, ChartOne evolved from a basic scrolling text display to a sophisticated system that synchronizes reading speed with individual cognitive tempo, representing a significant advancement in accessible reading technology for neurodivergent individuals. ◆ The ChartOne system represents a fundamental rethinking of how digital text should be presented. Rather than forcing readers to adapt to rigid presentation formats, ChartOne adapts to individual cognitive processing patterns by presenting text as a continuous horizontal flow, allowing readers to calibrate reading speed through natural rhythm tapping, maintaining cognitive flow without disrupting visual continuity. ◆ ChartOne 1.0 established the basic concept of a focused reading window with horizontal text flow. Key features included basic scrolling text display in a defined window, manual speed control via slider, and simple start/pause functionality. This version demonstrated the core concept but suffered from performance issues and abrupt transitions between lines. ◆ ChartOne 2.0 focused on code quality and structural improvements. It introduced a refactored implementation with proper separation of concerns, created a modular template system for easier maintenance, and established a foundation for more sophisticated features. ◆ ChartOne 3.0 represented a significant architectural advancement by eliminating separate HTML, CSS, and JavaScript domains, creating a unified information space using programmatic style generation, implementing a single-class architecture that demonstrated how interface components could be unified into a cohesive system. ◆ ChartOne 4.0 brought sophisticated design principles to the reader. It introduced a generative design system with color derivation, implemented consistent spacing using mathematical relationships, created a unified visual language, and demonstrated how complex interfaces could be generated from minimal seed values. ◆ ChartOne 5.0 introduced two major innovations: smooth transitions between lines with fade effects and vertical movement, and a tap tempo system allowing users to set reading speed by tapping a rhythm. This version represented a breakthrough in user interaction and the cognitive-aligned tempo system. ◆ ChartOne 6.0 focused on technical efficiency and performance through extreme code compaction using advanced JavaScript techniques, single-class architecture with unified state management, improved performance through optimized rendering, and significantly reduced code complexity. ◆ ChartOne 7.0 represented a fundamental rethinking of the text presentation model by eliminating all vertical movement and transitions, joining all text into a single continuous horizontal line, using subtle gradients for focus, and implementing a pure horizontal flow that eliminated saccadic jumps entirely. ◆ The continuous horizontal flow model implemented in ChartOne 7.0 represents a significant advancement in reading interface design by eliminating saccadic jumps to reduce cognitive load substantially, maintaining fixed vertical position to allow sustained focus, and creating a reading experience that aligns with natural cognitive processing patterns. ◆ The tap tempo system allows users to calibrate reading speed to their natural cognitive rhythm, creating a personalized reading experience that adapts to individual processing patterns rather than forcing adaptation to rigid presentation formats. ◆ Performance optimizations in ChartOne 7.0 include efficient canvas rendering, optimized text measurement, and streamlined animation loops that maintain smooth performance even with large text volumes, ensuring the interface remains responsive and fluid. ◆ The generative design system creates a cohesive visual language through mathematical relationships between colors, spacing, and typography, ensuring visual consistency while allowing for easy customization and adaptation to different reading environments. ◆ Accessibility features include keyboard navigation, screen reader compatibility, and customizable visual parameters that allow users to adapt the interface to their specific needs and preferences. ◆ The modular architecture supports easy extension and customization, allowing developers to add new features, modify existing functionality, and adapt the system to different use cases while maintaining the core cognitive-aligned design principles. ◆ Future directions for ChartOne could include enhanced text analysis to automatically adjust presentation parameters based on complexity, personalized learning to adapt to individual reading patterns over time, multimodal integration with audio and haptic feedback, and collaborative research evaluating the impact of the ChartOne interface on reading experiences for individuals with different cognitive profiles. ◆ The development of ChartOne demonstrates how thoughtful, iterative interface design can yield significant innovations in digital reading experiences. By rethinking fundamental assumptions about how text should be presented and focusing on cognitive alignment rather than traditional formatting conventions, ChartOne has created a new paradigm for digital information consumption. The journey from ChartOne 1.0 to 7.0 illustrates the importance of questioning established patterns and remaining open to radical rethinking of familiar interfaces. The resulting system not only provides an improved reading experience but also serves as a model for how cognitive science can inform interface design to create more accessible and effective digital tools.`
+      };
+      
+      // =========================================================
+      // CSS GENERATION - ALL STYLES IN ONE PLACE
+      // =========================================================
+      
+      document.getElementById('readerStyles').textContent = `
+        :root {
+          --primary: ${CONFIG.ui.colors.primary};
+          --primary-dark: ${colorManipulate(CONFIG.ui.colors.primary, 'darken', 0.2)};
+          --text: ${CONFIG.ui.colors.text};
+          --muted: ${CONFIG.ui.colors.muted};
+          --bg: ${CONFIG.ui.colors.bg};
+          --font: ${CONFIG.ui.typography.base.family};
+        }
+        
+        body {
+          font-family: var(--font);
+          max-width: 1000px;
+          margin: 20px auto;
+          padding: 0 ${CONFIG.ui.spacing(1.3)};
+          background-color: var(--bg);
+          color: var(--text);
+          line-height: ${CONFIG.ui.typography.base.lineHeight};
+        }
+        
+        h1 {
+          font-size: 24px;
+          margin-bottom: 15px;
+          color: #2c3e50;
+        }
+        
+        .container {
+          background-color: ${CONFIG.ui.container.bg};
+          border-radius: ${CONFIG.ui.container.radius};
+          box-shadow: ${CONFIG.ui.container.shadow};
+          padding: ${CONFIG.ui.container.padding};
+          margin-bottom: ${CONFIG.ui.spacing(1.3)};
+        }
+        
+        .canvas-container {
+          width: 100%;
+          height: ${CONFIG.ui.canvas.height};
+          position: relative;
+          margin-bottom: ${CONFIG.ui.spacing(1.3)};
+          background-color: ${CONFIG.ui.canvas.bg};
+          border-radius: ${CONFIG.ui.canvas.radius};
+          border: ${CONFIG.ui.canvas.border};
+          box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        canvas {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        
+        .controls {
+          display: flex;
+          flex-wrap: wrap;
+          gap: ${CONFIG.ui.spacing()};
+          margin-bottom: ${CONFIG.ui.spacing(1.3)};
+        }
+        
+        .control-group {
+          display: flex;
+          flex-direction: column;
+          min-width: 120px;
+        }
+        
+        .value-display {
+          font-size: 14px;
+          color: var(--muted);
+          margin-top: 3px;
+        }
+        
+        label {
+          font-size: 14px;
+          margin-bottom: 5px;
+          color: var(--muted);
+        }
+        
+        input[type="range"] {
+          width: 100%;
+        }
+        
+        .button-group {
+          display: flex;
+          gap: ${CONFIG.ui.spacing(0.67)};
+          align-items: flex-end;
+        }
+        
+        button {
+          background-color: var(--primary);
+          color: white;
+          border: none;
+          padding: ${CONFIG.ui.button.padding};
+          border-radius: ${CONFIG.ui.button.radius};
+          cursor: pointer;
+          font-size: ${CONFIG.ui.typography.base.size};
+          min-width: 80px;
+          transition: background-color 0.2s ease;
+        }
+        
+        button:hover {
+          background-color: var(--primary-dark);
+        }
+        
+        textarea {
+          width: 100%;
+          height: 200px;
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-family: var(--font);
+          resize: vertical;
+          margin-bottom: 15px;
+        }
+        
+        .instructions {
+          font-size: 14px;
+          color: var(--muted);
+          margin-top: 15px;
+        }
+        
+        .tempo-indicator {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background-color: var(--primary);
+          margin-left: 10px;
+          transition: opacity 0.2s ease-out;
+          opacity: 0;
+        }
+        
+        .tempo-indicator-active {
+          opacity: 1;
+        }
+        
+        .status-message {
+          position: absolute;
+          bottom: 5px;
+          left: 10px;
+          font-size: 12px;
+          color: rgba(51, 51, 51, 0.7);
+          pointer-events: none;
+          transition: opacity 0.3s;
+        }
+      `;
+      
+      // =========================================================
+      // UTILITY FUNCTIONS
+      // =========================================================
+      
+      // Color manipulation utility
+      function colorManipulate(hex, operation, amount) {
+        // Parse hex to RGB
+        const parseHex = hex => {
+          const h = hex.replace('#', '');
+          return [
+            parseInt(h.substr(0, 2), 16),
+            parseInt(h.substr(2, 2), 16),
+            parseInt(h.substr(4, 2), 16)
+          ];
+        };
+        
+        // RGB to hex
+        const toHex = rgb => '#' + rgb.map(v => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0')).join('');
+        
+        const rgb = parseHex(hex);
+        
+        switch (operation) {
+          case 'darken':
+            return toHex(rgb.map(v => Math.floor(v * (1 - amount))));
+          case 'lighten':
+            return toHex(rgb.map(v => Math.floor(v + (255 - v) * amount)));
+          case 'alpha':
+            return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${amount})`;
+          default:
+            return hex;
+        }
+      }
+      
+      // Simple DOM element creator
+      function createElement(tag, attributes = {}, children = []) {
+        const element = document.createElement(tag);
+        
+        // Apply attributes
+        Object.entries(attributes).forEach(([key, value]) => {
+          if (key === 'style' && typeof value === 'object') {
+            Object.assign(element.style, value);
+          } else if (key === 'text') {
+            element.textContent = value;
+          } else if (key === 'html') {
+            element.innerHTML = value;
+          } else if (key.startsWith('on') && typeof value === 'function') {
+            element.addEventListener(key.slice(2).toLowerCase(), value);
+          } else {
+            element.setAttribute(key, value);
+          }
+        });
+        
+        // Add children
+        children.forEach(child => {
+          if (typeof child === 'string') {
+            element.appendChild(document.createTextNode(child));
+          } else if (child instanceof Node) {
+            element.appendChild(child);
+          }
+        });
+        
+        return element;
+      }
+      
+      // =========================================================
+      // CHARTONE READER - Main reading interface
+      // =========================================================
+      
+      class ChartOneReader {
+        constructor(config) {
+          // Configuration and state
+          this.config = config;
+          this.elements = {};
+          this.state = {
+            // Animation state
+            animationId: null,
+            isPlaying: false,
+            currentPosition: 0,
+            
+            // Continuous line of text
+            singleLine: '',
+            textWidth: 0,
+            
+            // Tempo tracking
+            tapTimes: [],
+            lastTapTime: 0,
+            tapTimeout: null,
+            tempoIndicatorTimeout: null,
+            
+            // Settings
+            settings: {
+              speed: config.reader.speed,
+              windowSize: config.reader.windowSize,
+              fontSize: config.reader.fontSize,
+              fontFamily: config.ui.typography.base.family,
+              fontWeight: config.ui.typography.reader.weight,
+              letterSpacing: config.ui.typography.reader.letterSpacing,
+              wordSpacing: config.ui.typography.reader.wordSpacing,
+              lineJoinText: config.ui.typography.reader.lineJoinText
+            }
+          };
+        }
+        
+        // Initialize the reader
+        init(rootElement) {
+          // Render the UI
+          this.renderUI(rootElement);
+          
+          // Bind elements and events
+          this.bindElements();
+          this.setupEventListeners();
+          
+          // Initialize the reader state
+          this.resizeCanvas();
+          this.prepareText();
+          this.drawText();
+          this.updateValueDisplays();
+          
+          // Show initial instructions
+          this.showStatus("Press spacebar to set your reading tempo");
+          
+          return this;
+        }
+        
+        // Render the UI
+        renderUI(rootElement) {
+          const controlGroups = [
+            this.createControlGroup('Speed', 'speedControl', 'speedValue', ' pixels/second', 50, 500, 10, this.state.settings.speed),
+            this.createControlGroup('Window Size', 'windowSizeControl', 'windowValue', '% of width', 20, 100, 5, this.state.settings.windowSize),
+            this.createControlGroup('Font Size', 'fontSizeControl', 'fontValue', 'px', 12, 36, 2, this.state.settings.fontSize)
+          ];
+          
+          const buttons = [
+            createElement('button', { id: 'startButton', text: 'Start' }),
+            createElement('button', { id: 'pauseButton', text: 'Pause' }),
+            createElement('button', { id: 'resetButton', text: 'Reset' })
+          ];
+          
+          const instructions = [
+            '<strong>Reading Speed</strong>: Controls how quickly text moves across the screen',
+            '<strong>Window Size</strong>: Adjusts how much text is visible at once',
+            '<strong>Font Size</strong>: Changes the text size for better readability',
+            '<strong>Spacebar</strong>: Tap repeatedly to adjust speed to your natural reading tempo',
+            'Use the <strong>Start/Pause/Reset</strong> buttons to control the flow'
+          ];
+          
+          // Build the UI structure
+          rootElement.appendChild(
+            createElement('div', { class: 'container' }, [
+              createElement('h1', { text: 'ChartOne 7.0 - Continuous Horizontal Flow' }),
+              
+              createElement('p', { text: 'Paste your text below, adjust the settings, and press "Start" to begin reading in a focused, linear flow. Tap spacebar to calibrate the reading speed to your natural tempo.' }),
+              
+              createElement('div', { class: 'canvas-container', id: 'canvasContainer' }, [
+                createElement('canvas', { id: 'readerCanvas' }),
+                createElement('div', { class: 'status-message', id: 'statusMessage' })
+              ]),
+              
+              createElement('div', { class: 'controls' }, [
+                ...controlGroups,
+                createElement('div', { class: 'button-group' }, buttons)
+              ]),
+              
+              createElement('textarea', { id: 'textInput', placeholder: 'Paste your text here...', text: this.config.defaultText }),
+              
+              createElement('div', { class: 'instructions' }, [
+                createElement('strong', { text: 'Instructions:' }),
+                createElement('ul', {}, instructions.map(instr => 
+                  createElement('li', { html: instr })
+                ))
+              ])
+            ])
+          );
+        }
+        
+        // Create a control group
+        createControlGroup(label, controlId, valueId, unit, min, max, step, value) {
+          return createElement('div', { class: 'control-group' }, [
+            createElement('label', { for: controlId, text: label }),
+            createElement('input', { 
+              type: 'range', 
+              id: controlId, 
+              min, 
+              max, 
+              step, 
+              value 
+            }),
+            createElement('div', { class: 'value-display' }, [
+              createElement('span', { id: valueId, text: value }),
+              document.createTextNode(unit),
+              createElement('span', { id: 'tempoIndicator', class: 'tempo-indicator' })
+            ])
+          ]);
+        }
+        
+        // Bind DOM elements
+        bindElements() {
+          // Core elements
+          ['readerCanvas', 'textInput', 'startButton', 'pauseButton', 'resetButton',
+           'speedControl', 'windowSizeControl', 'fontSizeControl',
+           'speedValue', 'windowValue', 'fontValue', 'statusMessage', 'tempoIndicator'].forEach(id => {
+            this.elements[id] = document.getElementById(id);
+          });
+          
+          // Canvas container
+          this.elements.canvasContainer = document.getElementById('canvasContainer');
+          
+          // Setup canvas context
+          this.canvas = this.elements.readerCanvas;
+          this.ctx = this.canvas.getContext('2d');
+        }
+        
+        // Setup event listeners
+        setupEventListeners() {
+          // Button events
+          this.elements.startButton.addEventListener('click', () => this.start());
+          this.elements.pauseButton.addEventListener('click', () => this.pause());
+          this.elements.resetButton.addEventListener('click', () => this.reset());
+          
+          // Control events
+          this.elements.speedControl.addEventListener('input', () => {
+            this.state.settings.speed = parseInt(this.elements.speedControl.value);
+            this.elements.speedValue.textContent = this.state.settings.speed;
+          });
+          
+          this.elements.windowSizeControl.addEventListener('input', () => {
+            this.state.settings.windowSize = parseInt(this.elements.windowSizeControl.value);
+            this.elements.windowValue.textContent = this.state.settings.windowSize;
+          });
+          
+          this.elements.fontSizeControl.addEventListener('input', () => {
+            this.state.settings.fontSize = parseInt(this.elements.fontSizeControl.value);
+            this.elements.fontValue.textContent = this.state.settings.fontSize;
+            // Recalculate text width when font size changes
+            this.prepareText();
+            this.drawText();
+          });
+          
+          // Text input event
+          this.elements.textInput.addEventListener('input', () => {
+            this.reset();
+            this.prepareText();
+            this.drawText();
+          });
+          
+          // Spacebar for tap tempo
+          document.addEventListener('keydown', (event) => {
+            if (event.code === 'Space') {
+              // Prevent scrolling
+              event.preventDefault();
+              
+              // Record tap
+              const tapped = this.recordTap();
+              
+              // If not playing, start on tap
+              if (tapped && !this.state.isPlaying) {
+                this.start();
+              }
+            }
+          });
+          
+          // Window resize event
+          window.addEventListener('resize', () => {
+            this.resizeCanvas();
+            this.drawText();
+          });
+        }
+        
+        // Update value displays
+        updateValueDisplays() {
+          this.elements.speedValue.textContent = this.state.settings.speed;
+          this.elements.windowValue.textContent = this.state.settings.windowSize;
+          this.elements.fontValue.textContent = this.state.settings.fontSize;
+        }
+        
+        // Set canvas size
+        resizeCanvas() {
+          this.canvas.width = this.canvas.offsetWidth;
+          this.canvas.height = this.canvas.offsetHeight;
+        }
+        
+        // Process text into a single continuous line
+        prepareText() {
+          const text = this.elements.textInput.value;
+          const lineJoinText = this.state.settings.lineJoinText;
+          
+          // Split text and filter out empty lines
+          const lines = text.split('\n').filter(line => line.trim().length > 0);
+          
+          // Join all lines with the separator
+          this.state.singleLine = lines.join(lineJoinText);
+          
+          // Set up font for measurement
+          this.ctx.font = `${this.state.settings.fontWeight} ${this.state.settings.fontSize}px ${this.state.settings.fontFamily}`;
+          
+          // Measure the total width of text
+          this.state.textWidth = this.ctx.measureText(this.state.singleLine).width;
+          
+          // Reset position
+          this.state.currentPosition = 0;
+        }
+        
+        // Draw text on canvas - single continuous line
+        drawText() {
+          // Clear canvas
+          this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          
+          // If no text, exit
+          if (!this.state.singleLine) return;
+          
+          // Setup font properties
+          const { fontSize, fontFamily, fontWeight } = this.state.settings;
+          this.ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+          this.ctx.textBaseline = 'middle';
+          
+          // Calculate window width (visible portion)
+          const windowWidth = this.canvas.width * (this.state.settings.windowSize / 100);
+          
+          // Calculate x position based on current position
+          const xPos = (this.canvas.width / 2) - this.state.currentPosition;
+          const yPos = this.canvas.height / 2;
+          
+          // Create text gradient
+          const gradient = this.createTextGradient(windowWidth);
+          this.ctx.fillStyle = gradient;
+          
+          // Draw the single continuous line
+          this.ctx.fillText(this.state.singleLine, xPos, yPos);
+          
+          // Update position for next frame
+          if (this.state.isPlaying) {
+            this.state.currentPosition += this.state.settings.speed / 60;
+            
+            // Check if we've reached the end of text
+            if (this.state.currentPosition > this.state.textWidth + (this.canvas.width / 2)) {
+              // End of text - stop or loop
+              this.stop();
+              this.showStatus("Reached end of text");
+            }
+          }
+        }
+        
+        // Create gradient for text rendering
+        createTextGradient(windowWidth) {
+          // Create gradient
+          const gradient = this.ctx.createLinearGradient(
+            this.canvas.width / 2 - windowWidth / 2,
+            0,
+            this.canvas.width / 2 + windowWidth / 2,
+            0
+          );
+          
+          // Add color stops
+          gradient.addColorStop(0, 'rgba(51, 51, 51, 0)');
+          gradient.addColorStop(0.1, 'rgba(51, 51, 51, 1)');
+          gradient.addColorStop(0.9, 'rgba(51, 51, 51, 1)');
+          gradient.addColorStop(1, 'rgba(51, 51, 51, 0)');
+          
+          return gradient;
+        }
+        
+        // Animation loop
+        animate() {
+          this.drawText();
+          if (this.state.isPlaying) {
+            this.state.animationId = requestAnimationFrame(() => this.animate());
+          }
+        }
+        
+        // Record a tap event and calculate tempo
+        recordTap() {
+          const now = performance.now();
+          const { tapTimeoutMs, minTapIntervalMs } = this.config.reader.tapTempoSettings;
+          
+          // Debounce rapid taps
+          if (now - this.state.lastTapTime < minTapIntervalMs) {
+            return false;
+          }
+          
+          // If we have a previous tap, calculate the interval
+          if (this.state.lastTapTime > 0) {
+            const interval = now - this.state.lastTapTime;
+            this.state.tapTimes.push(interval);
+            
+            // Keep only the most recent N taps
+            const { maxTapCount } = this.config.reader.tapTempoSettings;
+            if (this.state.tapTimes.length > maxTapCount) {
+              this.state.tapTimes.shift();
+            }
+            
+            // Adjust the animation speed based on tapped tempo
+            this.adjustSpeed(this.calculateTempo());
+          }
+          
+          // Store this tap time
+          this.state.lastTapTime = now;
+          
+          // Reset the timeout
+          clearTimeout(this.state.tapTimeout);
+          this.state.tapTimeout = setTimeout(() => {
+            this.state.tapTimes = [];
+            this.state.lastTapTime = 0;
+          }, tapTimeoutMs);
+          
+          // Visual feedback for taps
+          this.flashTempoIndicator();
+          
+          return true;
+        }
+        
+        // Flash tempo indicator for visual feedback
+        flashTempoIndicator() {
+          if (!this.elements.tempoIndicator) return;
+          
+          // Add active class
+          this.elements.tempoIndicator.classList.add('tempo-indicator-active');
+          
+          // Remove after animation
+          clearTimeout(this.state.tempoIndicatorTimeout);
+          this.state.tempoIndicatorTimeout = setTimeout(() => {
+            this.elements.tempoIndicator.classList.remove('tempo-indicator-active');
+          }, 200);
+        }
+        
+        // Calculate tempo from tap history
+        calculateTempo() {
+          const tapTimes = this.state.tapTimes;
+          if (tapTimes.length === 0) return 0;
+          
+          // Calculate average interval
+          const sum = tapTimes.reduce((acc, val) => acc + val, 0);
+          const avgInterval = sum / tapTimes.length;
+          
+          // Convert to BPM
+          const tapTempoBpm = 60000 / avgInterval;
+          
+          // Convert BPM to pixels/second
+          const { pixelsPerBeat } = this.config.reader.tapTempoSettings;
+          const tapTempoPixels = tapTempoBpm * pixelsPerBeat / 60;
+          
+          return tapTempoPixels;
+        }
+        
+        // Adjust speed based on tap tempo
+        adjustSpeed(tapTempo) {
+          if (!tapTempo) return;
+          
+          // Get current speed and blend with tap tempo
+          const currentSpeed = this.state.settings.speed;
+          const { blendFactor } = this.config.reader.tapTempoSettings;
+          
+          // Blend current and tap tempo
+          const newSpeed = Math.round(
+            currentSpeed * (1 - blendFactor) + 
+            tapTempo * blendFactor
+          );
+          
+          // Update speed setting
+          this.state.settings.speed = newSpeed;
+          
+          // Update speed display
+          this.elements.speedValue.textContent = newSpeed;
+          this.elements.speedControl.value = newSpeed;
+          
+          // Show feedback
+          this.showStatus(`Reading speed adjusted to ${newSpeed} pixels/sec`);
+        }
+        
+        // Show a status message
+        showStatus(message, duration = 3000) {
+          if (!this.elements.statusMessage) return;
+          
+          // Set message and fade in
+          this.elements.statusMessage.textContent = message;
+          this.elements.statusMessage.style.opacity = 1;
+          
+          // Fade out after duration
+          setTimeout(() => {
+            this.elements.statusMessage.style.opacity = 0;
+          }, duration);
+        }
+        
+        // Start reading
+        start() {
+          if (this.state.isPlaying) return;
+          
+          this.state.isPlaying = true;
+          this.animate();
+          this.showStatus("Reading started");
+        }
+        
+        // Pause reading
+        pause() {
+          if (!this.state.isPlaying) return;
+          
+          this.state.isPlaying = false;
+          if (this.state.animationId) {
+            cancelAnimationFrame(this.state.animationId);
+            this.state.animationId = null;
+          }
+          this.showStatus("Reading paused");
+        }
+        
+        // Stop reading
+        stop() {
+          this.state.isPlaying = false;
+          if (this.state.animationId) {
+            cancelAnimationFrame(this.state.animationId);
+            this.state.animationId = null;
+          }
+        }
+        
+        // Reset reading
+        reset() {
+          this.stop();
+          this.state.currentPosition = 0;
+          this.drawText();
+          this.showStatus("Reading reset");
+        }
+      }
+      
+      // =========================================================
+      // APPLICATION INITIALIZATION
+      // =========================================================
+      
+      // Initialize the application
+      document.addEventListener('DOMContentLoaded', function() {
+        const reader = new ChartOneReader(CONFIG);
+        reader.init(document.getElementById('app'));
+        
+        // Log initialization message
+        console.log('ChartOne 7.0 initialized');
+      });
+    })();
+  </script>
+</body>
+</html>

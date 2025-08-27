@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - Beacon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Beacon</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('connect') }}">Connect</a></li>
+                    <li><a href="{{ url_for('patterns') }}">Patterns</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="connect-form">
+                <h2>Connect to Database</h2>
+                
+                {% if error %}
+                <div class="error-message">
+                    <p>{{ error }}</p>
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{{ url_for('connect') }}">
+                    <div class="form-group">
+                        <label for="uri">Database URI:</label>
+                        <input type="text" id="uri" name="uri" value="bolt://localhost:7687" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" value="neo4j" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" value="beacon" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="database">Database:</label>
+                        <input type="text" id="database" name="database" value="neo4j" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Connect</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>Beacon - Part of the H.A.R.B.O.R. Ecosystem</p>
+        </footer>
+    </div>
+</body>
+</html>

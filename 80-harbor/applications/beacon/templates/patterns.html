@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patterns - Beacon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Beacon</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('connect') }}">Connect</a></li>
+                    <li><a href="{{ url_for('patterns') }}">Patterns</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="patterns">
+                <h2>Pattern Explorer</h2>
+                
+                {% if error %}
+                <div class="error-message">
+                    <p>{{ error }}</p>
+                </div>
+                {% endif %}
+
+                {% if patterns %}
+                <div class="patterns-grid">
+                    {% for pattern in patterns %}
+                    <div class="pattern-card">
+                        <h3>{{ pattern.name }}</h3>
+                        <p class="pattern-description">{{ pattern.description }}</p>
+                        <div class="pattern-meta">
+                            <span class="category">{{ pattern.category }}</span>
+                            <span class="complexity">{{ pattern.complexity }}</span>
+                        </div>
+                        <a href="{{ url_for('pattern_detail', pattern_id=pattern.id) }}" class="btn btn-primary">Explore Pattern</a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="no-patterns">
+                    <p>No patterns available. Please check your connection or pattern library.</p>
+                </div>
+                {% endif %}
+            </section>
+        </main>
+
+        <footer>
+            <p>Beacon - Part of the H.A.R.B.O.R. Ecosystem</p>
+        </footer>
+    </div>
+</body>
+</html>
