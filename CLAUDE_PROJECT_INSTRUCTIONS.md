@@ -1,4 +1,6 @@
-# 🤖 Claude/Cursor Project Instructions for Marketplace Tracker
+# 🤖 Claude Project Instructions for Marketplace Tracker
+
+> **📋 Single Source of Truth**: This is THE file to give Claude when starting work on this project.
 
 ## 🎯 **Critical: Always Start Here**
 
