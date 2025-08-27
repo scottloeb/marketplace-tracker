@@ -24,7 +24,7 @@ Folders use semantic numbering for logical organization:
 | [`50-scripts/`](50-scripts/README.md) | Automation scripts for repository maintenance and README management. | Python 3.x |
 | [`60-assets/`](60-assets/README.md) | Images, icons, and other static files for the application. | None (static files) |
 | [`70-guides/`](70-guides/README.md) | Step-by-step workflow guides and user instructions. | None (markdown files) |
-| [`80-harbor/`](80-harbor/README.md) | Local Harbor project reference for Ocean Explorer components. | None (reference) |
+| [`80-harbor/`](80-harbor/README.md) | Complete Harbor repository mirror for Ocean Explorer components. Synced one-way from main Harbor repo. | None (reference) |
 <!--FOLDER_STRUCTURE_END-->
 
 ## 🎯 **Quick Start**
