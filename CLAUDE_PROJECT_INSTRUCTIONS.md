@@ -36,11 +36,12 @@ This explains the numbering convention and management tools.
 10-src/      → Core application code (zero dependencies)
 20-reference/ → Data and specifications  
 30-docs/     → Documentation and guides
-40-automation/ → Python tools and scripts
+40-automation/ → Python tools and scripts (large data archived)
 50-scripts/  → Repository maintenance tools
 60-assets/   → Static files and images
 70-guides/   → User workflow instructions
 80-harbor/   → Harbor project mirror (read-only reference)
+90-archive/  → Large data files (excluded from project knowledge)
 ```
 
 ---
@@ -145,6 +146,20 @@ Use Absolute Paths (/Users/scottloeb/Documents/NeurOasis/GitHub/harbor/):
 ✅ When project knowledge is overloaded
 ✅ For debugging Harbor integration issues
 ✅ When mirror sync is behind
+```
+
+### **📦 Archive Directory (90-archive/)**
+```
+Large Data Storage (excluded from project knowledge):
+📊 Marketplace Data: /Users/scottloeb/Documents/NeurOasis/GitHub/marketplace-tracker/90-archive/marketplace-data/
+- 58 progress batch files (progress_batch_1.json through progress_batch_58.json)
+- Enhanced complete dataset (enhanced_286_complete_20250824_142413.json)
+- Complete and full export files
+
+🎯 Performance Optimization:
+- Reduced 40-automation/config from 5.2MB to 44KB (99% reduction)
+- Prevents Claude project knowledge bloat
+- Access via absolute paths when needed
 ```
 
 ### **Supabase Database**
