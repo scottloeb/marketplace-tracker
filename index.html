@@ -655,7 +655,10 @@
         }
 
         function updatePriceChart() {
-            const ctx = document.getElementById('priceChart').getContext('2d');
+            const ctx = document.getElementById('priceChart');
+            if (!ctx) return; // Chart canvas doesn't exist on current tab
+            
+            const context = ctx.getContext('2d');
             
             // Price distribution
             const ranges = [
@@ -669,11 +672,12 @@
                 return listings.filter(l => l.price >= range.min && l.price < range.max).length;
             });
 
-            if (window.priceChart) {
+            // Safely destroy existing chart
+            if (window.priceChart && typeof window.priceChart.destroy === 'function') {
                 window.priceChart.destroy();
             }
 
-            window.priceChart = new Chart(ctx, {
+            window.priceChart = new Chart(context, {
                 type: 'bar',
                 data: {
                     labels: ranges.map(r => r.label),
@@ -697,7 +701,10 @@
         }
 
         function updateMakeChart() {
-            const ctx = document.getElementById('makeChart').getContext('2d');
+            const ctx = document.getElementById('makeChart');
+            if (!ctx) return; // Chart canvas doesn't exist on current tab
+            
+            const context = ctx.getContext('2d');
             
             const makes = {};
             listings.forEach(listing => {
@@ -705,11 +712,12 @@
                 makes[make] = (makes[make] || 0) + 1;
             });
 
-            if (window.makeChart) {
+            // Safely destroy existing chart
+            if (window.makeChart && typeof window.makeChart.destroy === 'function') {
                 window.makeChart.destroy();
             }
 
-            window.makeChart = new Chart(ctx, {
+            window.makeChart = new Chart(context, {
                 type: 'doughnut',
                 data: {
                     labels: Object.keys(makes),
@@ -729,6 +737,18 @@
                     }
                 }
             });
+        }
+
+        // Also fix the updateCharts function to handle missing elements
+        function updateCharts() {
+            // Only update charts if we're on the analytics tab
+            const analyticsTab = document.getElementById('analytics-tab');
+            if (analyticsTab && analyticsTab.classList.contains('active')) {
+                setTimeout(() => {
+                    updatePriceChart();
+                    updateMakeChart();
+                }, 100);
+            }
         }
 
         function launchOceanExplorer() {
