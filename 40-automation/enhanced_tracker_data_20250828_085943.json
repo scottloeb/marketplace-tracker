@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-08-28T08:59:43.806481",
+  "listingCount": 3,
+  "enhancementMethod": "automated_detail_extraction",
+  "data": [
+    {
+      "id": 1,
+      "url": "https://www.facebook.com/marketplace/item/616290237962260/",
+      "title": "2015 SeaDoo RXTX 260 Supercharged Trailer Included",
+      "price": 899910999.0,
+      "status": "pending",
+      "dateAdded": "2025-08-28T13:00:00.000Z",
+      "location": "North Beach, MD",
+      "photos": [],
+      "make": "SeaDoo",
+      "model": "RXT",
+      "year": "2015",
+      "condition": "",
+      "type": "Jet Ski",
+      "has_reference_data": false,
+      "market_analysis": {
+        "status": "unknown",
+        "confidence": 0.0,
+        "recommendation": "RESEARCH",
+        "reason": "Insufficient data for analysis"
+      },
+      "stock_photos": [
+        {
+          "url": "https://example.com/stock/seadoo_rxt_2015_front.jpg",
+          "type": "stock_photo_front",
+          "description": "SeaDoo RXT 2015 front view"
+        },
+        {
+          "url": "https://example.com/stock/seadoo_rxt_2015_side.jpg",
+          "type": "stock_photo_side",
+          "description": "SeaDoo RXT 2015 side view"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "url": "https://www.facebook.com/marketplace/item/5053265864899002/",
+      "title": "",
+      "price": 0,
+      "status": "pending",
+      "dateAdded": "2025-08-28T13:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "url": "https://www.facebook.com/marketplace/item/4101842963437903/",
+      "title": "",
+      "price": 0,
+      "status": "pending",
+      "dateAdded": "2025-08-28T13:00:00.000Z"
+    }
+  ]
+}
