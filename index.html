@@ -421,7 +421,7 @@
                     <div class="data-ready-card">
                         <h3>🌊 Ocean Explorer Ready</h3>
                         <p>Your marketplace data has been processed and is ready for advanced visualization</p>
-                        <p><strong id="oceanDataCount">286</strong> listings processed with market analysis</p>
+                        <p><strong id="oceanDataCount">0</strong> listings processed with market analysis</p>
                     </div>
                     
                     <button class="launch-button" onclick="launchOceanExplorer()">
@@ -485,6 +485,7 @@
             
             document.getElementById('considerCount').textContent = considerCount;
             document.getElementById('buyCount').textContent = buyCount;
+            document.getElementById('oceanDataCount').textContent = listings.length;
             
             const avgPrice = listings.length > 0 
                 ? Math.round(listings.reduce((sum, l) => sum + (l.price || 0), 0) / listings.length)
@@ -628,7 +629,10 @@
         function updateDisplay() {
             updateStats();
             displayListings();
-            updateCharts();
+            // Only update charts if we're on the analytics tab to avoid errors
+            if (document.getElementById('analytics-tab').classList.contains('active')) {
+                updateCharts();
+            }
         }
 
         function showTab(tabName) {
@@ -644,19 +648,26 @@
             document.getElementById(tabName + '-tab').classList.add('active');
             event.target.classList.add('active');
 
+            // Update charts only when analytics tab is shown
             if (tabName === 'analytics') {
                 setTimeout(updateCharts, 100); // Delay for proper canvas rendering
             }
         }
 
         function updateCharts() {
+            // Only update if analytics tab is active and visible
+            const analyticsTab = document.getElementById('analytics-tab');
+            if (!analyticsTab || !analyticsTab.classList.contains('active')) {
+                return;
+            }
+            
             updatePriceChart();
             updateMakeChart();
         }
 
         function updatePriceChart() {
             const ctx = document.getElementById('priceChart');
-            if (!ctx) return; // Chart canvas doesn't exist on current tab
+            if (!ctx) return;
             
             const context = ctx.getContext('2d');
             
@@ -702,7 +713,7 @@
 
         function updateMakeChart() {
             const ctx = document.getElementById('makeChart');
-            if (!ctx) return; // Chart canvas doesn't exist on current tab
+            if (!ctx) return;
             
             const context = ctx.getContext('2d');
             
@@ -737,18 +748,6 @@
                     }
                 }
             });
-        }
-
-        // Also fix the updateCharts function to handle missing elements
-        function updateCharts() {
-            // Only update charts if we're on the analytics tab
-            const analyticsTab = document.getElementById('analytics-tab');
-            if (analyticsTab && analyticsTab.classList.contains('active')) {
-                setTimeout(() => {
-                    updatePriceChart();
-                    updateMakeChart();
-                }, 100);
-            }
         }
 
         function launchOceanExplorer() {
@@ -824,16 +823,18 @@
                 const parsed = JSON.parse(importData);
                 let importListings = [];
                 
-                if (parsed.data) {
+                if (parsed.data && Array.isArray(parsed.data)) {
                     importListings = parsed.data;
                 } else if (Array.isArray(parsed)) {
                     importListings = parsed;
                 } else {
-                    throw new Error('Invalid data format');
+                    throw new Error('Invalid data format - must be array or object with data property');
                 }
 
                 // Merge with existing data (avoid duplicates)
                 let newCount = 0;
+                let duplicateCount = 0;
+                
                 importListings.forEach(importListing => {
                     const exists = listings.find(existing => 
                         existing.id === importListing.id || 
@@ -843,13 +844,15 @@
                     if (!exists) {
                         listings.push(importListing);
                         newCount++;
+                    } else {
+                        duplicateCount++;
                     }
                 });
 
                 saveListings();
                 updateDisplay();
                 
-                statusDiv.innerHTML = `<div style="color: green;">✅ Successfully imported ${newCount} new listings!</div>`;
+                statusDiv.innerHTML = `<div style="color: green;">✅ Successfully imported ${newCount} new listings! ${duplicateCount > 0 ? `(${duplicateCount} duplicates skipped)` : ''}</div>`;
                 document.getElementById('importData').value = '';
                 
                 setTimeout(() => {
@@ -857,7 +860,8 @@
                 }, 3000);
                 
             } catch (error) {
-                statusDiv.innerHTML = '<div style="color: red;">❌ Invalid JSON data. Please check the format.</div>';
+                console.error('Import error:', error);
+                statusDiv.innerHTML = `<div style="color: red;">❌ Import failed: ${error.message}</div>`;
             }
         }
 
