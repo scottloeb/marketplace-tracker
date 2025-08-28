@@ -5,13 +5,391 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌊 Unified Marketplace Tracker</title>
     
-    <!-- External Libraries -->
+    <!-- Supabase -->
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    
+    <!-- Charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- D3.js -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     
-    <!-- Our Styles -->
-    <link rel="stylesheet" href="10-src/styles/main.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .content-panel {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 10px;
+            }
+            
+            .content-panel {
+                padding: 20px;
+            }
+            
+            .navigation {
+                gap: 5px;
+            }
+            
+            .nav-tab {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Desktop-specific styles */
+        @media (min-width: 769px) {
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+            
+            .visualization-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Mobile: Single column layout */
+        @media (max-width: 768px) {
+            .stats-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .visualization-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Common components */
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .listing-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .listing-card:hover {
+            transform: translateX(5px);
+        }
+
+        .listing-card.buy {
+            border-left-color: #28a745;
+        }
+
+        .listing-card.consider {
+            border-left-color: #ffc107;
+        }
+
+        .listing-card.pass {
+            border-left-color: #dc3545;
+        }
+
+        .listing-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .listing-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .listing-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .listing-analysis {
+            background: rgba(40, 167, 69, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #155724;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-control {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            font-size: 1rem;
+        }
+
+        .filter-control:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
+        .sync-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .sync-status.success {
+            background: rgba(40, 167, 69, 0.1);
+            color: #155724;
+        }
+
+        .sync-status.error {
+            background: rgba(220, 53, 69, 0.1);
+            color: #721c24;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .insight-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .insight-panel h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .insights-list {
+            list-style: none;
+        }
+
+        .insights-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .insights-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -28,46 +406,578 @@
             <button class="nav-tab" onclick="showPanel('explorer')">🔍 Explorer</button>
         </div>
 
-        <!-- Content panels will be loaded here -->
-        <div id="app-content">
-            <!-- Capture Panel (Mobile-optimized) -->
-            <div class="content-panel active" id="capture-panel">
-                <h2>📱 Quick Capture</h2>
-                <p>Add new listings from your phone or laptop</p>
+        <!-- Capture Panel (Mobile-optimized) -->
+        <div class="content-panel active" id="capture-panel">
+            <h2>📱 Quick Capture</h2>
+            <p>Add new listings from your phone or laptop</p>
+            
+            <form id="listingForm" onsubmit="addListing(event)">
+                <div class="form-group">
+                    <label class="form-label">Listing URL</label>
+                    <input type="url" class="form-input" id="listingUrl" placeholder="https://facebook.com/marketplace/item/..." required>
+                </div>
                 
-                <form id="listingForm" onsubmit="addListing(event)">
-                    <div class="form-group">
-                        <label class="form-label">Listing URL</label>
-                        <input type="url" class="form-input" id="listingUrl" placeholder="https://facebook.com/marketplace/item/..." required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Title (optional - will be auto-filled)</label>
-                        <input type="text" class="form-input" id="listingTitle" placeholder="e.g., 2020 Sea-Doo GTX 170">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Price (optional - will be auto-filled)</label>
-                        <input type="number" class="form-input" id="listingPrice" placeholder="15000">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Location (optional - will be auto-filled)</label>
-                        <input type="text" class="form-input" id="listingLocation" placeholder="Miami, FL">
-                    </div>
-                    
-                    <button type="submit" class="btn">➕ Add Listing</button>
-                </form>
+                <div class="form-group">
+                    <label class="form-label">Title (optional - will be auto-filled)</label>
+                    <input type="text" class="form-input" id="listingTitle" placeholder="e.g., 2020 Sea-Doo GTX 170">
+                </div>
                 
-                <div id="syncStatus" class="sync-status" style="display: none;"></div>
-            </div>
+                <div class="form-group">
+                    <label class="form-label">Price (optional - will be auto-filled)</label>
+                    <input type="number" class="form-input" id="listingPrice" placeholder="15000">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Location (optional - will be auto-filled)</label>
+                    <input type="text" class="form-input" id="listingLocation" placeholder="Miami, FL">
+                </div>
+                
+                <button type="submit" class="btn">➕ Add Listing</button>
+            </form>
+            
+            <div id="syncStatus" class="sync-status" style="display: none;"></div>
+        </div>
 
-            <!-- Other panels will be created dynamically -->
+        <!-- Listings Panel -->
+        <div class="content-panel" id="listings-panel">
+            <h2>📋 All Listings</h2>
+            <div class="filter-controls">
+                <input type="text" class="filter-control" placeholder="Search listings..." id="searchFilter" onkeyup="filterListings()">
+                <select class="filter-control" id="statusFilter" onchange="filterListings()">
+                    <option value="all">All Status</option>
+                    <option value="buy">🔥 BUY</option>
+                    <option value="consider">💰 CONSIDER</option>
+                    <option value="pass">❌ PASS</option>
+                </select>
+            </div>
+            
+            <div id="listingsContainer">
+                <div class="loading">Loading listings...</div>
+            </div>
+        </div>
+
+        <!-- Analytics Panel -->
+        <div class="content-panel" id="analytics-panel">
+            <h2>📊 Market Analytics</h2>
+            
+            <div class="stats-grid" id="statsGrid">
+                <!-- Stats will be populated -->
+            </div>
+            
+            <div class="visualization-grid">
+                <div class="chart-container">
+                    <h3>💰 Price Distribution</h3>
+                    <canvas id="priceChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>🏍️ Make Distribution</h3>
+                    <canvas id="makeChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="insight-panel">
+                <h3>🧠 Market Intelligence</h3>
+                <ul class="insights-list" id="marketInsights">
+                    <li>📊 Load your data to see intelligent market analysis</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Deals Panel -->
+        <div class="content-panel" id="deals-panel">
+            <h2>🔥 Deal Opportunities</h2>
+            
+            <div class="filter-controls">
+                <select class="filter-control" id="dealFilter" onchange="filterDeals()">
+                    <option value="all">All Deals</option>
+                    <option value="urgent">🔥 Urgent Deals</option>
+                    <option value="opportunity">💰 Opportunities</option>
+                </select>
+                <input type="number" class="filter-control" placeholder="Max Price" id="maxPriceFilter" onchange="filterDeals()">
+            </div>
+            
+            <div id="dealsContainer">
+                <!-- Deals will be populated -->
+            </div>
+        </div>
+
+        <!-- Explorer Panel -->
+        <div class="content-panel" id="explorer-panel">
+            <h2>🔍 Data Explorer</h2>
+            
+            <div class="filter-controls">
+                <input type="text" class="filter-control" placeholder="Search..." id="explorerSearch" onkeyup="filterExplorer()">
+                <select class="filter-control" id="explorerMakeFilter" onchange="filterExplorer()">
+                    <option value="all">All Makes</option>
+                </select>
+            </div>
+            
+            <table class="data-table" id="explorerTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Analysis</th>
+                        <th>Value Score</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="explorerTbody">
+                    <!-- Table data will be populated -->
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <!-- Load JavaScript modules -->
-    <script src="10-src/utils/database.js"></script>
-    <script src="10-src/components/app.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script>
+        // Global variables
+        let listings = [];
+        let filteredListings = [];
+        let charts = {};
+
+        // Initialize the application
+        async function initApp() {
+            try {
+                // Initialize Supabase client
+                if (!initializeSupabase()) {
+                    console.warn('Supabase library not loaded yet, retrying...');
+                    setTimeout(initApp, 1000);
+                    return;
+                }
+                
+                // Initialize Supabase
+                await DatabaseService.initRealtimeSubscriptions();
+                
+                // Load existing listings
+                await loadListings();
+                
+                // Update UI
+                updateAllPanels();
+                
+                console.log('App initialized successfully');
+            } catch (error) {
+                console.error('Error initializing app:', error);
+                showSyncStatus('Error connecting to database', 'error');
+            }
+        }
+
+        // Panel navigation
+        function showPanel(panelName) {
+            // Hide all panels
+            document.querySelectorAll('.content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected panel
+            document.getElementById(panelName + '-panel').classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Update panel content
+            updatePanelContent(panelName);
+        }
+
+        // Add new listing
+        async function addListing(event) {
+            event.preventDefault();
+            
+            const url = document.getElementById('listingUrl').value;
+            const title = document.getElementById('listingTitle').value;
+            const price = parseFloat(document.getElementById('listingPrice').value) || null;
+            const location = document.getElementById('listingLocation').value;
+            
+            const listingData = {
+                url: url,
+                title: title || null,
+                price: price,
+                location: location || null,
+                status: 'active'
+            };
+            
+            try {
+                showSyncStatus('Adding listing...', 'success');
+                
+                const newListing = await DatabaseService.addListing(listingData);
+                
+                // Queue for enhancement
+                await DatabaseService.queueEnhancement(newListing.id);
+                
+                // Reset form
+                document.getElementById('listingForm').reset();
+                
+                showSyncStatus('Listing added successfully!', 'success');
+                
+                // Update listings
+                await loadListings();
+                
+            } catch (error) {
+                console.error('Error adding listing:', error);
+                showSyncStatus('Error adding listing: ' + error.message, 'error');
+            }
+        }
+
+        // Load listings from database
+        async function loadListings() {
+            try {
+                listings = await DatabaseService.getListings();
+                filteredListings = [...listings];
+                updateAllPanels();
+            } catch (error) {
+                console.error('Error loading listings:', error);
+                showSyncStatus('Error loading listings', 'error');
+            }
+        }
+
+        // Update all panels
+        function updateAllPanels() {
+            updateListingsPanel();
+            updateAnalyticsPanel();
+            updateDealsPanel();
+            updateExplorerPanel();
+        }
+
+        // Update specific panel content
+        function updatePanelContent(panelName) {
+            switch (panelName) {
+                case 'listings':
+                    updateListingsPanel();
+                    break;
+                case 'analytics':
+                    updateAnalyticsPanel();
+                    break;
+                case 'deals':
+                    updateDealsPanel();
+                    break;
+                case 'explorer':
+                    updateExplorerPanel();
+                    break;
+            }
+        }
+
+        // Update listings panel
+        function updateListingsPanel() {
+            const container = document.getElementById('listingsContainer');
+            
+            if (listings.length === 0) {
+                container.innerHTML = '<div class="loading">No listings found. Add your first listing!</div>';
+                return;
+            }
+            
+            const listingsHtml = filteredListings.map(listing => {
+                const analysis = listing.market_analysis;
+                let cardClass = 'listing-card';
+                let statusIcon = '📊';
+                
+                if (analysis) {
+                    if (analysis.includes('BUY')) {
+                        cardClass += ' buy';
+                        statusIcon = '🔥';
+                    } else if (analysis.includes('CONSIDER')) {
+                        cardClass += ' consider';
+                        statusIcon = '💰';
+                    } else if (analysis.includes('PASS')) {
+                        cardClass += ' pass';
+                        statusIcon = '❌';
+                    }
+                }
+                
+                return `
+                    <div class="${cardClass}">
+                        <div class="listing-title">${listing.title || 'Untitled Listing'}</div>
+                        <div class="listing-details">
+                            <div class="listing-price">$${(listing.price || 0).toLocaleString()}</div>
+                            <div class="listing-analysis">
+                                ${statusIcon} ${analysis || 'Pending analysis'}
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                            ${listing.location || 'No location'} • ${new Date(listing.created_at).toLocaleDateString()}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = listingsHtml;
+        }
+
+        // Update analytics panel
+        function updateAnalyticsPanel() {
+            updateStats();
+            updateCharts();
+            updateMarketInsights();
+        }
+
+        // Update stats
+        function updateStats() {
+            const stats = calculateStats();
+            const statsHtml = `
+                <div class="stat-card">
+                    <div class="stat-value">${stats.totalListings}</div>
+                    <div class="stat-label">Total Listings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$${stats.avgPrice.toLocaleString()}</div>
+                    <div class="stat-label">Average Price</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.buyDeals}</div>
+                    <div class="stat-label">BUY Deals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$${stats.potentialSavings.toLocaleString()}</div>
+                    <div class="stat-label">Potential Savings</div>
+                </div>
+            `;
+            document.getElementById('statsGrid').innerHTML = statsHtml;
+        }
+
+        // Calculate stats
+        function calculateStats() {
+            const totalListings = listings.length;
+            const avgPrice = listings.reduce((sum, item) => sum + (item.price || 0), 0) / totalListings || 0;
+            const buyDeals = listings.filter(item => 
+                item.market_analysis && item.market_analysis.includes('BUY')
+            ).length;
+            
+            const potentialSavings = listings.reduce((sum, item) => {
+                if (item.market_analysis && item.market_analysis.includes('BUY') && item.price) {
+                    // Simplified calculation - in real app would use MSRP data
+                    return sum + (item.price * 0.2); // Assume 20% potential savings
+                }
+                return sum;
+            }, 0);
+
+            return { totalListings, avgPrice, buyDeals, potentialSavings };
+        }
+
+        // Update charts
+        function updateCharts() {
+            createPriceChart();
+            createMakeChart();
+        }
+
+        // Create price chart
+        function createPriceChart() {
+            const ctx = document.getElementById('priceChart');
+            if (!ctx) return;
+
+            if (charts.priceChart) {
+                charts.priceChart.destroy();
+            }
+
+            const prices = listings.map(item => item.price || 0).filter(price => price > 0);
+            const priceRanges = ['$0-5k', '$5k-10k', '$10k-15k', '$15k-20k', '$20k+'];
+            const priceData = [
+                prices.filter(p => p < 5000).length,
+                prices.filter(p => p >= 5000 && p < 10000).length,
+                prices.filter(p => p >= 10000 && p < 15000).length,
+                prices.filter(p => p >= 15000 && p < 20000).length,
+                prices.filter(p => p >= 20000).length
+            ];
+
+            charts.priceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: priceRanges,
+                    datasets: [{
+                        label: 'Number of Listings',
+                        data: priceData,
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create make chart
+        function createMakeChart() {
+            const ctx = document.getElementById('makeChart');
+            if (!ctx) return;
+
+            if (charts.makeChart) {
+                charts.makeChart.destroy();
+            }
+
+            const makes = listings.map(item => item.make).filter(Boolean);
+            const makeCounts = {};
+            makes.forEach(make => {
+                makeCounts[make] = (makeCounts[make] || 0) + 1;
+            });
+
+            charts.makeChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(makeCounts),
+                    datasets: [{
+                        data: Object.values(makeCounts),
+                        backgroundColor: [
+                            'rgba(102, 126, 234, 0.8)',
+                            'rgba(118, 75, 162, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(220, 53, 69, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        }
+
+        // Update market insights
+        function updateMarketInsights() {
+            const insights = generateInsights();
+            const insightsHtml = insights.map(insight => `<li>${insight}</li>`).join('');
+            document.getElementById('marketInsights').innerHTML = insightsHtml;
+        }
+
+        // Generate insights
+        function generateInsights() {
+            const insights = [];
+            const buyDeals = listings.filter(item => 
+                item.market_analysis && item.market_analysis.includes('BUY')
+            );
+
+            if (buyDeals.length > 0) {
+                insights.push(`🔥 ${buyDeals.length} urgent buying opportunities identified`);
+            }
+
+            const makes = [...new Set(listings.map(item => item.make).filter(Boolean))];
+            insights.push(`🏍️ ${makes.length} different makes represented`);
+
+            const avgPrice = listings.reduce((sum, item) => sum + (item.price || 0), 0) / listings.length;
+            insights.push(`📊 Average listing price: $${avgPrice.toLocaleString()}`);
+
+            return insights;
+        }
+
+        // Update deals panel
+        function updateDealsPanel() {
+            const deals = listings.filter(item => 
+                item.market_analysis && (item.market_analysis.includes('BUY') || item.market_analysis.includes('CONSIDER'))
+            );
+
+            const dealsHtml = deals.map(deal => {
+                const analysis = deal.market_analysis;
+                const isUrgent = analysis && analysis.includes('BUY');
+                const cardClass = isUrgent ? 'listing-card buy' : 'listing-card consider';
+                const icon = isUrgent ? '🔥' : '💰';
+                
+                return `
+                    <div class="${cardClass}">
+                        <div class="listing-title">${icon} ${deal.title || 'Untitled Listing'}</div>
+                        <div class="listing-details">
+                            <div class="listing-price">$${(deal.price || 0).toLocaleString()}</div>
+                            <div class="listing-analysis">
+                                ${analysis || 'No analysis available'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('dealsContainer').innerHTML = dealsHtml || '<p>No deals found. Add listings to see opportunities!</p>';
+        }
+
+        // Update explorer panel
+        function updateExplorerPanel() {
+            const tbody = document.getElementById('explorerTbody');
+            const tableHtml = filteredListings.map(item => {
+                const analysis = item.market_analysis;
+                const recommendation = analysis ? analysis.split(' - ')[0] : 'N/A';
+                const valueScore = analysis ? '85' : '0';
+                
+                let statusIcon = '📊';
+                if (analysis && analysis.includes('BUY')) statusIcon = '🔥';
+                else if (analysis && analysis.includes('CONSIDER')) statusIcon = '💰';
+                else if (analysis && analysis.includes('PASS')) statusIcon = '❌';
+
+                return `
+                    <tr>
+                        <td>${item.title || 'Untitled'}</td>
+                        <td>$${(item.price || 0).toLocaleString()}</td>
+                        <td>${statusIcon} ${recommendation}</td>
+                        <td>${valueScore}%</td>
+                        <td>
+                            <a href="${item.url}" target="_blank" style="color: #667eea;">View</a>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            tbody.innerHTML = tableHtml;
+        }
+
+        // Filter functions
+        function filterListings() {
+            const searchTerm = document.getElementById('searchFilter').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            filteredListings = listings.filter(item => {
+                const matchesSearch = !searchTerm || 
+                    (item.title && item.title.toLowerCase().includes(searchTerm));
+                const matchesStatus = statusFilter === 'all' || 
+                    (statusFilter === 'buy' && item.market_analysis && item.market_analysis.includes('BUY')) ||
+                    (statusFilter === 'consider' && item.market_analysis && item.market_analysis.includes('CONSIDER')) ||
+                    (statusFilter === 'pass' && item.market_analysis && item.market_analysis.includes('PASS'));
+
+                return matchesSearch && matchesStatus;
+            });
+
+            updateListingsPanel();
+        }
+
+        function filterDeals() {
+            // Implement deal filtering
+            updateDealsPanel();
+        }
+
+        function filterExplorer() {
+            const searchTerm = document.getElementById('explorerSearch').value.toLowerCase();
+            const makeFilter = document.getElementById('explorerMakeFilter').value;
+
+            filteredListings = listings.filter(item => {
+                const matchesSearch = !searchTerm || 
+                    (item.title && item.title.toLowerCase().includes(searchTerm));
+                const matchesMake = makeFilter === 'all' || item.make === makeFilter;
+
+                return matchesSearch && matchesMake;
+            });
+
+            updateExplorerPanel();
+        }
+
+        // Show sync status
+        function showSyncStatus(message, type) {
+            const statusDiv = document.getElementById('syncStatus');
+            statusDiv.textContent = message;
+            statusDiv.className = `sync-status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Initialize app when page loads
+        window.onload = initApp;
+    </script>
 </body>
 </html>
