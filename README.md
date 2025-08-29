@@ -17,7 +17,7 @@ Folders use semantic numbering for logical organization:
 <!--FOLDER_STRUCTURE_START-->
 | Folder | Purpose | Dependencies |
 |--------|---------|--------------|
-| [`10-src/`](10-src/README.md) | Core application code with zero external dependencies. | None |
+| [`10-src/`](10-src/README.md) | Zero-dependency application code using semantic numbering system. Components, utilities, and styles. | None |
 | [`20-reference/`](20-reference/README.md) | Jet ski specifications and reference information for data enhancement. | None (static CSV files) |
 | [`30-docs/`](30-docs/README.md) | Setup guides, implementation docs, and workflow instructions. | None (markdown files) |
 | [`40-automation/`](40-automation/README.md) | Backend automation scripts and data processing tools. | Python 3.x |

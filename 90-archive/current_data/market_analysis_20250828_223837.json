@@ -1,0 +1,19 @@
+{
+  "total_listings": 181,
+  "by_make": {
+    "Kawasaki": 16,
+    "Yamaha": 77,
+    "Sea-Doo": 54,
+    "Unknown": 34
+  },
+  "by_status": {
+    "pending": 181
+  },
+  "price_ranges": {
+    "under_8k": 0,
+    "8k_15k": 0,
+    "15k_25k": 0,
+    "over_25k": 0,
+    "no_price": 181
+  }
+}

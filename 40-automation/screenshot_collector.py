@@ -142,22 +142,31 @@ async def main():
     """Main entry point"""
     import sys
     
-    # Default to latest import file
-    input_files = [
-        "google_sheet_import_20250828_205743.json",
-        "google_sheet_import_20250828_124040.json",
-        "enhanced_286_complete_20250824_142413.json"
-    ]
-    
-    input_file = None
-    for file in input_files:
-        if os.path.exists(file):
-            input_file = file
-            break
-    
-    if not input_file:
-        logger.error("No valid input file found")
-        return
+    # Check for command line argument first
+    if len(sys.argv) > 1:
+        input_file = sys.argv[1]
+        if not os.path.exists(input_file):
+            logger.error(f"Specified file not found: {input_file}")
+            return
+    else:
+        # Default to latest import file
+        input_files = [
+            "google_sheet_import_complete_181_listings.json",
+            "complete_csv_import_20250828_222849.json",
+            "google_sheet_import_20250828_205743.json",
+            "google_sheet_import_20250828_124040.json",
+            "enhanced_286_complete_20250824_142413.json"
+        ]
+        
+        input_file = None
+        for file in input_files:
+            if os.path.exists(file):
+                input_file = file
+                break
+        
+        if not input_file:
+            logger.error("No valid input file found")
+            return
     
     logger.info(f"📂 Using input file: {input_file}")
     

@@ -51,11 +51,12 @@ This explains the numbering convention and management tools.
 ## 📋 **Essential Knowledge Sources**
 
 ### **Current State Files** (Read These First)
-1. `CITs/SEMANTIC_NUMBERING_COMPLETE_CIT.md` - **Complete project state**
-2. `README.md` - **Dynamic folder structure overview**
-3. `SEMANTIC_NUMBERING_IMPLEMENTATION.md` - **Implementation details**
-4. `30-docs/UNIFIED_IMPLEMENTATION_SUMMARY.md` - **System architecture**
-5. `30-docs/SUPABASE_SETUP_GUIDE.md` - **Database configuration**
+1. `CITs/SEMANTIC_NUMBERING_COMPLETE_CIT.md` - **Complete project state & cleanup status**
+2. `IDEAS_PARKING_LOT.md` - **💡 Strategic concepts & visualization ideas**
+3. `README.md` - **Dynamic folder structure overview**
+4. `SEMANTIC_NUMBERING_IMPLEMENTATION.md` - **Implementation details**
+5. `30-docs/UNIFIED_IMPLEMENTATION_SUMMARY.md` - **System architecture**
+6. `30-docs/SUPABASE_SETUP_GUIDE.md` - **Database configuration**
 
 ### **Core Application Files**
 1. `index.html` - **Entry point** (Vercel compatible)

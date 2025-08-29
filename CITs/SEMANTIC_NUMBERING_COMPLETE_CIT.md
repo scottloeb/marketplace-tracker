@@ -1,8 +1,71 @@
-# 🎯 Context Initialization Template: Semantic Numbering Complete
+# 🎯 Context Initialization Template: Repository Cleanup & Strategic Ideas
 
-**Session Date**: August 27, 2025  
-**Status**: ✅ Semantic numbering system implemented and tested  
-**Next**: Ready for GitHub commit and continued development
+**Session Date**: August 28, 2025  
+**Status**: 🧹 Repository cleanup in progress + Strategic ideas captured  
+**Priority**: Clean file organization → Enhanced automation → Visualization implementation
+
+---
+
+## 📊 **Current Dataset Status**
+
+### **✅ 181 Listings Successfully Imported**
+- **Source**: Complete CSV import from Facebook Marketplace
+- **File**: `complete_csv_import_20250828_222849.json` (112KB)
+- **Analysis**: All 181 listings processed, 77 Yamaha (42.5%), 43 Sea-Doo (23.8%)
+- **Issue**: Prices not extracted yet (embedded in Facebook page titles)
+- **Next**: Enhanced screenshot collection to extract real pricing data
+
+### **🎯 Priority Automation Tasks** 
+1. **Enhanced Screenshot Collection**: Extract prices from Facebook pages with "See more" expansion
+2. **Mobile Integration**: Phone → URL sharing → automatic processing → Supabase sync
+3. **Advanced Duplicate Detection**: Handle re-listings, price changes, content updates
+4. **Market Intelligence Engine**: Geographic clusters, seasonal patterns, fleet liquidation detection
+
+### **📝 Analysis Results Available**
+- **Make Distribution**: Yamaha 77, Sea-Doo 43, Kawasaki 16, Unknown 45
+- **Year Distribution**: 80 listings are 2020+ models (44.2% recent inventory)
+- **Market Opportunity**: 100% of listings need price extraction → automation goldmine
+
+---
+
+## 💡 **CRITICAL: Ideas Parking Lot**
+**File**: `IDEAS_PARKING_LOT.md`  
+**Purpose**: Capture visualization ideas and strategic concepts before they're lost overnight  
+**Contents**: Visualization concepts, mobile integration ideas, market intelligence features  
+**Usage**: Add brilliant ideas immediately - review weekly for implementation planning
+
+---
+
+## 🧹 **Current Cleanup Status**
+
+### **❌ Problem Identified**
+- Repository cluttered with 50+ files in root directory
+- Multiple duplicate/timestamped files causing "wrong file" errors
+- Scripts scattered instead of following semantic numbering
+- Large files causing project knowledge overload
+
+### **✅ Cleanup Plan Created**
+**Script**: `cleanup_repository.sh`  
+**Actions**:
+- DELETE 15+ duplicate/temporary files
+- MOVE automation scripts to `40-automation/scripts/`
+- MOVE data files to `90-archive/current_data/`
+- MOVE documentation to `30-docs/`
+- ORGANIZE following CIT semantic numbering rules
+
+### **🎯 Post-Cleanup Target Structure**
+```
+marketplace-tracker/
+├── index.html                    # Entry point only
+├── IDEAS_PARKING_LOT.md          # 💡 Strategic concepts capture
+├── cleanup_repository.sh         # 🧹 One-time cleanup script
+├── 10-src/                       # Core application
+├── 30-docs/                      # ALL documentation
+├── 40-automation/                # ALL Python scripts
+├── 50-scripts/                   # Repository maintenance
+├── 90-archive/current_data/      # Current dataset (181 listings)
+└── [numbered folders...]         # Semantic organization
+```
 
 ---
 
