@@ -55,7 +55,7 @@ function getPriceStats(listings) {
 async function loadEnhancedExtractionData() {
     try {
         // Try to load the latest enhanced extraction data
-        const response = await fetch('./90-archive/current-data/enhanced_extraction_20250829_001201.json');
+        const response = await fetch('./data/enhanced_extraction_20250829_001201.json');
         if (!response.ok) {
             throw new Error('Failed to load enhanced extraction data');
         }
