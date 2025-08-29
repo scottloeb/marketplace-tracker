@@ -150,18 +150,29 @@ Use Absolute Paths (/Users/scottloeb/Documents/NeurOasis/GitHub/harbor/):
 ✅ When mirror sync is behind
 ```
 
-### **📦 Archive Directory (90-archive/)**
+### **📦 Project Knowledge Limitations** ⚠️
 ```
-Large Data Storage (excluded from project knowledge):
-📊 Marketplace Data: /Users/scottloeb/Documents/NeurOasis/GitHub/marketplace-tracker/90-archive/marketplace-data/
+🚫 FOLDERS EXCLUDED FROM PROJECT KNOWLEDGE:
+
+40-automation/ → Large Python scripts and data processing files
+80-harbor/     → Complete Harbor project mirror (read-only reference)  
+90-archive/    → Large data files and batch processing outputs
+
+📊 Archive Directory (90-archive/) Details:
+Marketplace Data: /Users/scottloeb/Desktop/marketplace-tracker/90-archive/marketplace-data/
 - 58 progress batch files (progress_batch_1.json through progress_batch_58.json)
 - Enhanced complete dataset (enhanced_286_complete_20250824_142413.json)
 - Complete and full export files
 
 🎯 Performance Optimization:
-- Reduced 40-automation/config from 5.2MB to 44KB (99% reduction)
-- Prevents Claude project knowledge bloat
-- Access via absolute paths when needed
+- Reduced project knowledge size by ~95%
+- Prevents Claude context overflow
+- Access via absolute file paths when needed
+
+⚡ Claude Access Strategy:
+✅ Project Knowledge: All other folders (10, 20, 30, 50, 60, 70, CITs, root files)
+✅ Local File Access: All folders via /Users/scottloeb/Desktop/marketplace-tracker/
+✅ Direct File Read: Individual files in 40, 80, 90 when needed
 ```
 
 ### **Supabase Database**
