@@ -1,0 +1,74 @@
+{
+  "timestamp": "2025-08-29T00:19:41.875382",
+  "total_listings_analyzed": 164,
+  "price_statistics": {
+    "average": 7666.333333333333,
+    "median": 9347.5,
+    "min": 150.0,
+    "max": 25000.0,
+    "std_dev": 5252.710308158825
+  },
+  "deals_found": [
+    {
+      "listing": {
+        "price": 1900.0,
+        "title": "Kawasaki Jet Ski SX 650 1991",
+        "listing_id": 1756434529353,
+        "url": "https://www.facebook.com/marketplace/item/1784829208777232/"
+      },
+      "discount_pct": 81.17453891774831,
+      "savings": 8192.714285714286,
+      "make": "kawasaki",
+      "z_score": -1.8413556857434101
+    },
+    {
+      "listing": {
+        "price": 2500.0,
+        "title": "2019 Yamaha vxc",
+        "listing_id": 1756434529295,
+        "url": "https://www.facebook.com/marketplace/item/992982412784679/"
+      },
+      "discount_pct": 78.39591522310229,
+      "savings": 9071.885714285714,
+      "make": "yamaha",
+      "z_score": -2.154530999588699
+    },
+    {
+      "listing": {
+        "price": 3500.0,
+        "title": "2009 Seadoo gti 155",
+        "listing_id": 1756434529322,
+        "url": "https://www.facebook.com/marketplace/item/1020844200120390/"
+      },
+      "discount_pct": 64.70095372075222,
+      "savings": 6415.282051282051,
+      "make": "sea-doo",
+      "z_score": -1.627832926375362
+    },
+    {
+      "listing": {
+        "price": 4300.0,
+        "title": "Sold\n\u00a0\n \u00b7 2017 Yamaha Waverunner Ex",
+        "listing_id": 1756434529342,
+        "url": "https://www.facebook.com/marketplace/item/683036431462303/"
+      },
+      "discount_pct": 62.84097418373595,
+      "savings": 7271.885714285714,
+      "make": "yamaha",
+      "z_score": -1.7270393047635941
+    }
+  ],
+  "make_analysis": {
+    "yamaha": 70,
+    "sea-doo": 39,
+    "kawasaki": 14,
+    "unknown": 41
+  },
+  "price_distribution": {
+    "Under $5K": 27,
+    "$5K-$10K": 58,
+    "$10K-$15K": 55,
+    "$15K-$20K": 20,
+    "$20K+": 4
+  }
+}
