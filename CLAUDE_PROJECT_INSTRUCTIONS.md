@@ -158,12 +158,19 @@ Use Absolute Paths (/Users/scottloeb/Documents/NeurOasis/GitHub/harbor/):
 40-automation/ → Large Python scripts and data processing files
 80-harbor/     → Complete Harbor project mirror (read-only reference)  
 90-archive/    → Large data files and batch processing outputs
+screenshots/   → Facebook marketplace screenshots (166 files, size limit)
 
 📊 Archive Directory (90-archive/) Details:
 Marketplace Data: /Users/scottloeb/Desktop/marketplace-tracker/90-archive/marketplace-data/
 - 58 progress batch files (progress_batch_1.json through progress_batch_58.json)
 - Enhanced complete dataset (enhanced_286_complete_20250824_142413.json)
 - Complete and full export files
+
+📷 Screenshots Directory:
+Local Path: /Users/scottloeb/Desktop/marketplace-tracker/screenshots/
+- 166 Facebook marketplace screenshot files
+- Extracted from mobile capture workflow
+- Available via local file system access
 
 🎯 Performance Optimization:
 - Reduced project knowledge size by ~95%
@@ -173,7 +180,7 @@ Marketplace Data: /Users/scottloeb/Desktop/marketplace-tracker/90-archive/market
 ⚡ Claude Access Strategy:
 ✅ Project Knowledge: All other folders (10, 20, 30, 50, 60, 70, CITs, root files)
 ✅ Local File Access: All folders via /Users/scottloeb/Desktop/marketplace-tracker/
-✅ Direct File Read: Individual files in 40, 80, 90 when needed
+✅ Direct File Read: Individual files in 40, 80, 90, screenshots when needed
 ```
 
 ### **Supabase Database**
