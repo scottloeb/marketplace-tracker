@@ -1,4 +1,4 @@
-// Marketplace Tracker - Content Script with Improved Location Detection
+// Marketplace Tracker - Content Script with Improved Facebook Support
 // Extracts listing data from marketplace pages and provides floating save button
 
 (function() {
@@ -18,6 +18,9 @@
             const marketplace = detectMarketplace(url);
             console.log('🎯 Marketplace detected:', marketplace);
             
+            // For Facebook, wait longer for dynamic content to load
+            const delay = marketplace === 'facebook' ? 3000 : 1000;
+            
             // Extract data and create floating button
             setTimeout(() => {
                 extractedData = extractListingData(marketplace);
@@ -27,7 +30,7 @@
                 } else {
                     console.log('⚠️ No listing data found on this page');
                 }
-            }, 1000);
+            }, delay);
         }
     }
     
@@ -63,6 +66,147 @@
         }
     }
     
+    function extractFacebookData() {
+        const data = {
+            url: window.location.href,
+            marketplace: 'facebook',
+            timestamp: new Date().toISOString()
+        };
+        
+        console.log('🔍 Facebook: Starting extraction...');
+        
+        // Facebook title - try multiple strategies
+        const titleSelectors = [
+            '[data-testid="post-title"] span',
+            'h1 span',
+            '[role="main"] h1',
+            'span[dir="auto"]', // Facebook often uses this for titles
+            '.x1heor9g', // Common Facebook class pattern
+            '.x1i10hfl span' // Another common pattern
+        ];
+        
+        for (const selector of titleSelectors) {
+            const element = document.querySelector(selector);
+            if (element && element.textContent.trim().length > 10) {
+                data.title = element.textContent.trim();
+                console.log('📝 Facebook title found:', data.title, 'using selector:', selector);
+                break;
+            }
+        }
+        
+        // If no good title found, try broader search
+        if (!data.title) {
+            const allSpans = document.querySelectorAll('span');
+            for (const span of allSpans) {
+                const text = span.textContent.trim();
+                if (text.length > 10 && text.length < 200 && !text.includes('$') && !text.includes('Facebook')) {
+                    // Check if this looks like a listing title
+                    if (text.match(/\b(boat|car|truck|bike|house|apartment|for sale|motor|trailer)\b/i)) {
+                        data.title = text;
+                        console.log('📝 Facebook title found via heuristic:', data.title);
+                        break;
+                    }
+                }
+            }
+        }
+        
+        // Facebook price - very tricky due to dynamic classes
+        const priceSelectors = [
+            '[data-testid="price"] span',
+            'span[dir="auto"]', // Often used for price
+            '.x193iq5w', // Common price class
+            'span[role="text"]'
+        ];
+        
+        // Look for $ symbol in spans
+        const allSpans = document.querySelectorAll('span');
+        for (const span of allSpans) {
+            const text = span.textContent.trim();
+            if (text.includes('$') && !text.includes('Facebook') && text.length < 50) {
+                const price = extractPriceFromText(text);
+                if (price && price > 0) {
+                    data.price = price;
+                    console.log('💰 Facebook price found:', data.price, 'from text:', text);
+                    break;
+                }
+            }
+        }
+        
+        // Facebook location - extract from various possible places
+        data.location = extractFacebookLocation();
+        if (data.location) {
+            console.log('📍 Facebook location found:', data.location);
+        }
+        
+        // Facebook photos - look for images in the listing
+        data.photos = [];
+        const imageElements = document.querySelectorAll('img[src*="scontent"], img[src*="fbcdn"]');
+        imageElements.forEach((img, index) => {
+            if (img.src && img.src.includes('scontent') && !img.src.includes('profile')) {
+                data.photos.push(img.src);
+            }
+        });
+        console.log('📸 Facebook photos found:', data.photos.length);
+        
+        // Facebook description - try to find description text
+        const descriptionElements = document.querySelectorAll('[data-ad-preview="message"], [data-testid="post-message"], .x11i5rnm');
+        for (const element of descriptionElements) {
+            if (element.textContent.trim().length > 20) {
+                data.description = element.textContent.trim();
+                console.log('📄 Facebook description found:', data.description.substring(0, 100) + '...');
+                break;
+            }
+        }
+        
+        console.log('✅ Facebook extraction complete:', data);
+        return data;
+    }
+    
+    function extractFacebookLocation() {
+        // Look for location indicators on Facebook
+        const locationIndicators = [
+            'Miles away',
+            'km away',
+            'Local pickup',
+            'Pickup available'
+        ];
+        
+        // Search all text nodes for location patterns
+        const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+        );
+        
+        const textNodes = [];
+        let node;
+        while (node = walker.nextNode()) {
+            const text = node.textContent.trim();
+            if (text.length > 5 && text.length < 100) {
+                textNodes.push(text);
+            }
+        }
+        
+        // Look for location patterns
+        for (const text of textNodes) {
+            // Check for "X miles away" pattern
+            if (text.includes('miles away') || text.includes('km away')) {
+                const locationMatch = text.match(/(.+?)\s+\d+\s+(?:miles|km)\s+away/i);
+                if (locationMatch) {
+                    return locationMatch[1].trim();
+                }
+            }
+            
+            // Check for city patterns
+            if (text.match(/^[A-Z][a-z]+,\s*[A-Z]{2}$/) || text.match(/^[A-Z][a-z]+\s+[A-Z][a-z]+,\s*[A-Z]{2}$/)) {
+                return text;
+            }
+        }
+        
+        return null;
+    }
+    
     function extractCraigslistData() {
         const data = {
             url: window.location.href,
@@ -77,7 +221,7 @@
             console.log('📝 Title found:', data.title);
         }
         
-        // Extract price - multiple selectors for different Craigslist layouts
+        // Extract price
         const priceSelectors = [
             '.price',
             '.postinginfo .price',
@@ -139,23 +283,21 @@
             }
         }
         
-        // Strategy 2: Extract from description - look for common location patterns
+        // Strategy 2: Extract from description
         const descriptionElement = document.querySelector('#postingbody, .postingbody, .userbody');
         if (descriptionElement) {
             const description = descriptionElement.textContent;
             
-            // Look for "Located at/in/near" patterns
             const locationPatterns = [
                 /(?:located|situated|found|available)\s+(?:at|in|near|around)\s+([^.!?]+?)(?:\.|!|\?|$)/i,
                 /(?:at|in|near)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]*)*\s+(?:Marina|Harbor|Bay|Creek|River|Lake|Beach|Park))/i,
-                /([A-Z][a-z]+(?:\s+[A-Z][a-z]*)*),?\s+[A-Z]{2}\b/i  // City, ST pattern
+                /([A-Z][a-z]+(?:\s+[A-Z][a-z]*)*),?\s+[A-Z]{2}\b/i
             ];
             
             for (const pattern of locationPatterns) {
                 const match = description.match(pattern);
                 if (match && match[1]) {
                     const location = match[1].trim();
-                    // Filter out obvious non-locations
                     if (!location.toLowerCase().includes('loa') && 
                         !location.toLowerCase().includes('foot') &&
                         !location.toLowerCase().includes('hp') &&
@@ -167,44 +309,7 @@
             }
         }
         
-        // Strategy 3: Look in title for parentheses location (fallback)
-        if (extractedData && extractedData.title) {
-            const titleLocationMatch = extractedData.title.match(/\(([^)]+)\)/);
-            if (titleLocationMatch && titleLocationMatch[1]) {
-                const titleLocation = titleLocationMatch[1].trim();
-                if (!titleLocation.toLowerCase().includes('loa') && 
-                    !titleLocation.toLowerCase().includes('foot') &&
-                    titleLocation.length > 2) {
-                    console.log('📍 Found location in title:', titleLocation);
-                    return titleLocation;
-                }
-            }
-        }
-        
-        // Strategy 4: Extract from posting info elements (improved filtering)
-        const postingInfoElements = document.querySelectorAll('.postinginfo, small, .postinginfos, .postinginfos small, .attrgroup span');
-        for (const element of postingInfoElements) {
-            const text = element.textContent || '';
-            if (text.includes('(') && text.includes(')')) {
-                const locationMatch = text.match(/\(([^)]+)\)/);
-                if (locationMatch && locationMatch[1]) {
-                    const candidate = locationMatch[1].trim();
-                    // Filter out technical specs and keep only location-like text
-                    if (!candidate.toLowerCase().includes('loa') &&
-                        !candidate.toLowerCase().includes('foot') &&
-                        !candidate.toLowerCase().includes('hp') &&
-                        !candidate.toLowerCase().includes('engine') &&
-                        !candidate.toLowerCase().includes('trailer') &&
-                        candidate.length > 2 && 
-                        candidate.length < 50) {
-                        console.log('📍 Found location in posting info:', candidate);
-                        return candidate;
-                    }
-                }
-            }
-        }
-        
-        // Strategy 5: Fall back to extracting from URL domain
+        // Strategy 3: URL fallback
         const urlMatch = window.location.href.match(/https?:\/\/([^.]+)\.craigslist\.org/);
         if (urlMatch && urlMatch[1]) {
             const cityCode = urlMatch[1];
@@ -212,48 +317,13 @@
                 'annapolis': 'Annapolis, MD',
                 'baltimore': 'Baltimore, MD',
                 'washingtondc': 'Washington, DC',
-                'sfbay': 'San Francisco Bay Area, CA',
-                'newyork': 'New York, NY',
-                'losangeles': 'Los Angeles, CA',
-                'chicago': 'Chicago, IL',
-                'seattle': 'Seattle, WA',
-                'boston': 'Boston, MA',
-                'miami': 'Miami, FL'
+                'sfbay': 'San Francisco Bay Area, CA'
             };
             
-            if (cityMap[cityCode]) {
-                console.log('📍 Found location from URL:', cityMap[cityCode]);
-                return cityMap[cityCode];
-            } else {
-                console.log('📍 Found location code from URL:', cityCode);
-                return cityCode;
-            }
+            return cityMap[cityCode] || cityCode;
         }
         
-        console.log('⚠️ No location found using any strategy');
         return null;
-    }
-    
-    function extractFacebookData() {
-        // Facebook Marketplace extraction
-        const data = {
-            url: window.location.href,
-            marketplace: 'facebook',
-            timestamp: new Date().toISOString()
-        };
-        
-        // Facebook uses dynamic selectors, try multiple approaches
-        const titleElement = document.querySelector('[data-testid="post-title"] span, h1');
-        if (titleElement) {
-            data.title = titleElement.textContent.trim();
-        }
-        
-        const priceElement = document.querySelector('[data-testid="price"] span, [class*="price"]');
-        if (priceElement) {
-            data.price = extractPriceFromText(priceElement.textContent);
-        }
-        
-        return data;
     }
     
     function extractEbayData() {
@@ -299,7 +369,6 @@
     function extractPriceFromText(text) {
         if (!text) return null;
         
-        // Remove all non-numeric characters except decimal points and commas
         const priceMatch = text.match(/[\$]?([0-9,]+\.?[0-9]*)/);
         if (priceMatch) {
             const priceStr = priceMatch[1].replace(/,/g, '');
@@ -310,12 +379,10 @@
     }
     
     function createFloatingButton() {
-        // Remove existing button if present
         if (saveButton) {
             saveButton.remove();
         }
         
-        // Make sure we have a document body to attach to
         if (!document.body) {
             console.log('⚠️ Document body not ready, retrying...');
             setTimeout(createFloatingButton, 500);
@@ -345,7 +412,6 @@
             user-select: none;
         `;
         
-        // Add hover effect
         saveButton.addEventListener('mouseenter', () => {
             saveButton.style.transform = 'scale(1.1)';
             saveButton.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.6)';
@@ -356,7 +422,6 @@
             saveButton.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.4)';
         });
         
-        // Add click handler
         saveButton.addEventListener('click', handleFloatingButtonClick);
         
         document.body.appendChild(saveButton);
@@ -371,7 +436,6 @@
             return;
         }
         
-        // Send data to background script to save to Google Forms
         chrome.runtime.sendMessage({
             action: 'saveListing',
             data: extractedData
@@ -385,11 +449,7 @@
     }
     
     function showNotification(message, type = 'info') {
-        // Make sure we have a document body
-        if (!document.body) {
-            console.log('Cannot show notification: no document body');
-            return;
-        }
+        if (!document.body) return;
         
         const notification = document.createElement('div');
         notification.textContent = message;
@@ -408,7 +468,6 @@
             animation: slideIn 0.3s ease;
         `;
         
-        // Add animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
@@ -430,7 +489,6 @@
         }, 3000);
     }
     
-    // Handle messages from popup
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         console.log('📨 Content script received message:', request);
         
@@ -449,7 +507,6 @@
         }
     });
     
-    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
