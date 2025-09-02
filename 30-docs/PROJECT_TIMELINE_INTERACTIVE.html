@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Tracker - Project Timeline</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const ProjectTimeline = () => {
+          const [selectedNode, setSelectedNode] = useState(null);
+
+          const timelineData = [
+            {
+              id: 1,
+              date: "Early August 2025",
+              phase: "Initial Concept",
+              title: "Facebook Marketplace Jet Ski Tracker",
+              type: "inception",
+              challenge: "Manual browsing of Facebook Marketplace was inefficient",
+              decision: "Build automated listing tracker for jet ski deals",
+              context: "Started with simple idea to track Facebook Marketplace listings for jet skis",
+              technicalDetails: "Initially considered web scraping approach",
+              outcome: "Defined core requirements and use cases"
+            },
+            {
+              id: 2,
+              date: "August 6, 2025",
+              phase: "Technical Architecture",
+              title: "Zero Dependencies Decision",
+              type: "architecture",
+              challenge: "Complex build systems and dependencies create deployment friction",
+              decision: "Implement zero-dependency core app using only CDN libraries",
+              context: "Chose simplicity over complexity for faster iteration and deployment",
+              technicalDetails: "Core app (10-src/) uses only CDN links for external libraries (Supabase, Chart.js, D3.js)",
+              outcome: "Achieved sub-second deployments and simplified maintenance"
+            },
+            {
+              id: 3,
+              date: "August 6-10, 2025",
+              phase: "Data Extraction Challenge",
+              title: "Facebook Scraping vs Manual Entry",
+              type: "pivot",
+              challenge: "Facebook's anti-scraping measures and dynamic DOM made automated extraction unreliable",
+              decision: "Abandon automated Facebook scraping in favor of mobile-first manual workflow",
+              context: "Initial attempts at browser extensions and scrapers failed due to Facebook's security",
+              technicalDetails: "Facebook uses dynamic class names, React components, and CSRF protection",
+              outcome: "Pivoted to sustainable mobile capture + desktop analysis workflow"
+            },
+            {
+              id: 4,
+              date: "August 10-15, 2025",
+              phase: "Mobile Workflow Design",
+              title: "Phone-to-Desktop Data Flow",
+              type: "workflow",
+              challenge: "Need seamless way to capture listings on mobile and analyze on desktop",
+              decision: "Implement mobile URL capture with copy/paste sync mechanism",
+              context: "Users naturally browse marketplace on phones but need desktop for analysis",
+              technicalDetails: "Mobile queue system stores URLs locally, exports JSON for desktop import",
+              outcome: "Created cross-device workflow that actually works in practice"
+            },
+            {
+              id: 5,
+              date: "August 15-20, 2025",
+              phase: "Data Processing Pipeline",
+              title: "Screenshot-Based Enhancement",
+              type: "solution",
+              challenge: "Manual data entry is time-consuming and error-prone",
+              decision: "Build screenshot capture system for batch processing listings",
+              context: "Compromise between automation and reliability - capture screenshots for manual review",
+              technicalDetails: "Python scripts capture mobile screenshots and extract visible text/prices",
+              outcome: "Processed 166+ listings with ~92% extraction accuracy"
+            },
+            {
+              id: 6,
+              date: "August 20-25, 2025",
+              phase: "Cross-Device Sync",
+              title: "Manual Copy/Paste to Database Sync",
+              type: "evolution",
+              challenge: "Copy/paste data transfer was clunky and error-prone",
+              decision: "Implement Supabase real-time database for seamless cross-device sync",
+              context: "Users needed better way to sync data between phone and desktop",
+              technicalDetails: "Supabase provides real-time sync with offline-first local storage fallback",
+              outcome: "Achieved seamless data synchronization across devices"
+            },
+            {
+              id: 7,
+              date: "August 25-28, 2025",
+              phase: "Visualization Integration",
+              title: "Ocean Explorer Integration",
+              type: "enhancement",
+              challenge: "Need advanced analytics and visualization for market data",
+              decision: "Integrate Harbor project's Ocean Explorer for data visualization",
+              context: "Existing Ocean Explorer had powerful graph database and visualization capabilities",
+              technicalDetails: "One-way mirror of Harbor repository in 80-harbor/ for component reference",
+              outcome: "Added sophisticated data visualization and analysis capabilities"
+            },
+            {
+              id: 8,
+              date: "August 28-29, 2025",
+              phase: "Repository Organization",
+              title: "Semantic Numbering System",
+              type: "organization",
+              challenge: "Project structure was becoming chaotic with mixed file types",
+              decision: "Implement semantic numbering system for logical folder organization",
+              context: "Following computer science best practices for scalable project structure",
+              technicalDetails: "10-src/ (core), 20-reference/ (data), 30-docs/, 40-automation/, 50-scripts/, etc.",
+              outcome: "Achieved clear, predictable project organization that scales"
+            },
+            {
+              id: 9,
+              date: "August 29, 2025",
+              phase: "Data Quality Issues",
+              title: "Price Parsing and Display Bugs",
+              type: "debugging",
+              challenge: "Deployment showed $0 averages and inconsistent listing counts",
+              decision: "Build comprehensive price parsing system and data validation",
+              context: "String prices ('2500') weren't converting to numbers for calculations",
+              technicalDetails: "Created price-fix.js with regex parsing for various price formats",
+              outcome: "Fixed data display showing 166 listings with $9,659 average price"
+            },
+            {
+              id: 10,
+              date: "August 30-31, 2025",
+              phase: "Advanced Features",
+              title: "Missing Info Detector",
+              type: "intelligence",
+              challenge: "Users needed guidance on what questions to ask sellers",
+              decision: "Build AI-powered missing information detector with seller question suggestions",
+              context: "Due diligence requires complete information - system should suggest what's missing",
+              technicalDetails: "Pattern matching and completeness analysis suggests targeted seller questions",
+              outcome: "Enhanced listing quality through intelligent data collection guidance"
+            },
+            {
+              id: 11,
+              date: "August 31, 2025",
+              phase: "Automation Pipeline",
+              title: "Google Sheets Integration",
+              type: "automation",
+              challenge: "Need streamlined pipeline from mobile capture to data processing",
+              decision: "Integrate Google Sheets as mobile capture queue with automated processing",
+              context: "Bridge between mobile convenience and desktop automation capabilities",
+              technicalDetails: "Browser extension submits to Google Sheets, Python scripts process queue",
+              outcome: "Created end-to-end automation pipeline for listing enhancement"
+            },
+            {
+              id: 12,
+              date: "September 2025",
+              phase: "Current State",
+              title: "Production-Ready System",
+              type: "deployment",
+              challenge: "System needs to be maintainable and collaborative",
+              decision: "Create comprehensive documentation and handoff procedures",
+              context: "Project ready for collaboration and continued development",
+              technicalDetails: "Complete CIT system, semantic numbering, automated README generation",
+              outcome: "Fully documented, organized system ready for team collaboration"
+            }
+          ];
+
+          const getNodeColor = (type) => {
+            const colors = {
+              inception: '#3b82f6',
+              architecture: '#10b981', 
+              pivot: '#ef4444',
+              workflow: '#f59e0b',
+              solution: '#8b5cf6',
+              evolution: '#06b6d4',
+              enhancement: '#84cc16',
+              organization: '#f97316',
+              debugging: '#ec4899',
+              intelligence: '#6366f1',
+              automation: '#14b8a6',
+              deployment: '#64748b'
+            };
+            return colors[type] || '#64748b';
+          };
+
+          const getTypeIcon = (type) => {
+            const icons = {
+              inception: '💡',
+              architecture: '🏗️',
+              pivot: '🔄',
+              workflow: '📱',
+              solution: '⚡',
+              evolution: '🔮',
+              enhancement: '🌊',
+              organization: '📊',
+              debugging: '🐛',
+              intelligence: '🧠',
+              automation: '🤖',
+              deployment: '🚀'
+            };
+            return icons[type] || '📋';
+          };
+
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 p-4">
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-8">
+                  <h1 className="text-4xl font-bold text-white mb-2">Marketplace Tracker</h1>
+                  <h2 className="text-xl text-slate-300">Complete Project Timeline & Decision Log</h2>
+                  <p className="text-slate-400 mt-2">Click any node to see detailed context and technical decisions</p>
+                </div>
+
+                {/* Timeline */}
+                <div className="relative">
+                  {/* Central timeline line */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-600"></div>
+
+                  {timelineData.map((node, index) => (
+                    <div key={node.id} className="relative mb-12">
+                      {/* Node */}
+                      <div 
+                        className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full border-4 border-white cursor-pointer transition-all duration-300 hover:scale-110 flex items-center justify-center text-xl z-10 ${selectedNode?.id === node.id ? 'ring-4 ring-white ring-opacity-50' : ''}`}
+                        style={{ backgroundColor: getNodeColor(node.type) }}
+                        onClick={() => setSelectedNode(selectedNode?.id === node.id ? null : node)}
+                      >
+                        {getTypeIcon(node.type)}
+                      </div>
+
+                      {/* Content card */}
+                      <div className={`${index % 2 === 0 ? 'mr-auto pr-16' : 'ml-auto pl-16'} w-1/2`}>
+                        <div 
+                          className={`bg-slate-800 rounded-lg p-6 shadow-xl border border-slate-700 cursor-pointer transition-all duration-300 hover:bg-slate-750 ${selectedNode?.id === node.id ? 'ring-2 ring-blue-400' : ''}`}
+                          onClick={() => setSelectedNode(selectedNode?.id === node.id ? null : node)}
+                        >
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-2xl">{getTypeIcon(node.type)}</span>
+                            <div>
+                              <h3 className="text-lg font-bold text-white">{node.title}</h3>
+                              <p className="text-sm text-slate-400">{node.date} • {node.phase}</p>
+                            </div>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <div>
+                              <span className="text-red-400 font-semibold">Challenge:</span>
+                              <p className="text-slate-300 text-sm">{node.challenge}</p>
+                            </div>
+                            <div>
+                              <span className="text-green-400 font-semibold">Decision:</span>
+                              <p className="text-slate-300 text-sm">{node.decision}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Selected Node Details Panel */}
+                {selectedNode && (
+                  <div className="fixed inset-x-4 bottom-4 bg-slate-800 rounded-xl shadow-2xl border border-slate-600 p-6 max-h-80 overflow-y-auto z-50">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <span className="text-3xl">{getTypeIcon(selectedNode.type)}</span>
+                        <div>
+                          <h3 className="text-xl font-bold text-white">{selectedNode.title}</h3>
+                          <p className="text-slate-400">{selectedNode.date} • {selectedNode.phase}</p>
+                        </div>
+                      </div>
+                      <button 
+                        onClick={() => setSelectedNode(null)}
+                        className="text-slate-400 hover:text-white text-2xl"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <h4 className="text-green-400 font-semibold mb-2">Context</h4>
+                        <p className="text-slate-300 text-sm mb-4">{selectedNode.context}</p>
+                        
+                        <h4 className="text-red-400 font-semibold mb-2">Challenge</h4>
+                        <p className="text-slate-300 text-sm mb-4">{selectedNode.challenge}</p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-blue-400 font-semibold mb-2">Decision</h4>
+                        <p className="text-slate-300 text-sm mb-4">{selectedNode.decision}</p>
+                        
+                        <h4 className="text-purple-400 font-semibold mb-2">Technical Implementation</h4>
+                        <p className="text-slate-300 text-sm mb-4">{selectedNode.technicalDetails}</p>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-slate-700 pt-4 mt-4">
+                      <h4 className="text-yellow-400 font-semibold mb-2">Outcome</h4>
+                      <p className="text-slate-300 text-sm">{selectedNode.outcome}</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Legend */}
+                <div className="mt-12 bg-slate-800 rounded-lg p-6 border border-slate-700">
+                  <h3 className="text-lg font-bold text-white mb-4">Timeline Legend</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {Object.entries({
+                      inception: 'Initial Ideas',
+                      architecture: 'Core Decisions', 
+                      pivot: 'Major Changes',
+                      workflow: 'Process Design',
+                      solution: 'Problem Solving',
+                      evolution: 'Feature Growth',
+                      enhancement: 'Capabilities',
+                      organization: 'Structure',
+                      debugging: 'Issue Resolution',
+                      intelligence: 'Smart Features',
+                      automation: 'Process Automation',
+                      deployment: 'Production Ready'
+                    }).map(([type, label]) => (
+                      <div key={type} className="flex items-center gap-2">
+                        <div 
+                          className="w-6 h-6 rounded-full flex items-center justify-center text-sm"
+                          style={{ backgroundColor: getNodeColor(type) }}
+                        >
+                          {getTypeIcon(type)}
+                        </div>
+                        <span className="text-slate-300 text-sm">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Project Stats */}
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
+                    <h4 className="text-blue-400 font-semibold mb-2">📊 Current Metrics</h4>
+                    <ul className="text-slate-300 text-sm space-y-1">
+                      <li>• 166+ Facebook listings processed</li>
+                      <li>• 91.7% extraction accuracy rate</li>
+                      <li>• $150-$25,000 price range</li>
+                      <li>• $9,659 average listing price</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
+                    <h4 className="text-green-400 font-semibold mb-2">⚡ Technical Achievements</h4>
+                    <ul className="text-slate-300 text-sm space-y-1">
+                      <li>• Zero-dependency core architecture</li>
+                      <li>• Real-time cross-device sync</li>
+                      <li>• Semantic folder organization</li>
+                      <li>• Automated data processing pipeline</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-slate-800 rounded-lg p-4 border border-slate-700">
+                    <h4 className="text-purple-400 font-semibold mb-2">🎯 Key Decisions</h4>
+                    <ul className="text-slate-300 text-sm space-y-1">
+                      <li>• Manual over automated scraping</li>
+                      <li>• Mobile-first capture workflow</li>
+                      <li>• Harbor integration for visualization</li>
+                      <li>• Supabase for real-time sync</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        };
+
+        ReactDOM.render(<ProjectTimeline />, document.getElementById('root'));
+    </script>
+</body>
+</html>
